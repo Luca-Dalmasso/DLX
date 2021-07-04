@@ -60,27 +60,6 @@ begin
     
 end Structural;
 
-architecture Behavioural of RCA is
-
-begin
-
-process(a,b)
-variable full_sum: std_logic_vector(size downto 0);
-begin
-    
-    full_sum:=('0' & a) + ('0' & b);
-    sum<=full_sum(size-1 downto 0) after delay_s;
-    c_out<=full_sum(size) after delay_c;
-
-end process;
-
-end Behavioural;
-
-configuration CFG_RCA_Beh of RCA is
-    for Behavioural
-    end for;
-end CFG_RCA_Beh;
-
 configuration CFG_RCA_STR of RCA is
   for Structural 
     for G

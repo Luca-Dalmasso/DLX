@@ -1,6 +1,6 @@
-vcom constants.vhd                        
-vcom nd3.vhd                                          
-vcom nd4.vhd 
+vcom ../GLOBALS/constants.vhd                        
+vcom ../GLOBALS/nd3.vhd                                          
+vcom ../GLOBALS/nd4.vhd 
 vcom Logical.vhd 
 vcom tb_Logicals.vhd                                      
                                           

@@ -28,8 +28,17 @@ package myTypes is
     constant ITYPE_ADDI     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001000";    -- ADDI = 0x08
     constant ITYPE_SUBI     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001010";		-- SUBI = 0x0a
 		constant ITYPE_ANDI     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001100";		-- ANDI = 0x0c
-		constant ITYPE_ORI1     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001101";		-- ORI  = 0x0d
-		constant ITYPE_XORI1    : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001110";		-- XORI = 0x0e
+		constant ITYPE_ORI      : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001101";		-- ORI  = 0x0d
+		constant ITYPE_XORI     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "001110";		-- XORI = 0x0e
+    constant ITYPE_BEQZ     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "000100";    -- BEQZ = 0x04
+    constant ITYPE_BNEZ     : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "000101";		-- BNEZ = 0x05
+		constant ITYPE_LW     	: std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "100011";    -- LW = 0x23
+    constant ITYPE_SW     	: std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "101011";		-- SW = 0x2b
+
+-- j-Type instruction -> OPCODE field
+		constant JTYPE_J     		: std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "000010";		-- J = 0x02
+		constant JTYPE_JAL      : std_logic_vector(OP_CODE_SIZE - 1 downto 0) :=   "000011";		-- JAL  = 0x03
+
 
 
 end myTypes;

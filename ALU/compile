@@ -1,0 +1,37 @@
+vcom ./GLOBALS/constants.vhd
+
+vcom ./GLOBALS/lfsr.vhd
+vcom ./GLOBALS/iv.vhd
+vcom ./GLOBALS/nd2.vhd
+vcom ./GLOBALS/mux21.vhd
+vcom ./GLOBALS/mux21_generic.vhd
+vcom ./P4AddSub/FA.vhd
+vcom ./P4AddSub/RCA.vhd
+vcom ./P4AddSub/SUM_BLOCK.vhd
+vcom ./P4AddSub/SUM_GENERATOR.vhd
+vcom ./P4AddSub/g_block.vhd
+vcom ./P4AddSub/pg_block.vhd
+vcom ./P4AddSub/pg_net.vhd
+vcom ./P4AddSub/xorGrid.vhd
+vcom ./P4AddSub/carry_gen.vhd
+vcom ./P4AddSub/P4_Adder.vhd
+
+vcom ./Shifter/vhdlsim/01-generic_shifter.vhd
+
+vcom ./GLOBALS/nd3.vhd                                          
+vcom ./GLOBALS/nd4.vhd 
+vcom ./Logicals/Logical.vhd 
+
+vcom ./GLOBALS/NOR2.vhd
+vcom ./GLOBALS/AND2.vhd
+vcom ./GLOBALS/NORN.vhd
+vcom ./GLOBALS/MUX6_1Generic.vhd
+vcom ./Comparator/vhdlsim/comparator.vhd
+vcom ./Comparator/vhdlsim/topLevelCMP.vhd
+
+vcom ./GLOBALS/MUX4_1Generic.vhd
+vcom ./ALU.vhd
+
+
+
+vcom tb_ALU.vhd

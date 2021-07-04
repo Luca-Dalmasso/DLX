@@ -1,0 +1,3 @@
+vcom ../../GLOBALS/constants.vhd
+vcom 01-generic_shifter.vhd
+vcom tb_shifter.vhd

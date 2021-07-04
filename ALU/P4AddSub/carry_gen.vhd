@@ -29,18 +29,6 @@ end CARRY_GENERATOR;
 
 architecture Structural of CARRY_GENERATOR is
 
-	function log2 (N: integer) return integer is
-	variable cnt, tmp: integer;		
-	begin
-		tmp := N;
-		cnt := 0;
-		while (tmp > 1) loop
-			tmp := tmp/2;
-			cnt := cnt+1;
-		end loop;
-	return cnt;
-	end function;
-
 	component PG_BLOCK is
 		port (
 			PIK,GIK     :	in	std_logic;

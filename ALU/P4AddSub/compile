@@ -1,9 +1,9 @@
-vcom constants.vhd
-vcom lfsr.vhd
-vcom iv.vhd
-vcom nd2.vhd
-vcom mux21.vhd
-vcom mux21_generic.vhd
+vcom ../GLOBALS/constants.vhd
+vcom ../GLOBALS/lfsr.vhd
+vcom ../GLOBALS/iv.vhd
+vcom ../GLOBALS/nd2.vhd
+vcom ../GLOBALS/mux21.vhd
+vcom ../GLOBALS/mux21_generic.vhd
 vcom FA.vhd
 vcom RCA.vhd
 vcom SUM_BLOCK.vhd
