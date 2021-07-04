@@ -1,0 +1,265 @@
+# //  Questa Sim-64
+# //  Version 10.7c linux_x86_64 Aug 17 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Load canceled
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:30:55 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(10): near "entity": (vcom-1576) expecting BEGIN.
+# End time: 12:30:55 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:31:32 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(26): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(26): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(27): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(28): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(28): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(29): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(30): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(30): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(31): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(32): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(32): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(33): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(34): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(34): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(35): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(36): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(36): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(37): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(38): (vcom-1589) Cannot use name 'A' until the interface list is complete.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(38): Cannot drive signal 'A' of mode IN.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(39): near "wait": (vcom-1576) expecting ';'.
+# ** Warning: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(40): (vcom-1090) Possible infinite loop: Process contains no WAIT statement.
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:31:32 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 23, Warnings: 1
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:31:58 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(17): (vcom-1294) Declaration with designator "a" already exists in this region.
+# ** =====> Prior declaration of "A" is at /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(12).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(27): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(29): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(31): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(33): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(35): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(37): near "wait": (vcom-1576) expecting ';'.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(39): near "wait": (vcom-1576) expecting ';'.
+# ** Warning: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(40): (vcom-1090) Possible infinite loop: Process contains no WAIT statement.
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:31:58 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 10, Warnings: 1
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:32:20 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(17): (vcom-1294) Declaration with designator "a" already exists in this region.
+# ** =====> Prior declaration of "A" is at /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(12).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(26): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(28): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(30): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(32): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(34): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(36): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Error (suppressible): /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(38): (vcom-1272) Length of expected is 4; length of actual is 8.
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:32:20 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 10, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/constants.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:32:53 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/constants.vhd 
+# -- Loading package STANDARD
+# -- Compiling package CONSTANTS
+# End time: 12:32:53 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/AND2.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:33:05 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/AND2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AND2
+# -- Compiling architecture BEH of AND2
+# -- Compiling configuration CFG_AND2
+# -- Loading entity AND2
+# -- Loading architecture BEH of AND2
+# End time: 12:33:05 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/XOR2.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:33:09 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/XOR2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity XOR2
+# -- Compiling architecture behavioral of XOR2
+# -- Compiling configuration CFG_XOR2
+# -- Loading entity XOR2
+# -- Loading architecture behavioral of XOR2
+# End time: 12:33:09 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:33:15 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity ZERODET
+# -- Compiling architecture Struct of ZERODET
+# -- Compiling configuration CFG_ZERODET
+# -- Loading entity ZERODET
+# -- Loading architecture Struct of ZERODET
+# -- Loading entity XOR2
+# -- Loading entity AND2
+# -- Loading configuration cfg_xor2
+# -- Loading configuration cfg_and2
+# End time: 12:33:15 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:33:19 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(17): (vcom-1294) Declaration with designator "a" already exists in this region.
+# ** =====> Prior declaration of "A" is at /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(12).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:33:19 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:35:26 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(1): near "libra_Sry": syntax error
+# End time: 12:35:26 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:36:12 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(26): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(26): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(28): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(28): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(30): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(30): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(32): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(32): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(34): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(34): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(36): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(36): (vcom-1136) Unknown identifier "a_S".
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(38): Illegal target for signal assignment.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(38): (vcom-1136) Unknown identifier "a_S".
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:36:12 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 16, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:36:37 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(14): near "end": (vcom-1576) expecting IDENTIFIER.
+# ** Error: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(22): (vcom-1027) Number of positional association elements (2) exceeds number of formals (0).
+# ** Note: /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd(41): VHDL Compiler exiting
+# End time: 12:36:37 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 12:36:56 on Jul 03,2021
+# vcom -reportprogress 300 -work work /home/ms21.4/Desktop/DLX/ALU/ZeroCMP/vhdlsim/tb_zerodetect.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity tb
+# -- Compiling architecture test of tb
+# End time: 12:36:56 on Jul 03,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim work.tb(test) -t ps
+# vsim work.tb(test) -t ps 
+# Start time: 12:37:17 on Jul 03,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.constants
+# Loading work.tb(test)#1
+# Loading work.xor2(behavioral)#1
+# Loading work.and2(beh)#1
+add wave *
+run 50 ns
+# End time: 12:38:13 on Jul 03,2021, Elapsed time: 0:00:56
+# Errors: 0, Warnings: 0

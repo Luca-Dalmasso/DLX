@@ -1,0 +1,355 @@
+# //  Questa Sim-64
+# //  Version 10.7c linux_x86_64 Aug 17 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+./compile
+# Start time: 19:51:33 on Jul 02,2021
+# vcom constants.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Compiling package CONSTANTS
+# End time: 19:51:33 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom lfsr.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Compiling entity LFSR16
+# -- Compiling architecture RTL of LFSR16
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom iv.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity IV
+# -- Compiling architecture BEHAVIORAL of IV
+# -- Compiling configuration CFG_IV_BEHAVIORAL
+# -- Loading entity IV
+# -- Loading architecture BEHAVIORAL of IV
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom nd2.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity ND2
+# -- Compiling architecture ARCH1 of ND2
+# -- Compiling architecture ARCH2 of ND2
+# -- Loading entity ND2
+# -- Compiling configuration CFG_ND2_ARCH1
+# -- Loading entity ND2
+# -- Loading architecture ARCH1 of ND2
+# -- Compiling configuration CFG_ND2_ARCH2
+# -- Loading entity ND2
+# -- Loading architecture ARCH2 of ND2
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom mux21.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity MUX21
+# -- Compiling architecture BEHAVIORAL_1 of MUX21
+# -- Compiling architecture BEHAVIORAL_2 of MUX21
+# -- Loading entity MUX21
+# -- Compiling architecture BEHAVIORAL_3 of MUX21
+# -- Loading entity MUX21
+# -- Compiling architecture STRUCTURAL of MUX21
+# -- Loading entity MUX21
+# -- Compiling configuration CFG_MUX21_BEHAVIORAL_1
+# -- Loading entity MUX21
+# -- Loading architecture BEHAVIORAL_1 of MUX21
+# -- Compiling configuration CFG_MUX21_BEHAVIORAL_2
+# -- Loading entity MUX21
+# -- Loading architecture BEHAVIORAL_2 of MUX21
+# -- Compiling configuration CFG_MUX21_BEHAVIORAL_3
+# -- Loading entity MUX21
+# -- Loading architecture BEHAVIORAL_3 of MUX21
+# -- Compiling configuration CFG_MUX21_STRUCTURAL
+# -- Loading entity MUX21
+# -- Loading architecture STRUCTURAL of MUX21
+# -- Loading entity IV
+# -- Loading entity ND2
+# -- Loading configuration cfg_iv_behavioral
+# -- Loading configuration cfg_nd2_arch2
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom mux21_generic.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity MUX21_GENERIC
+# -- Compiling architecture BEHAVIORAL of MUX21_GENERIC
+# -- Compiling architecture STRUCTURAL of MUX21_GENERIC
+# -- Loading entity MUX21_GENERIC
+# -- Compiling configuration CFG_MUX21_GEN_BEHAVIORAL
+# -- Loading entity MUX21_GENERIC
+# -- Loading architecture BEHAVIORAL of MUX21_GENERIC
+# -- Compiling configuration CFG_MUX21_GEN_STRUCTURAL
+# -- Loading entity MUX21_GENERIC
+# -- Loading architecture STRUCTURAL of MUX21_GENERIC
+# -- Loading entity MUX21
+# -- Loading configuration cfg_mux21_structural
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom FA.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity FA
+# -- Compiling architecture Behavioural of FA
+# -- Compiling configuration FA_beh
+# -- Loading entity FA
+# -- Loading architecture Behavioural of FA
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom RCA.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package CONSTANTS
+# -- Compiling entity RCA
+# -- Compiling architecture Structural of RCA
+# -- Compiling architecture Behavioural of RCA
+# -- Loading entity RCA
+# -- Compiling configuration CFG_RCA_Beh
+# -- Loading entity RCA
+# -- Loading architecture Behavioural of RCA
+# -- Compiling configuration CFG_RCA_STR
+# -- Loading entity RCA
+# -- Loading architecture Structural of RCA
+# -- Loading entity FA
+# -- Loading configuration fa_beh
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom SUM_BLOCK.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package CONSTANTS
+# -- Compiling entity SUM_BLOCK
+# -- Compiling architecture Structural of SUM_BLOCK
+# -- Compiling configuration CFG_SUM_BLOCK_STR
+# -- Loading entity SUM_BLOCK
+# -- Loading architecture Structural of SUM_BLOCK
+# -- Loading entity RCA
+# -- Loading entity MUX21_GENERIC
+# -- Loading configuration cfg_rca_str
+# -- Loading configuration cfg_mux21_gen_structural
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom SUM_GENERATOR.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package CONSTANTS
+# -- Compiling entity SUM_GENERATOR
+# -- Compiling architecture Structural of SUM_GENERATOR
+# -- Compiling configuration CFG_SUM_GEN_STRUCT
+# -- Loading entity SUM_GENERATOR
+# -- Loading architecture Structural of SUM_GENERATOR
+# -- Loading entity SUM_BLOCK
+# -- Loading configuration cfg_sum_block_str
+# End time: 19:51:34 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:34 on Jul 02,2021
+# vcom g_block.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity G_BLOCK
+# -- Compiling architecture Behavioral of G_BLOCK
+# -- Compiling configuration G_BLOCK_BEH
+# -- Loading entity G_BLOCK
+# -- Loading architecture Behavioral of G_BLOCK
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom pg_block.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity PG_BLOCK
+# -- Compiling architecture Behavioral of PG_BLOCK
+# -- Compiling configuration PG_BLOCK_BEH
+# -- Loading entity PG_BLOCK
+# -- Loading architecture Behavioral of PG_BLOCK
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom pg_net.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity PG_NET
+# -- Compiling architecture Behavioral of PG_NET
+# -- Compiling configuration PG_NET_BEH
+# -- Loading entity PG_NET
+# -- Loading architecture Behavioral of PG_NET
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom xorGrid.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity xorGrid
+# -- Compiling architecture Beh of xorGrid
+# -- Compiling configuration CFG_xorGrid
+# -- Loading entity xorGrid
+# -- Loading architecture Beh of xorGrid
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom carry_gen.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package CONSTANTS
+# -- Compiling entity CARRY_GENERATOR
+# -- Compiling architecture Structural of CARRY_GENERATOR
+# -- Compiling configuration CARRY_GEN_STR
+# -- Loading entity CARRY_GENERATOR
+# -- Loading architecture Structural of CARRY_GENERATOR
+# -- Loading entity PG_NET
+# -- Loading entity G_BLOCK
+# -- Loading entity PG_BLOCK
+# -- Loading configuration pg_net_beh
+# -- Loading configuration g_block_beh
+# -- Loading configuration pg_block_beh
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom P4_Adder.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package CONSTANTS
+# -- Compiling entity P4Adder
+# -- Compiling architecture Structural of P4Adder
+# -- Compiling configuration CFG_P4ADD_STR
+# -- Loading entity P4Adder
+# -- Loading architecture Structural of P4Adder
+# -- Loading entity xorGrid
+# -- Loading entity CARRY_GENERATOR
+# -- Loading entity SUM_GENERATOR
+# -- Loading configuration cfg_xorgrid
+# -- Loading configuration carry_gen_str
+# -- Loading configuration cfg_sum_gen_struct
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Start time: 19:51:35 on Jul 02,2021
+# vcom tb_P4Adder.vhd 
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package CONSTANTS
+# -- Compiling entity TB_Adder
+# -- Compiling architecture TEST of TB_Adder
+# -- Compiling configuration CFG_TB_P4Adder
+# -- Loading entity TB_Adder
+# -- Loading architecture TEST of TB_Adder
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity P4Adder
+# -- Loading configuration cfg_p4add_str
+# End time: 19:51:35 on Jul 02,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim work.cfg_tb_p4adder -t ns
+# vsim work.cfg_tb_p4adder -t ns 
+# Start time: 19:51:54 on Jul 02,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.constants
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.cfg_tb_p4adder#1
+# Loading work.tb_adder(test)#1
+# Loading work.cfg_p4add_str#1
+# Loading work.p4adder(structural)#1
+# Loading work.cfg_xorgrid#1
+# Loading work.xorgrid(beh)#1
+# Loading work.carry_gen_str#1
+# Loading work.carry_generator(structural)#1
+# Loading work.pg_net_beh
+# Loading work.pg_net(behavioral)
+# Loading work.g_block_beh
+# Loading work.g_block(behavioral)
+# Loading work.pg_block_beh
+# Loading work.pg_block(behavioral)
+# Loading work.cfg_sum_gen_struct#1
+# Loading work.sum_generator(structural)#1
+# Loading work.cfg_sum_block_str#1
+# Loading work.sum_block(structural)#1
+# Loading work.cfg_rca_str#1
+# Loading work.rca(structural)#1
+# Loading work.fa_beh#1
+# Loading work.fa(behavioural)#1
+# Loading work.cfg_mux21_gen_structural#1
+# Loading work.mux21_generic(structural)#1
+# Loading work.cfg_mux21_structural#1
+# Loading work.mux21(structural)#1
+# Loading work.cfg_iv_behavioral#1
+# Loading work.iv(behavioral)#1
+# Loading work.cfg_nd2_arch2#1
+# Loading work.nd2(arch2)#1
+add wave *
+run 10 ns
+run 20 ns
+# End time: 19:53:51 on Jul 02,2021, Elapsed time: 0:01:57
+# Errors: 0, Warnings: 0

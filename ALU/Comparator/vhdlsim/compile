@@ -1,0 +1,8 @@
+vcom constants.vhd
+vcom NOR2.vhd
+vcom AND2.vhd
+vcom NORN.vhd
+vcom tb_NORN.vhd
+vcom comparator.vhd
+vcom topLevelCMP.vhd
+vcom tb_comparator.vhd

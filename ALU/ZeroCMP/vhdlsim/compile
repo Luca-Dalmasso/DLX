@@ -1,0 +1,5 @@
+vcom constants.vhd
+vcom AND2.vhd
+vcom XNOR2.vhd
+vcom zerodetect.vhd
+vcom tb_zerodetect.vhd

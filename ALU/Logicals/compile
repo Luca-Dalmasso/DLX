@@ -1,0 +1,7 @@
+vcom constants.vhd                        
+vcom nd3.vhd                                          
+vcom nd4.vhd 
+vcom Logical.vhd 
+vcom tb_Logicals.vhd                                      
+                                          
+                                          
