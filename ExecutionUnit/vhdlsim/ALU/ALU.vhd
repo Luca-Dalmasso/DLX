@@ -13,7 +13,7 @@ entity ALU is
 		OPERANDB: in  std_logic_vector(N-1 downto 0);
 		RESULT: 	out std_logic_vector(N-1 downto 0)
 	);
-end ;
+end ALU;
 
 architecture Structural of ALU is
 
