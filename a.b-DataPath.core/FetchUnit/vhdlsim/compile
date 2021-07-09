@@ -1,0 +1,12 @@
+vcom ./../../GLOBALS/constants.vhd
+vcom ./../../GLOBALS/iv.vhd
+vcom ./../../GLOBALS/nd2.vhd
+vcom ./../../GLOBALS/mux21.vhd
+vcom ./../../GLOBALS/mux21_generic.vhd
+vcom ./../../GLOBALS/ffd.vhd
+vcom ./../../GLOBALS/RegisterN.vhd
+vcom ./Adder/vhdlsim/Adder.vhd
+vcom a.c-IRAM.vhd
+vcom FU.vhd
+vcom tb_FU.vhd
+

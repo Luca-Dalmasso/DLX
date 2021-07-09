@@ -1,0 +1,44 @@
+vcom ../../GLOBALS/constants.vhd
+
+#MUX21_GENERIC
+vcom ../../GLOBALS/iv.vhd
+vcom ../../GLOBALS/nd2.vhd
+vcom ../../GLOBALS/mux21.vhd
+vcom ../../GLOBALS/mux21_generic.vhd
+
+#ALU
+vcom ./ALU/P4AddSub/FA.vhd
+vcom ./ALU/P4AddSub/RCA.vhd
+vcom ./ALU/P4AddSub/SUM_BLOCK.vhd
+vcom ./ALU/P4AddSub/SUM_GENERATOR.vhd
+vcom ./ALU/P4AddSub/g_block.vhd
+vcom ./ALU/P4AddSub/pg_block.vhd
+vcom ./ALU/P4AddSub/pg_net.vhd
+vcom ./ALU/P4AddSub/xorGrid.vhd
+vcom ./ALU/P4AddSub/carry_gen.vhd
+vcom ./ALU/P4AddSub/P4_Adder.vhd
+vcom ./ALU/Shifter/vhdlsim/01-generic_shifter.vhd
+vcom ../../GLOBALS/nd3.vhd                                          
+vcom ../../GLOBALS/nd4.vhd 
+vcom ./ALU/Logicals/Logical.vhd 
+vcom ../../GLOBALS/NOR2.vhd
+vcom ../../GLOBALS/AND2.vhd
+vcom ../../GLOBALS/NORN.vhd
+vcom ../../GLOBALS/MUX6_1Generic.vhd
+vcom ./ALU/Comparator/vhdlsim/comparator.vhd
+vcom ./ALU/Comparator/vhdlsim/topLevelCMP.vhd
+vcom ../../GLOBALS/MUX4_1Generic.vhd
+vcom ./ALU/ALU.vhd
+
+#ZERODET
+vcom ../../GLOBALS/XNOR2.vhd
+vcom ./ZeroCMP/vhdlsim/zerodetect.vhd
+
+#FLIPPEFLOPPE
+vcom ../../GLOBALS/ffd.vhd
+
+#REGN
+vcom ../../GLOBALS/RegisterN.vhd
+
+vcom ./TopLevelEXU.vhd
+#vcom ./tb_TopLevelEXU.vhd

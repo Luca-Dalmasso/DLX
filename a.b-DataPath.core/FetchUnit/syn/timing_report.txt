@@ -1,0 +1,38 @@
+Warning: Design 'FU' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FU
+Version: F-2011.09-SP3
+Date   : Thu Jul  8 15:44:07 2021
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: IRreg/ffi_31/Q_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: IR[31] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FU                 5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  IRreg/ffi_31/Q_reg/CK (DFF_X1)           0.00       0.00 r
+  IRreg/ffi_31/Q_reg/Q (DFF_X1)            0.08       0.08 r
+  IRreg/ffi_31/Q (ffd_32)                  0.00       0.08 r
+  IRreg/regOut[31] (regN_N32_1)            0.00       0.08 r
+  IR[31] (out)                             0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

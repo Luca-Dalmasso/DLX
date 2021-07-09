@@ -1,0 +1,11 @@
+vcom ./../../GLOBALS/constants.vhd
+vcom ./../../GLOBALS/iv.vhd
+vcom ./../../GLOBALS/nd2.vhd
+vcom ./../../GLOBALS/mux21.vhd
+vcom ./../../GLOBALS/mux21_generic.vhd
+vcom ./../../GLOBALS/ffd.vhd
+vcom ./../../GLOBALS/RegisterN.vhd
+vcom RegisterFile/registerfile.vhd
+vcom IR_decoder/IR_decoder.vhd
+vcom DU.vhd 
+vcom tb_DU.vhd

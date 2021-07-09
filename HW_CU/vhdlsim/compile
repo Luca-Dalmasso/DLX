@@ -1,0 +1,3 @@
+vcom ./../../a.b-DataPath.core/GLOBALS/constants.vhd
+vcom ./a.a-CU_HW.vhd
+vcom ./tb_a.a-CU_HW.vhd
