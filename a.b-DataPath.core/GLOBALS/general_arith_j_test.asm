@@ -1,0 +1,11 @@
+addi r1,r0,#8
+addi r2,r0,#10
+addi r3,r0,#15
+addi r4,r1,#6
+addi r5,r2,#3
+subi r1,r0,#7
+xor  r7,r2,r2
+j 0
+xor  r7,r2,r2
+xor  r7,r2,r2
+and  r1,r2,r3
