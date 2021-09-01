@@ -56,10 +56,11 @@ begin
 		IRs <= (OTHERS=>'0');
 		wait for 17 ns;
 		Rst <= '0';
-		wait for 10 ns;
+		wait for 3 ns;
 		PCs <= (OTHERS=>'1');
 		NPCs <= (OTHERS=>'1');
 		IRs <= "00100000000000100000000000000110"; --ITYPE  ADDI R2, R0, #6  -> R2 = R0 + 6  -> regA = 0, IMM = 6
+		wait for 10 ns;
 		SEL_IMM <= '1';
 		EN1 <= '1';
 		RF1 <= '1';

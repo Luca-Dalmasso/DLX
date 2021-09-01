@@ -53,8 +53,8 @@ end component;
 
 component IRAM is
   generic (
-    RAM_DEPTH : integer := IMem_Depth;  -- number of lines 
-    I_SIZE : integer := NumBit;					--instruction size 
+    RAM_DEPTH : integer := IMem_Depth;
+    I_SIZE : integer := NumBit;
 		FILE_PATH: string  := ASM_FULL_PATH		
 		);
   port (
@@ -62,6 +62,7 @@ component IRAM is
     Addr : in  std_logic_vector(I_SIZE - 1 downto 0);
     Dout : out std_logic_vector(I_SIZE - 1 downto 0)
     );
+
 end component;
 
 constant NBIT: integer := NumBit;
@@ -111,7 +112,7 @@ begin
 		MUX: MUX21_GENERIC generic map( NBIT=>NBIT) 		
 													port map( A=>Add_Mux,	
 																		B=>ALU_OUT,
-																		SEL=>selCond,					-- selCond = '1' -> Y <= A  Adder
+																		SEL=>selCond,					-- selCond = '1' -> Y <= A  Adder_out
 																		Y=>Mux_OUT);					-- selCond = '0' -> Y <= B  ALU_OUT 
 
 		InstrMemory: IRAM generic map(RAM_DEPTH =>RAM_DEPTH,

@@ -34,7 +34,7 @@ vcom ./ALU/ALU.vhd
 vcom ../../GLOBALS/XNOR2.vhd
 vcom ./ZeroCMP/vhdlsim/zerodetect.vhd
 
-#FLIPPEFLOPPE
+#FLIPFLOP
 vcom ../../GLOBALS/ffd.vhd
 
 #REGN

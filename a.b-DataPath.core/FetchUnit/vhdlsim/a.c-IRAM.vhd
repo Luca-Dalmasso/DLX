@@ -32,8 +32,10 @@ architecture IRam_Bhe of IRAM is
 begin  
 
 	--OUT PROCESS
+
+		Dout <= conv_std_logic_vector(IRAM_mem(conv_integer(unsigned(Addr))),I_SIZE);
 	
-  Dout <= conv_std_logic_vector(IRAM_mem(conv_integer(unsigned(Addr))),I_SIZE);
+  
 
 	--REFRESH PROCESS
 

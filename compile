@@ -50,7 +50,7 @@ vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/MUX3_1.vhd
 vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/MEMU.vhd
 
 #HW_CU
-vcom ./HW_CU/vhdlsim/a.a-CU_HW.vhd
+vcom ./HW_CU/vhdlsim/a.a-CU_HW.v2.vhd
 vcom DLX.vhd
 vcom tb_dlx.vhd
 

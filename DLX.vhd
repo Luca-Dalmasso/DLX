@@ -127,6 +127,8 @@ architecture Struct of dlx is
 			 regBout: IN std_logic_vector(N - 1 downto 0);
 			 NPC3in: IN std_logic_vector(N - 1 downto 0);
 			 NPC3out: OUT std_logic_vector(N - 1 downto 0);
+			 RD3in: IN std_logic_vector(4 downto 0);
+			 RD3out: OUT std_logic_vector(4 downto 0);
 			 LMDout: OUT std_logic_vector(N - 1 downto 0)
 		);
 		end component;
@@ -137,7 +139,7 @@ architecture Struct of dlx is
 		--TO WB
 		signal npc3_out, lmd_out: std_logic_vector(dlx_size-1 downto 0);	
 
-		component dlx_cu is
+component dlx_cu is   --CONTROL UNIT
   	generic (
     	MICROCODE_MEM_SIZE :     integer := 46;  
     	FUNC_SIZE          :     integer := 11;  
@@ -145,35 +147,53 @@ architecture Struct of dlx is
     	ALU_OPC_SIZE       :     integer := 6;  
     	IR_SIZE            :     integer := 32;  
     	CW_SIZE            :     integer := 20); 
-  	port (
-    	Clk                : in  std_logic;  
-    	Rst                : in  std_logic;  
-    	IR_IN              : in  std_logic_vector(IR_SIZE - 1 downto 0);  
-    	IR_LATCH_EN        : out std_logic;
-   	 	NPC_LATCH_EN       : out std_logic;
-   		RegA_LATCH_EN      : out std_logic;  
-    	RegB_LATCH_EN      : out std_logic;  
-    	RegIMM_LATCH_EN    : out std_logic;  
-			SEL_IMM	           : out std_logic;  
-    	MUXA_SEL           : out std_logic;  
-    	MUXB_SEL           : out std_logic; 
-    	ALU_OUTREG_EN      : out std_logic; 
-    	EQ_COND            : out std_logic; 
-			SEL_PC						 : out std_logic;  
-    	ALU_OPCODE         : out std_logic_vector(ALU_OPC_SIZE -1 downto 0);  
-    	DRAM_WE            : out std_logic;  
-    	LMD_LATCH_EN       : out std_logic;  
-    	JUMP_EN: out std_logic_vector(1 downto 0);  
-    	PC_LATCH_EN        : out std_logic; 
-			READ_MEM			     : out std_logic;  
-			WB_MUX_SEL				 : out std_logic; 
-    	RF_WE              : out std_logic; 
-			DATAIN_RF_SEL      : out std_logic); 
-		end component;
+   	port (
+	    Clk                : in  std_logic;  -- Clock
+	    Rst                : in  std_logic;  -- Reset:Active-Low
+		
+    -- Instruction Register
+	    IR_IN              : in  std_logic_vector(IR_SIZE - 1 downto 0);
+    
+    -- IF Control Signal CW1
+	    IR_LATCH_EN        : out std_logic;  -- Instruction Register Latch Enable
+	    NPC_LATCH_EN       : out std_logic;  -- NextProgramCounter Register Latch Enable
+			PC_LATCH_EN        : out std_logic;  -- Program Counte Latch Enable
+
+    -- ID Control Signals CW2
+	    RegA_LATCH_EN      : out std_logic;  -- Register A Latch Enable
+	    RegB_LATCH_EN      : out std_logic;  -- Register B Latch Enable
+	    RegIMM_LATCH_EN    : out std_logic;  -- EN1
+			SEL_IMM	           : out std_logic;  -- select between immediate on 16 bits and immediate on 26 bits 
+
+    -- EX Control Signals CW3
+	    MUXA_SEL           : out std_logic;  -- MUX-A Sel
+	    MUXB_SEL           : out std_logic;  -- MUX-B Sel
+	    ALU_OUTREG_EN      : out std_logic;  -- ALU Output Register Enable
+	    EQ_COND            : out std_logic;  -- Branch if (not) Equal to Zero
+			SEL_PC						 : out std_logic;  -- select between NPC and PC 
+    -- ALU Operation Code CW3
+	    ALU_OPCODE         : out std_logic_vector(ALU_OPC_SIZE -1 downto 0);  
+    
+    -- MEM Control Signals CW4
+	    DRAM_WE            : out std_logic;  -- Data RAM Write Enable
+	    LMD_LATCH_EN       : out std_logic;  -- LMD Register Latch Enable
+	    JUMP_EN            : out std_logic_vector(1 downto 0);  -- JUMP Enable Signal for PC input MUX
+																											-- JUMP_EN = 00  =>  Y <= EQ_COND_OUT
+																											-- JUMP_EN = 01  =>  Y <= '0'					  
+																											-- JUMP_EN = 11  =>  Y <= '1'
+
+			DATAIN_RF_SEL      : out std_logic;    -- selects data input for RF (WB_SEL in datapath)
+	    WB_MUX_SEL				 : out std_logic;  -- selects between Data RAM and ALU OUT (S3 in datapath)
+			READ_MEM			     : out std_logic;  -- read enable for DATA RAM		
+			 
+		-- WB Control signals
+			RF_WE              : out std_logic);  -- Register File Write Enable
+ 
+end component;
 
 		--TO WB
 		signal wbsel: std_logic;
-		
+		signal rd3: std_logic_vector(4 downto 0);
 	
 begin
 
@@ -220,6 +240,7 @@ begin
     	IR_IN=>ir,  
     	IR_LATCH_EN=>ir_latch_en,
    	 	NPC_LATCH_EN=>npc_latch_en,
+			PC_LATCH_EN=>pc_latch_en,
    		RegA_LATCH_EN=>rf1,  
     	RegB_LATCH_EN=>rf2, 
     	RegIMM_LATCH_EN=>en1, 
@@ -233,7 +254,6 @@ begin
     	DRAM_WE=>wm,   
     	LMD_LATCH_EN=>en3,   
     	JUMP_EN =>j_en,  
-    	PC_LATCH_EN=>pc_latch_en, 
 			READ_MEM=>rm,   
 			WB_MUX_SEL=>s3, 
     	RF_WE=>wf1, 
@@ -259,7 +279,7 @@ begin
 			ALU_OUT_REGN=>alu_out,
 			B_OUT_REGN=>data_to_mem,
 			NPC2_OUT_REGN=>npc2_out,
-			RD2_OUT_REGN=>wr_addr_rf
+			RD2_OUT_REGN=>rd3
 		);
 
 		memory_unit: MEMU generic map (dlx_size) port map (
@@ -276,6 +296,8 @@ begin
 			 regBout=>data_to_mem,
 			 NPC3in=>npc2_out,
 			 NPC3out=>npc3_out,
+			 RD3in=>rd3,
+			 RD3out=>wr_addr_rf,
 			 LMDout=>lmd_out
 		);
 

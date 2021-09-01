@@ -14,7 +14,7 @@ architecture Behavioral of Adder is
 begin
     process(PC)
     begin
-        NPC <= std_logic_vector(unsigned(PC) + 4);
+        NPC <= std_logic_vector(unsigned(PC) + 1);
     end process;
 
 

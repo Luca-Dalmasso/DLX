@@ -17,6 +17,8 @@ entity MEMU is
 			 regBout: IN std_logic_vector(N - 1 downto 0);
 			 NPC3in: IN std_logic_vector(N - 1 downto 0);
 			 NPC3out: OUT std_logic_vector(N - 1 downto 0);
+			 RD3in: IN std_logic_vector(4 downto 0);
+			 RD3out: OUT std_logic_vector(4 downto 0);
 			 LMDout: OUT std_logic_vector(N - 1 downto 0));
 end MEMU;
 
@@ -73,6 +75,8 @@ begin
 		
 		NPC3: regN generic map(NBIT) port map(regIn =>NPC3in, Clk=>CLK, Reset=> RST, Enable=>EN3, regOut =>NPC3out); 
 
+		RD3: regN generic map(5) port map(regIn =>RD3in, Clk=>CLK, Reset=> RST, Enable=>EN3, regOut =>RD3out);
+
 		DRAM: DataMemory generic map(RAM_DEPTH, NBIT) 
 											port map(Rst =>RST, Addr =>ALU_OUT, Din =>regBout, Dout =>DataMemOut, RM =>RM, WM =>WM, EN =>EN3, CLK =>CLK);
 
@@ -93,6 +97,9 @@ configuration CFG_MEM_UNIT of MEMU is
 			use configuration WORK.CFG_DRAM_BEH;
 		end for;
 		for NPC3: regN
+		  use configuration WORK.CFG_REGN_Structural_syn;
+		end for;
+		for RD3: regN
 		  use configuration WORK.CFG_REGN_Structural_syn;
 		end for;
 		for MUX21: MUX21_GENERIC
