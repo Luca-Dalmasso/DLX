@@ -17,7 +17,7 @@ package CONSTANTS is
   constant TP_MUX : time := 0.0 ns;
 	constant IMem_Depth: integer := 5000000;
 	constant DMem_Depth: integer := 128;
-	constant	ASM_FULL_PATH: string := "/home/ms21.4/Desktop/DLX/a.b-DataPath.core/GLOBALS/test.asm.mem";
+	constant	ASM_FULL_PATH: string := "/home/ms21.4/Desktop/DLX/a.b-DataPath.core/GLOBALS/asm/test.asm.mem";
 	--ControlUnit constants
 	constant LUT_SIZE: integer:= 27; --=number of instructions
 	constant FUNC_SIZE: integer:= 11;
