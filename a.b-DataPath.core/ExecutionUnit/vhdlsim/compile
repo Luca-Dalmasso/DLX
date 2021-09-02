@@ -41,4 +41,4 @@ vcom ../../GLOBALS/ffd.vhd
 vcom ../../GLOBALS/RegisterN.vhd
 
 vcom ./TopLevelEXU.vhd
-#vcom ./tb_TopLevelEXU.vhd
+vcom ./tb_TopLevelEXU.vhd

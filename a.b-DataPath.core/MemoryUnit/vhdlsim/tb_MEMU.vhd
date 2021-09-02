@@ -15,39 +15,38 @@ component MEMU is
 			 WM: IN std_logic;
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
-			 JUMP_EN: IN std_logic_vector(1 downto 0); --selects MUX31 output
-			 EQ_COND_OUT: IN std_logic; --result of eq cond for jump
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
-			 selCond: OUT std_logic; -- become the select signal for mux2_1 inside FU (selects between Adder and ALUOUT)
 			 regBout: IN std_logic_vector(N - 1 downto 0);
-			 NPC3in: IN std_logic_vector(N - 1 downto 0);
-			 NPC3out: OUT std_logic_vector(N - 1 downto 0);
-			 LMDout: OUT std_logic_vector(N - 1 downto 0));
+			 RD3in: IN std_logic_vector(4 downto 0);
+			 RD3out: OUT std_logic_vector(4 downto 0);
+			 WB_DATA: OUT std_logic_vector(N - 1 downto 0)
+	);
 end component;
 
 constant N: integer := NumBit;
 signal reset, clock: std_logic;
-signal ALUout, regBOut, NPC3in, NPC3out, LMDout: std_logic_vector(N-1 downto 0);
-signal RM, WM, EN3, S3, EQ_COND,selCond: std_logic;
-	signal J_EN: std_logic_vector(1 downto 0);
+signal ALUout, regBOut,WBOUT: std_logic_vector(N-1 downto 0);
+signal RD3in,RD3out: std_logic_vector(4 downto 0);
+signal RM, WM, EN3, S3: std_logic;
 
 begin
 	
-	uut: MEMU generic map (N) port map (
-		   Rst=>reset,
-       RM => RM,
-	  	 WM => WM,
-			 EN3 => EN3,
-			 S3 => S3,
-			 JUMP_EN => J_EN,
-			 EQ_COND_OUT => EQ_COND,
-			 ALU_OUT => ALUout,
-			 selCond => selCond,
-			 regBout => regBout,
-			 NPC3in => NPC3in,
-			 NPC3out => NPC3out,
-			 LMDout => LMDout,
-		   CLK =>clock
+	uut: MEMU 
+		generic map (
+			N=>N
+		) 
+		port map (
+		  CLK=>clock,
+			RST=>reset,
+			RM=>RM,
+			WM=>WM,
+			EN3=>EN3,
+			S3=>S3,
+			ALU_OUT=>ALUout,
+			regBout=>regBOut,
+			RD3in=>RD3in,
+			RD3out=>RD3out,
+			WB_DATA=>WBOUT
 	);
 	
 	process

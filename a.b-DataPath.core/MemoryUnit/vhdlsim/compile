@@ -1,12 +1,11 @@
 vcom ../../GLOBALS/constants.vhd
-vcom DataMemory.vhd
-vcom tb_DMEM.vhd
+vcom ./DataMemory/DataMemory.vhd
+#vcom ./DataMemory/tb_DMEM.vhd
 vcom ../../GLOBALS/ffd.vhd
 vcom ../../GLOBALS/RegisterN.vhd
 vcom ../../GLOBALS/iv.vhd
 vcom ../../GLOBALS/nd2.vhd
 vcom ../../GLOBALS/mux21.vhd
 vcom ../../GLOBALS/mux21_generic.vhd
-vcom MUX3_1.vhd
-vcom MEMU.vhd
-vcom tb_MEMU.vhd
+vcom ./MEMU.vhd
+vcom ./tb_MEMU.vhd

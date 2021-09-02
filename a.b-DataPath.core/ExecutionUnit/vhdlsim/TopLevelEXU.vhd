@@ -8,14 +8,12 @@ entity EXUNIT is
 	);
 	PORT(
 		NPC1: in std_logic_vector(N-1 downto 0);
-		PC2: in std_logic_vector(N-1 downto 0);
 		RD1: in std_logic_vector(4 downto 0);
 		A:   in std_logic_vector(N-1 downto 0);
 		B:   in std_logic_vector(N-1 downto 0);
 		IMM: in std_logic_vector(N-1 downto 0);
 		S1_A_NPC: in std_logic; --S1=1-->PC2/NPC1
 		S2_IMM_B: in std_logic; --S2=1-->B
-		SEL_PC: in std_logic; --SEL=1-->PC2
 		ALU_OPCODE: in std_logic_vector(5 downto 0);
 		CLK,RST: in std_logic;
 		EN_FFD_COND: in std_logic;
@@ -23,7 +21,6 @@ entity EXUNIT is
 		COND_OUT: out std_logic;
 		ALU_OUT_REGN: out std_logic_vector(N-1 downto 0);
 		B_OUT_REGN: out std_logic_vector(N-1 downto 0);
-		NPC2_OUT_REGN: out std_logic_vector(N-1 downto 0);
 		RD2_OUT_REGN: out std_logic_vector(4 downto 0)
 	);
 end EXUNIT;
@@ -42,7 +39,7 @@ architecture Struct of EXUNIT is
 	);
 	end component;
 
-	signal A_prime,B_prime,PC2_NPC_SIG: std_logic_vector(N-1 downto 0);
+	signal A_prime,B_prime: std_logic_vector(N-1 downto 0);
 
 	component ALU is
 	GENERIC (
@@ -96,22 +93,15 @@ architecture Struct of EXUNIT is
 	);
 	end component;
 
-	signal ALUOUT_REGN, BOUT_REGN, NPC2OUT_REGN : std_logic_vector(N-1 downto 0);
+	signal ALUOUT_REGN, BOUT_REGN: std_logic_vector(N-1 downto 0);
 	signal RD2OUT_REGN: std_logic_vector(4 downto 0);
 	constant NBBLOCK: integer:= NumBitBlock;
 	
 begin
 
-	COMP_MPX21_0: MUX21_GENERIC generic map (N) port map(
-		A=>PC2,
-		B=>NPC1,
-		SEL=>SEL_PC,
-		Y=>PC2_NPC_SIG
-	);
-
 
 	COMP_MPX21_1: MUX21_GENERIC generic map (N) port map(
-		A=>PC2_NPC_SIG,
+		A=>NPC1,
 		B=>A,
 		SEL=>S1_A_NPC,
 		Y=>A_prime
@@ -176,49 +166,9 @@ begin
 
 	RD2_OUT_REGN<=RD2OUT_REGN;
 
-	COMP_REGN_NPC2: regN generic map (N) port map (
-		regIn=>NPC1,
-		Clk=>CLK,
-		Reset=>RST,
-		Enable=>EN_REGN_ALU_OUT,
-		regOut=>NPC2OUT_REGN
-	);
-
-	NPC2_OUT_REGN<=NPC2OUT_REGN;
-
 end Struct;
 
 configuration CFG_STR_EXU of EXUNIT is
    for Struct
-	 	for COMP_REGN_ALUOUT: regN
-			use configuration WORK.CFG_REGN_Structural_syn;
-		end for;
-		for COMP_REGN_BOUT: regN
-			use configuration WORK.CFG_REGN_Structural_syn;
-		end for;
-		for COMP_REG5_RD2OUT: regN
-			use configuration WORK.CFG_REGN_Structural_syn;
-		end for;
-		for COMP_REGN_NPC2: regN
-			use configuration WORK.CFG_REGN_Structural_syn;
-		end for;
-		for COMP_ALU: ALU
-			use configuration WORK.CFG_ALU_STR;
-		end for;
-		for COMP_LATCH_COND: ffd
-			use configuration WORK.CFG_FD_SYNC;
-		end for;
-		for COMP_ZERO_CMP: ZERODET
-			use configuration WORK.CFG_ZERODET;
-		end for;
-		for COMP_MPX21_2: MUX21_GENERIC
-			use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
-		end for;
-		for COMP_MPX21_1: MUX21_GENERIC
-			use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
-		end for;
-		for COMP_MPX21_0: MUX21_GENERIC
-			use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
-		end for;
    end for;
 end CFG_STR_EXU;
