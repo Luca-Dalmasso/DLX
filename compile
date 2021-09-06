@@ -6,10 +6,9 @@ vcom ./a.b-DataPath.core/GLOBALS/mux21.vhd
 vcom ./a.b-DataPath.core/GLOBALS/mux21_generic.vhd
 vcom ./a.b-DataPath.core/GLOBALS/ffd.vhd
 vcom ./a.b-DataPath.core/GLOBALS/RegisterN.vhd
-vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/IRreg.vhd
-
-vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/Adder/vhdlsim/Adder.vhd
-vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/a.c-IRAM.vhd
+vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/IR_Register/IRreg.vhd
+vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/Adder/Adder.vhd
+vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/IRAM/a.c-IRAM.vhd
 vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/FU.vhd
 
 #DU
@@ -45,12 +44,13 @@ vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/ALU.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/TopLevelEXU.vhd
 
 #MEM
-vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/DataMemory.vhd
-vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/MUX3_1.vhd
+vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/DataMemory/DataMemory.vhd
 vcom ./a.b-DataPath.core/MemoryUnit/vhdlsim/MEMU.vhd
 
 #HW_CU
-vcom ./HW_CU/vhdlsim/a.a-CU_HW.v2.vhd
+vcom ./HW_CU/vhdlsim/HW_CU.vhd
+
+
 vcom DLX.vhd
 vcom tb_dlx.vhd
 

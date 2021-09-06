@@ -1,8 +1,5 @@
 vcom ../../GLOBALS/constants.vhd
 vcom ./DataMemory/DataMemory.vhd
-#vcom ./DataMemory/tb_DMEM.vhd
-vcom ../../GLOBALS/ffd.vhd
-vcom ../../GLOBALS/RegisterN.vhd
 vcom ../../GLOBALS/iv.vhd
 vcom ../../GLOBALS/nd2.vhd
 vcom ../../GLOBALS/mux21.vhd

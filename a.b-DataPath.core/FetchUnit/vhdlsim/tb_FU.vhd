@@ -17,6 +17,7 @@ architecture test of tb_FU is
 			NPC_En: IN std_logic;
 			Clk: IN std_logic;
 			RST: IN std_logic;
+			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
 			NPC_OUT: OUT std_logic_vector(N-1 downto 0)
 	);
@@ -24,7 +25,7 @@ architecture test of tb_FU is
 
 
 signal ir_en, pc_en, npc_en, clk, rst: std_logic;
-signal ir_out, npc_out: std_logic_vector(NumBit-1 downto 0);
+signal ir_out, npc_out, ir_ins: std_logic_vector(NumBit-1 downto 0);
 constant period: time:=10 ns;
 
 begin
@@ -40,6 +41,7 @@ begin
 			Clk=>clk,
 			RST=>rst,
 			IR_OUT=>ir_out,
+			IR_IN=>ir_ins,
 			NPC_OUT=>npc_out
 	);
 

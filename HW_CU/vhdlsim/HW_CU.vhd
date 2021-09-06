@@ -93,11 +93,11 @@ begin
 
 
   --LUT access
-  process(clk,rst,IR_opcode,IR_func)
+  process(rst,IR_func,IR_opcode)
 	begin
     if rst='1' then
         cw<=cw_mem(15);
-    elsif rising_edge(clk) then
+    else
         if(IR_opcode = "000000") then
         	if (IR_func=ADD_FUNC) then
           	cw<=cw_mem(0);
@@ -117,8 +117,10 @@ begin
             cw<=cw_mem(7);
 					elsif (IR_func=SUB_FUNC) then
             cw<=cw_mem(8);
-          else 
+          elsif (IR_func=XOR_FUNC) then 
             cw<=cw_mem(9);
+					else
+						cw<=cw_mem(15);
           end if;
 			  elsif(IR_opcode = J_OPCODE) then
     			cw<=cw_mem(25);
@@ -159,44 +161,77 @@ begin
     		end if;
   		end if;
   end process;
-
+	
+	--#####################################################
+	--###################OLD VERSION#######################
+	--#####################################################
+	
 	-- FISRT PIPELINE STAGE (NOT DELAYED)
   -- IF Control Signals
-  CW_FETCH<=cw(A downto B+1);
+  --CW_FETCH<=cw(A downto B+1);
 	
 	-- SECOND PIPELINE STAGE (1 CLK DELAY)
-	uut_second_stage: regN generic map ( N=> B+1) port map(
-			regIn=>cw(B downto 0),
-		  Clk=>clk,
-	   	Reset=>Rst,
-	   	Enable=>'1',
-	   	regOut=>cw1delay(B downto 0)
-	);
+	--uut_second_stage: regN generic map ( N=> B+1) port map(
+	--		regIn=>cw(B downto 0),
+	--	  Clk=>clk,
+	--   	Reset=>Rst,
+	--   	Enable=>'1',
+	--   	regOut=>cw1delay(B downto 0)
+	--);
   -- ID Control Signals
-	CW_DECODE<=cw1delay(B downto C+1);
+	--CW_DECODE<=cw1delay(B downto C+1);
 
 	-- THIRD PIPELINE STAGE (2 CLK DELAY)	
-	uut_third_stage: regN generic map ( N=> C+1) port map(
-			regIn=>cw1delay(C downto 0),
-		  Clk=>clk,
-	   	Reset=>Rst,
-	   	Enable=>'1',
-	   	regOut=>cw2delay(C downto 0)
-	);
+	--uut_third_stage: regN generic map ( N=> C+1) port map(
+	--		regIn=>cw1delay(C downto 0),
+	--	  Clk=>clk,
+	--  	Reset=>Rst,
+	--   	Enable=>'1',
+	--   	regOut=>cw2delay(C downto 0)
+	--);
   -- EXE Control Signals
-  CW_EXE<=cw2delay(C downto D+1);
+  --CW_EXE<=cw2delay(C downto D+1);
 
 	-- FOURTH PIPELINE STAGE (3 CLK DELAY)	
+	--uut_fourth_stage: regN generic map ( N=> D+1) port map(
+	--		regIn=>cw2delay(D downto 0),
+	--	  Clk=>clk,
+	--   	Reset=>Rst,
+	--   	Enable=>'1',
+	--   	regOut=>cw3delay(D downto 0)
+	--);
+  -- MEM-WB Control Signals
+  --CW_MEMWB<=cw3delay(D downto 0);
+
+	--#####################################################
+	--###################NEW VERSION#######################
+	--#####################################################
+
+	CW_FETCH<=cw(A downto B+1);
+	CW_DECODE<=cw(B DOWNTO C+1);
+
+	
+	uut_third_stage: regN generic map ( N=> C+1) port map(
+			regIn=>cw(C downto 0),
+		  Clk=>clk,
+	  	Reset=>Rst,
+	   	Enable=>'1',
+	   	regOut=>cw1delay(C downto 0)
+	);
+
+	CW_EXE<=cw1delay(C downto D+1);
+
 	uut_fourth_stage: regN generic map ( N=> D+1) port map(
-			regIn=>cw2delay(D downto 0),
+			regIn=>cw1delay(D downto 0),
 		  Clk=>clk,
 	   	Reset=>Rst,
 	   	Enable=>'1',
-	   	regOut=>cw3delay(D downto 0)
+	   	regOut=>cw2delay(D downto 0)
 	);
-  -- MEM-WB Control Signals
-  CW_MEMWB<=cw3delay(D downto 0);
 
+  CW_MEMWB<=cw2delay(D downto 0);
+
+	
 end dlx_cu_rtl;
 
 configuration CFG_HW_CU of dlx_cu is

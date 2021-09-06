@@ -3,53 +3,28 @@ use IEEE.std_logic_1164.all;
 use WORK.constants.all; 
 
 entity  dlx is
-	GENERIC (
-		DLX_SIZE : integer := 32
-	);
 	PORT(
 		RST: in std_logic;
-		CLK: in std_logic
+		CLK: in std_logic;
+		IR_IN: in std_logic_vector(31 downto 0);
+		NPC: in std_logic_vector(31 downto 0)
 	);
 end dlx;
 
 architecture Struct of dlx is
+
+	signal PC_EN, NPC_EN, IR_EN: std_logic; 
 	
-	component FU is
-	GENERIC (
-		N: integer :=NumBit);
-	PORT(
-			ALU_OUT: IN std_logic_vector(N-1 downto 0);
-			selCond: IN std_logic;
-			IR_En: IN std_logic;
-			PC_En: IN std_logic;
-			NPC_En: IN std_logic;
-			Clk: IN std_logic;
-			RST: IN std_logic;
-			IR: OUT std_logic_vector(N-1 downto 0);
-			PC1_OUT: OUT std_logic_vector(N-1 downto 0);
-			NPC: OUT std_logic_vector(N-1 downto 0)
-	);
-	end component;
+	--##########
+	--##DECODE##
+	--##########
 
-	--FROM CONTROL
-		signal pc_latch_en, ir_latch_en, npc_latch_en: std_logic;
-	--FROM EXEC
-		signal alu_out: std_logic_vector(dlx_size-1 downto 0);
-	--FROM MEMORY
-		signal sel_cond: std_logic; 
-	--TO DECODE
-		signal pc, npc, ir: std_logic_vector(dlx_size-1 downto 0);
-
-		component DU is
-		GENERIC (
-			N: integer := NumBit
-		);
-		PORT(
-			 IR_IN: IN std_logic_vector(N -1 downto 0); 
-			 PC: IN std_logic_vector (N -1 downto 0);
+	component DU is
+	GENERIC (N: integer := NumBit);
+	PORT(IR_IN: IN std_logic_vector(N -1 downto 0); 
 			 NPC: IN std_logic_vector (N -1 downto 0);
 			 WR_ADDR_RF: in std_logic_vector (4 downto 0);  
-			 DATAIN: IN std_logic_vector (N -1 downto 0);   
+			 DATAIN: IN std_logic_vector (N -1 downto 0);
 			 EN1: IN std_logic;
 			 RF1: IN std_logic;
 			 RF2: IN std_logic;
@@ -57,273 +32,208 @@ architecture Struct of dlx is
 			 CLK: IN std_logic;
 			 RST: IN std_logic;
 			 SEL_IMM: IN std_logic;
-			 PC2_OUT: out std_logic_vector (N -1 downto 0);
 			 NPC1_OUT: out std_logic_vector (N -1 downto 0);
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
 			 IMM_OUT: out std_logic_vector (N -1 downto 0);
-			 RD1_OUT: out std_logic_vector (4 downto 0) 
+			 RD1_OUT: out std_logic_vector (4 downto 0)
 			 );
 	end component;
 
-	--FROM CONTROL
-		signal rf1, rf2, en1, sel_imm, wf1: std_logic;
-	--FROM EXEC
-		signal wr_addr_rf: std_logic_vector(4 downto 0);
-	--FROM WB
-		signal data_in_rf: std_logic_vector(dlx_size-1 downto 0);
-	--TO EXEC
-		signal pc2_out, npc1_out, rega, regb, imm: std_logic_vector(dlx_size-1 downto 0);
-		signal rd_out: std_logic_vector(4 downto 0);
+	--decode control signals
+	signal rf1,rf2,wf1,en1,sel_imm: std_logic;
+	--input signals
+	signal wr_address: std_logic_vector(4 downto 0);
+	signal wr_data: std_logic_vector(NumBit-1 downto 0);
+	--output signals
+	signal npc1_out, rega_out, regb_out, imm_out: std_logic_vector(NumBit-1 downto 0);
+	signal rd1_out: std_logic_vector(4 downto 0);
 
-		component EXUNIT is
-		GENERIC (
-			N: integer:=NumBit
-		);
-		PORT(
-			NPC1: in std_logic_vector(N-1 downto 0);
-			PC2: in std_logic_vector(N-1 downto 0);
-			RD1: in std_logic_vector(4 downto 0);
-			A:   in std_logic_vector(N-1 downto 0);
-			B:   in std_logic_vector(N-1 downto 0);
-			IMM: in std_logic_vector(N-1 downto 0);
-			S1_A_NPC: in std_logic; --S1=1-->PC2/NPC1
-			S2_IMM_B: in std_logic; --S2=1-->B
-			SEL_PC: in std_logic; --SEL=1-->PC2
-			ALU_OPCODE: in std_logic_vector(5 downto 0);
-			CLK,RST: in std_logic;
-			EN_FFD_COND: in std_logic;
-			EN_REGN_ALU_OUT: in std_logic;
-			COND_OUT: out std_logic;
-			ALU_OUT_REGN: out std_logic_vector(N-1 downto 0);
-			B_OUT_REGN: out std_logic_vector(N-1 downto 0);
-			NPC2_OUT_REGN: out std_logic_vector(N-1 downto 0);
-			RD2_OUT_REGN: out std_logic_vector(4 downto 0)
-		);
+	--###########
+	--##EXECUTE##
+	--###########
+
+	component EXUNIT is
+	GENERIC (
+		N: integer:=NumBit
+	);
+	PORT(
+		NPC1: in std_logic_vector(N-1 downto 0);
+		RD1: in std_logic_vector(4 downto 0);
+		A:   in std_logic_vector(N-1 downto 0);
+		B:   in std_logic_vector(N-1 downto 0);
+		IMM: in std_logic_vector(N-1 downto 0);
+		S1_A_NPC: in std_logic; --S1=1-->PC2/NPC1
+		S2_IMM_B: in std_logic; --S2=1-->B
+		ALU_OPCODE: in std_logic_vector(5 downto 0);
+		CLK,RST: in std_logic;
+		EN_FFD_COND: in std_logic;
+		EN_REGN_ALU_OUT: in std_logic;
+		COND_OUT: out std_logic;
+		ALU_OUT_REGN: out std_logic_vector(N-1 downto 0);
+		B_OUT_REGN: out std_logic_vector(N-1 downto 0);
+		RD2_OUT_REGN: out std_logic_vector(4 downto 0)
+	);
 	end component;
 
-	--FROM CONTROL
-		signal s1, s2, en2, eq_cond, sel_pc: std_logic;
-		signal alu_opcode: std_logic_vector(5 downto 0);
-	--TO MEM
-		signal data_to_mem, npc2_out: std_logic_vector(dlx_size-1 downto 0);
-		signal eq_condition: std_logic;
-	
-		component MEMU is
-		GENERIC (
-			N: integer := NumBit
-		);
-		PORT(
-			 CLK: IN std_logic;
+	--control signals
+	signal s1, s2, eq_cond, en2: std_logic;
+	signal alu_opcode: std_logic_vector(5 downto 0);
+	--output signals
+	signal eq_regout: std_logic;
+	signal aluout_regn, bout_regn: std_logic_vector(NumBit-1 downto 0);
+	signal rd2out: std_logic_vector(4 downto 0);
+
+	--##########
+	--##MEM/WB##
+	--##########
+
+	component MEMU is
+	GENERIC (N: integer := NumBit);
+	PORT(CLK: IN std_logic;
 			 RST: IN std_logic;
 			 RM: IN std_logic;
 			 WM: IN std_logic;
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
-			 JUMP_EN: IN std_logic_vector(1 downto 0); 
-			 EQ_COND_OUT: IN std_logic; 
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
-			 selCond: OUT std_logic; 
 			 regBout: IN std_logic_vector(N - 1 downto 0);
-			 NPC3in: IN std_logic_vector(N - 1 downto 0);
-			 NPC3out: OUT std_logic_vector(N - 1 downto 0);
 			 RD3in: IN std_logic_vector(4 downto 0);
 			 RD3out: OUT std_logic_vector(4 downto 0);
-			 LMDout: OUT std_logic_vector(N - 1 downto 0)
-		);
-		end component;
+			 WB_DATA: OUT std_logic_vector(N - 1 downto 0)
+	);
+	end component;
 
-		--FROM CONTROL
-		signal s3, en3, rm, wm: std_logic;
-		signal j_en: std_logic_vector(1 downto 0); 
-		--TO WB
-		signal npc3_out, lmd_out: std_logic_vector(dlx_size-1 downto 0);	
+	--control signals
+	signal rm, wm, s3, en3: std_logic;
+	
+	--################
+	--##CONTROL UNIT##
+	--################
+	
+	component dlx_cu is
+  port (
+    Clk: in  std_logic;
+    Rst: in  std_logic;
+    IR_IN: in  std_logic_vector(IR_SIZE - 1 downto 0);
+    CW_FETCH: out std_logic_vector(FETCH_SIZE-1 downto 0);  
+		CW_DECODE: out std_logic_vector(DECODE_SIZE-1 downto 0); 
+		CW_EXE: out std_logic_vector(EXE_SIZE-1 downto 0); 
+		CW_MEMWB: out std_logic_vector(MEMWB_SIZE-1 downto 0)                           
+    );
+	end component;
 
-component dlx_cu is   --CONTROL UNIT
-  	generic (
-    	MICROCODE_MEM_SIZE :     integer := 46;  
-    	FUNC_SIZE          :     integer := 11;  
-    	OP_CODE_SIZE       :     integer := 6;  
-    	ALU_OPC_SIZE       :     integer := 6;  
-    	IR_SIZE            :     integer := 32;  
-    	CW_SIZE            :     integer := 20); 
-   	port (
-	    Clk                : in  std_logic;  -- Clock
-	    Rst                : in  std_logic;  -- Reset:Active-Low
-		
-    -- Instruction Register
-	    IR_IN              : in  std_logic_vector(IR_SIZE - 1 downto 0);
-    
-    -- IF Control Signal CW1
-	    IR_LATCH_EN        : out std_logic;  -- Instruction Register Latch Enable
-	    NPC_LATCH_EN       : out std_logic;  -- NextProgramCounter Register Latch Enable
-			PC_LATCH_EN        : out std_logic;  -- Program Counte Latch Enable
-
-    -- ID Control Signals CW2
-	    RegA_LATCH_EN      : out std_logic;  -- Register A Latch Enable
-	    RegB_LATCH_EN      : out std_logic;  -- Register B Latch Enable
-	    RegIMM_LATCH_EN    : out std_logic;  -- EN1
-			SEL_IMM	           : out std_logic;  -- select between immediate on 16 bits and immediate on 26 bits 
-
-    -- EX Control Signals CW3
-	    MUXA_SEL           : out std_logic;  -- MUX-A Sel
-	    MUXB_SEL           : out std_logic;  -- MUX-B Sel
-	    ALU_OUTREG_EN      : out std_logic;  -- ALU Output Register Enable
-	    EQ_COND            : out std_logic;  -- Branch if (not) Equal to Zero
-			SEL_PC						 : out std_logic;  -- select between NPC and PC 
-    -- ALU Operation Code CW3
-	    ALU_OPCODE         : out std_logic_vector(ALU_OPC_SIZE -1 downto 0);  
-    
-    -- MEM Control Signals CW4
-	    DRAM_WE            : out std_logic;  -- Data RAM Write Enable
-	    LMD_LATCH_EN       : out std_logic;  -- LMD Register Latch Enable
-	    JUMP_EN            : out std_logic_vector(1 downto 0);  -- JUMP Enable Signal for PC input MUX
-																											-- JUMP_EN = 00  =>  Y <= EQ_COND_OUT
-																											-- JUMP_EN = 01  =>  Y <= '0'					  
-																											-- JUMP_EN = 11  =>  Y <= '1'
-
-			DATAIN_RF_SEL      : out std_logic;    -- selects data input for RF (WB_SEL in datapath)
-	    WB_MUX_SEL				 : out std_logic;  -- selects between Data RAM and ALU OUT (S3 in datapath)
-			READ_MEM			     : out std_logic;  -- read enable for DATA RAM		
-			 
-		-- WB Control signals
-			RF_WE              : out std_logic);  -- Register File Write Enable
- 
-end component;
-
-		--TO WB
-		signal wbsel: std_logic;
-		signal rd3: std_logic_vector(4 downto 0);
+	--tmp signals
+	signal cw_fetch: std_logic_vector(FETCH_SIZE-1 downto 0);
+	signal cw_dec: std_logic_vector(DECODE_SIZE-1 downto 0);
+	signal cw_ex: std_logic_vector(EXE_SIZE-1 downto 0); 
+	signal cw_mem: std_logic_vector(MEMWB_SIZE-1 downto 0);
+	--DECREASING ORDER OF THE CONTROL SIGNALS:
+	--FETCH: (FETCH_SIZE-1 downto 0) = PC_EN, NPC_EN, IR_EN
+	--DECODE: (DECODE_SIZE-1 downto 0) = RF1, RF2, EN1, SEL_IMM
+	--EXECUTE: (EXECUTE_SIZE-1 downto 0) = S1, S2, EN2, EQ_COND, ALU_OPCODE
+	--MEMORY: (MEMORY_SIZE-1 downto 0) = RM, WM, S3, EN3, WF1
 	
 begin
 
-	fetch_unit: FU generic map (dlx_size) port map (
-			ALU_OUT=>alu_out,
-			selCond=>sel_cond,
-			IR_En=>ir_latch_en,
-			PC_En=>pc_latch_en,
-			NPC_En=>npc_latch_en,
-			Clk=>CLK,
-			RST=>RST,
-			IR=>ir,
-			PC1_OUT=>pc,
-			NPC=>npc
+	--control unit signal assignment and partition
+	unit_control:  dlx_cu 
+  port map(
+    Clk=>CLK,
+    Rst=>RST,
+    IR_IN=>IR_IN,
+    CW_FETCH=>cw_fetch,
+		CW_DECODE=>cw_dec,
+		CW_EXE=>cw_ex,
+		CW_MEMWB=>cw_mem                           
+    );
+
+	PC_EN<=cw_fetch(FETCH_SIZE-1);
+	NPC_EN<=cw_fetch(FETCH_SIZE-2);
+	IR_EN<=cw_fetch(FETCH_SIZE-3);
+
+	rf1<=cw_dec(DECODE_SIZE-1);
+	rf2<=cw_dec(DECODE_SIZE-2);
+	en1<=cw_dec(DECODE_SIZE-3);
+	sel_imm<=cw_dec(DECODE_SIZE-4);
+
+	s1<=cw_ex(EXE_SIZE-1);
+	s2<=cw_ex(EXE_SIZE-2);
+	en2<=cw_ex(EXE_SIZE-3);
+	eq_cond<=cw_ex(EXE_SIZE-4);
+	alu_opcode<=cw_ex(EXE_SIZE-5 downto 0);
+
+	rm<=cw_mem(MEMWB_SIZE-1);
+	wm<=cw_mem(MEMWB_SIZE-2);
+	s3<=cw_mem(MEMWB_SIZE-3);
+	en3<=cw_mem(MEMWB_SIZE-4);
+	wf1<=cw_mem(MEMWB_SIZE-5);
+	
+	unit_decode: DU 
+	GENERIC map (
+		N=>NumBit
+	)
+	PORT map(
+		IR_IN=>IR_IN,
+		NPC=>NPC,
+		WR_ADDR_RF=>wr_address,  
+		DATAIN=>wr_data,
+	  EN1=>en1,
+	  RF1=>rf1,
+	  RF2=>rf2,
+	  WF1=>wf1,
+		CLK=>CLK,
+		RST=>RST,
+		SEL_IMM=>sel_imm,
+		NPC1_OUT=>npc1_out,
+		regA_OUT=>rega_out,
+	  regB_OUT=>regb_out,
+		IMM_OUT=>imm_out,
+		RD1_OUT=>rd1_out
 		);
 
-		decode_unit: DU generic map (dlx_size) port map (
-			 IR_IN=>ir, 
-			 PC=>pc,
-			 NPC=>npc,
-			 WR_ADDR_RF=>wr_addr_rf, 
-			 DATAIN=>data_in_rf,   
-			 EN1=>en1,
-			 RF1=>rf1,
-			 RF2=>rf2,
-			 WF1=>wf1,
-			 CLK=>CLK,
-			 RST=>RST,
-			 SEL_IMM=>sel_imm,
-			 PC2_OUT=>pc2_out,
-			 NPC1_OUT=>npc1_out,
-			 regA_OUT=>rega,
-			 regB_OUT=>regb,
-			 IMM_OUT=>imm,
-			 RD1_OUT=>rd_out
-		);	
-
-		
-
-		control_unit_HW: dlx_cu
-  	port map (
-    	Clk=>CLK,  
-    	Rst=>RST,
-    	IR_IN=>ir,  
-    	IR_LATCH_EN=>ir_latch_en,
-   	 	NPC_LATCH_EN=>npc_latch_en,
-			PC_LATCH_EN=>pc_latch_en,
-   		RegA_LATCH_EN=>rf1,  
-    	RegB_LATCH_EN=>rf2, 
-    	RegIMM_LATCH_EN=>en1, 
-			SEL_IMM=>sel_imm, 
-    	MUXA_SEL=>s1,  
-    	MUXB_SEL=>s2, 
-    	ALU_OUTREG_EN=>en2, 
-    	EQ_COND=>eq_cond,  
-			SEL_PC=>sel_pc,  
-    	ALU_OPCODE=>alu_opcode,   
-    	DRAM_WE=>wm,   
-    	LMD_LATCH_EN=>en3,   
-    	JUMP_EN =>j_en,  
-			READ_MEM=>rm,   
-			WB_MUX_SEL=>s3, 
-    	RF_WE=>wf1, 
-			DATAIN_RF_SEL=>wbsel 
-		); 
-
-		execution_unit: EXUNIT generic map(dlx_size) port map(
-			NPC1=>npc1_out,
-			PC2=>pc2_out,
-			RD1=>rd_out,
-			A=>rega,
-			B=>regb,
-			IMM=>imm,
-			S1_A_NPC=>s1,
-			S2_IMM_B=>s2,
-			SEL_PC=>sel_pc,
-			ALU_OPCODE=>alu_opcode,
-			CLK=>CLK,
-			RST=>RST,
-			EN_FFD_COND=>eq_cond,
-			EN_REGN_ALU_OUT=>en2,
-			COND_OUT=>eq_condition,
-			ALU_OUT_REGN=>alu_out,
-			B_OUT_REGN=>data_to_mem,
-			NPC2_OUT_REGN=>npc2_out,
-			RD2_OUT_REGN=>rd3
-		);
-
-		memory_unit: MEMU generic map (dlx_size) port map (
-			 CLK=>CLK,
+	unit_execution: EXUNIT 
+	GENERIC map(
+		N=>NumBit
+	)
+	PORT map(
+		NPC1=>npc1_out,
+		RD1=>rd1_out,
+		A=>rega_out,
+		B=>regb_out,
+		IMM=>imm_out,
+		S1_A_NPC=>s1,
+		S2_IMM_B=>s2,
+		ALU_OPCODE=>alu_opcode,
+		CLK=>CLK,
+		RST=>RST,
+		EN_FFD_COND=>eq_cond,
+		EN_REGN_ALU_OUT=>en2,
+		COND_OUT=>eq_regout,
+		ALU_OUT_REGN=>aluout_regn,
+		B_OUT_REGN=>bout_regn,
+		RD2_OUT_REGN=>rd2out
+	);
+	
+	unit_memory: MEMU
+	GENERIC map(N=>NumBit
+	)
+	PORT map(CLK=>CLK,
 			 RST=>RST,
 			 RM=>rm,
 			 WM=>wm,
 			 EN3=>en3,
 			 S3=>s3,
-			 JUMP_EN=>j_en,
-			 EQ_COND_OUT=>eq_condition,
-			 ALU_OUT=>alu_out,
-			 selCond=>sel_cond,
-			 regBout=>data_to_mem,
-			 NPC3in=>npc2_out,
-			 NPC3out=>npc3_out,
-			 RD3in=>rd3,
-			 RD3out=>wr_addr_rf,
-			 LMDout=>lmd_out
-		);
-
-		--wb unit
-		data_in_rf <= lmd_out when wbsel='1' else
-									npc3_out; 
-
+			 ALU_OUT=>aluout_regn,
+			 regBout=>bout_regn,
+			 RD3in=>rd2out,
+			 RD3out=>wr_address,
+			 WB_DATA=>wr_data
+	);
 		
 end Struct;
 
 configuration CFG_DLX_STR of dlx is
    for Struct
-			for fetch_unit: FU
-				use configuration WORK.CFG_FU;
-			end for;
-			for decode_unit: DU
-				use configuration WORK.CFG_DEC_UNIT;
-			end for;
-			for execution_unit: EXUNIT
-				use configuration WORK.CFG_STR_EXU;
-			end for;
-			for memory_unit: MEMU
-				use configuration WORK.CFG_MEM_UNIT;
-			end for;
-			for control_unit_HW: dlx_cu
-				use configuration WORK.CFG_BEH_CU;
-			end for;
    end for;
 end CFG_DLX_STR;

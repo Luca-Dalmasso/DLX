@@ -64,22 +64,19 @@ begin
 		EN3 <= '0';
 		RM <= '0';
 		WM <= '0';
-		NPC3in <= (OTHERS=>'0');
 		wait for 7 ns;
 		reset<='0';
 		wait for 3 ns;
 		EN3 <= '1';
 		S3 <= '0';
 		WM <= '1';
-		ALUout <= "00000000000000000000000000001010";
-		regBout <= "00000000000000000000000000000010";
-		
+		ALUout <= x"00000030";
+		regBout <=x"0000000A";
 		wait for 20 ns;
 		S3 <= '1';
 		RM <= '1';
 		WM <= '0';
-		ALUout <= "00000000000000000000000000001010";
-	--	regBout <= "0000000000000000000000000010";
+		ALUout <= x"00000030";
 		wait;
 	end process;
 

@@ -12,6 +12,7 @@ entity FU is
 			NPC_En: IN std_logic;
 			Clk: IN std_logic;
 			RST: IN std_logic;
+			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
 			NPC_OUT: OUT std_logic_vector(N-1 downto 0)
 	);
@@ -68,7 +69,7 @@ architecture Struct of FU is
     );
 	end component;
 
-	signal ir_in, pc_regout, npc_regin: std_logic_vector(NumBit-1 DOWNTO 0);
+	signal ir_ins, pc_regout, npc_regin: std_logic_vector(NumBit-1 DOWNTO 0);
 
 begin
 
@@ -93,7 +94,7 @@ begin
   	port map(
     	Rst=>Rst,
     	Addr=>pc_regout,
-    	Dout=>ir_in
+    	Dout=>ir_ins
     );
 
 		unit_instructionRegister: IRreg 
@@ -101,7 +102,7 @@ begin
 			N=>NumBit
 		)
  		Port map(
-		  regIn=>ir_in,
+		  regIn=>ir_ins,
 	    Clk=>Clk,
 	    Reset=>Rst,
 	    Enable=>IR_En,
@@ -129,6 +130,7 @@ begin
 	   regOut=>NPC_OUT
 		);
 		
+		IR_IN<=ir_ins;
 
 end Struct;
 
