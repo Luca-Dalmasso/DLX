@@ -16,11 +16,11 @@ end IR_decoder;
 architecture df of IR_decoder is
 begin
 		
-	RS1<=IR_IN(25 downto 21);
+	RS1<=IR_IN(25 downto 21);  
 	RS2<=IR_IN(20 downto 16);
-	RD<="11111" when (IR_IN(N-1 downto 26)="000011") else		
-			 IR_IN(15 downto 11) when (IR_IN(N-1 downto 26)="000000") else
-			 IR_IN(20 downto 16);
+	RD<="11111" when (IR_IN(N-1 downto 26)="000011" OR IR_IN(N-1 downto 26)="010011") else		-- JAL and JALR instructions write on R31
+			 IR_IN(15 downto 11) when (IR_IN(N-1 downto 26)="000000") else --Register-Register instructions 
+			 IR_IN(20 downto 16); --Register-Immediate instructions
 	imm16<=IR_IN(15 downto 0);
 	imm26<=IR_IN(25 downto 0);
 end df;

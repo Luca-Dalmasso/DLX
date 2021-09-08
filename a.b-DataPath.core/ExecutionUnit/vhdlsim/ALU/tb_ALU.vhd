@@ -8,7 +8,7 @@ end tb;
 architecture test of tb is
 component ALU IS 
 	GENERIC (
-		N: integer:=NumBit;						--THIS TESTBENCH WAS MADE ON N = 16 bits and NBLOCK = 4 bits, for simplicity
+		N: integer:=NumBit;			
 		NBLOCK: integer:=NumBitBlock
 	);
 	PORT(
@@ -67,23 +67,23 @@ begin
 		din_s<="0000000100000000";
 		wait for 2 ns;
 		ld <='0';
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--ADD test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--ADD test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--ADD test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		OPERANDA_s <= (others=>'0');
@@ -91,23 +91,23 @@ begin
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--SUB test01
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010001";
 		wait for 10 ns;
 		--SUB test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010001";
 		wait for 10 ns;
 		--SUB test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010001";
 		wait for 10 ns;
 		--SUB test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "010001";
 		wait for 10 ns;
 		OPERANDA_s <= (others=>'0');
@@ -115,23 +115,23 @@ begin
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--AND test01
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110001";
 		wait for 10 ns;
 		--AND test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110001";
 		wait for 10 ns;
 		--AND test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110001";
 		wait for 10 ns;
 		--AND test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110001";
 		wait for 10 ns;
 		OPERANDA_s <= (others=>'0');
@@ -140,23 +140,23 @@ begin
 		wait for 10 ns;
 
 		--OR test01
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110111";
 		wait for 10 ns;
 		--OR test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110111";
 		wait for 10 ns;
 		--OR test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110111";
 		wait for 10 ns;
 		--OR test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110111";
 		wait for 10 ns;
 		OPERANDA_s <= (others=>'0');
@@ -164,23 +164,23 @@ begin
 		OPCODE_s <= "010000";
 		wait for 10 ns;
 		--XOR test01
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110110";
 		wait for 10 ns;
 		--XOR test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110110";
 		wait for 10 ns;
 		--XOR test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110110";
 		wait for 10 ns;
 		--XOR test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= "0000000000000000"&prn_s;
 		OPCODE_s <= "110110";
 		wait for 10 ns;
 		OPERANDA_s <= (OTHERS=>'0');
@@ -188,29 +188,84 @@ begin
 		OPCODE_s <=   (OTHERS=>'0');
 		wait for 10 ns;
 		--SLL test01
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
-		OPCODE_s <= "000111";
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <= "000000";
 		wait for 10 ns;
 		--SLL test02
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
-		OPCODE_s <= "000111";
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <= "000000";
 		wait for 10 ns;
 		--SLL test03
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
-		OPCODE_s <= "000111";
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <= "000000";
 		wait for 10 ns;
 		--SLL test04
-		OPERANDA_s <= "1000010001011000";
-		OPERANDB_s <= prn_s;
-		OPCODE_s <= "000111";
+		OPERANDA_s <= "00000000000000001000010001011000";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <= "000000";
 		wait for 10 ns;
 		OPERANDA_s <= (OTHERS=>'0');
 		OPERANDB_s <= (OTHERS=>'0');
 		OPCODE_s <=   (OTHERS=>'0');
-
+		wait for 10 ns;
+		--SGE wrong OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= (OTHERS=>'0');
+		OPCODE_s <=   "100100";
+		wait for 10 ns;
+		--SGE wrong OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <=   "100100";
+		wait for 10 ns;
+		--SGE wrong OPCODE NEGATIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= (OTHERS=>'1');
+		OPCODE_s <=   "100100";
+		wait for 10 ns;
+		--SGE wrong OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= x"FFFFFFFD";
+		OPCODE_s <=   "100100";
+		wait for 10 ns;
+		OPERANDA_s <= (OTHERS=>'0');
+		OPERANDB_s <= (OTHERS=>'0');
+		OPCODE_s <=   (OTHERS=>'0');
+		wait for 10 ns;
+		--SGE CORRECT OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= (OTHERS=>'0');
+		OPCODE_s <=   "100101";
+		wait for 10 ns;
+		--SGE CORRECT OPCODE NEGATIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= (OTHERS=>'1');
+		OPCODE_s <=   "100101";
+		wait for 10 ns;
+		--SGE CORRECT OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= x"FFFFFFFD";
+		OPCODE_s <=   "100101";
+		wait for 10 ns;
+		--SGE CORRECT OPCODE POSITIVE
+		-->
+		OPERANDA_s <= x"00000001";
+		OPERANDB_s <= x"00000001";
+		OPCODE_s <=   "100101";
+		wait for 10 ns;
+		OPERANDA_s <= (OTHERS=>'0');
+		OPERANDB_s <= (OTHERS=>'0');
+		OPCODE_s <=   (OTHERS=>'0');
 		wait;
   end process;
 

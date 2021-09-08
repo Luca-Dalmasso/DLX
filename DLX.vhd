@@ -5,15 +5,36 @@ use WORK.constants.all;
 entity  dlx is
 	PORT(
 		RST: in std_logic;
-		CLK: in std_logic;
-		IR_IN: in std_logic_vector(31 downto 0);
-		NPC: in std_logic_vector(31 downto 0)
+		CLK: in std_logic
 	);
 end dlx;
 
 architecture Struct of dlx is
+	
+	--#########
+	--##FETCH##
+	--#########
 
-	signal PC_EN, NPC_EN, IR_EN: std_logic; 
+	component FU is
+	GENERIC (
+		N: integer :=NumBit
+	);
+	PORT(
+			IR_En: IN std_logic;
+			PC_En: IN std_logic;
+			NPC_En: IN std_logic;
+			Clk: IN std_logic;
+			RST: IN std_logic;
+			IR_IN: OUT std_logic_vector(N-1 downto 0);
+			IR_OUT: OUT std_logic_vector(N-1 downto 0);
+			NPC_OUT: OUT std_logic_vector(N-1 downto 0)
+	);
+	end component;
+	
+	--fetch control signals
+	signal PC_EN, NPC_EN, IR_EN: std_logic;
+	--output signals
+	signal IR_OUT, NPC_OUT, IR_IN_CTRL: std_logic_vector(NumBit-1 downto 0); 
 	
 	--##########
 	--##DECODE##
@@ -141,7 +162,7 @@ begin
   port map(
     Clk=>CLK,
     Rst=>RST,
-    IR_IN=>IR_IN,
+    IR_IN=>IR_IN_CTRL,
     CW_FETCH=>cw_fetch,
 		CW_DECODE=>cw_dec,
 		CW_EXE=>cw_ex,
@@ -168,14 +189,29 @@ begin
 	s3<=cw_mem(MEMWB_SIZE-3);
 	en3<=cw_mem(MEMWB_SIZE-4);
 	wf1<=cw_mem(MEMWB_SIZE-5);
+
+	unit_fetch: FU
+	GENERIC map(
+		N=>NumBit
+	)
+	PORT map(
+			IR_En=>IR_EN,
+			PC_En=>PC_EN,
+			NPC_En=>NPC_EN,
+			Clk=>CLK,
+			RST=>RST,
+			IR_OUT=>IR_OUT,
+			IR_IN=>IR_IN_CTRL,
+			NPC_OUT=>NPC_OUT
+	);
 	
 	unit_decode: DU 
 	GENERIC map (
 		N=>NumBit
 	)
 	PORT map(
-		IR_IN=>IR_IN,
-		NPC=>NPC,
+		IR_IN=>IR_OUT,
+		NPC=>NPC_OUT,
 		WR_ADDR_RF=>wr_address,  
 		DATAIN=>wr_data,
 	  EN1=>en1,

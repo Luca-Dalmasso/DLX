@@ -8,12 +8,12 @@ end tb;
 architecture test of tb is
 
 component ZERODET is
-	generic (	N: integer := NumBit);								--THIS TESTBENCH WAS MADE ON N = 8 bits, for simplicity
+	generic (	N: integer := 8);								--THIS TESTBENCH WAS MADE ON N = 8 bits, for simplicity
 	Port (	A:	In	std_logic_vector(N-1 DOWNTO 0);
 		Y:	Out	std_logic);
 end component;
 
-constant NBIT: integer:=NumBit;
+constant NBIT: integer:=8;
 signal a_S: std_logic_vector(NBIT-1 downto 0);
 signal result: std_logic;
 

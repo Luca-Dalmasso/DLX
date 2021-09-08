@@ -90,7 +90,7 @@ package CONSTANTS is
 	--#######
 	constant SGE_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SGE_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1110";
-	constant SGE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110100010";
+	constant SGE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110100101";
 	constant SGE_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SGE_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGE_FETCH & SGE_DECODE & SGE_EXE & SGE_WB;
 	--#######
@@ -98,7 +98,7 @@ package CONSTANTS is
 	--#######
 	constant SLE_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SLE_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1110";
-	constant SLE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110100101";
+	constant SLE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110101011";
 	constant SLE_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SLE_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLE_FETCH & SLE_DECODE & SLE_EXE & SLE_WB;	
 	--#######
@@ -106,7 +106,7 @@ package CONSTANTS is
 	--#######
 	constant SLL_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SLL_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1110";
-	constant SLL_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110000111";
+	constant SLL_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110000000";
 	constant SLL_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SLL_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLL_FETCH & SLL_DECODE & SLL_EXE & SLL_WB;
 	--#######
@@ -114,7 +114,7 @@ package CONSTANTS is
 	--#######
 	constant SNE_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SNE_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1110";
-	constant SNE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110100000";
+	constant SNE_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110100001";
 	constant SNE_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SNE_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SNE_FETCH & SNE_DECODE & SNE_EXE & SNE_WB;
 	--#######
@@ -202,7 +202,7 @@ package CONSTANTS is
 	--#######
 	constant SGEI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SGEI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1011";
-	constant SGEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010100010";
+	constant SGEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010100101";
 	constant SGEI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SGEI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGEI_FETCH & SGEI_DECODE & SGEI_EXE & SGEI_WB;
 	--#######
@@ -210,7 +210,7 @@ package CONSTANTS is
 	--#######
 	constant SLEI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SLEI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1011";
-	constant SLEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010100101";
+	constant SLEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010101011";
 	constant SLEI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SLEI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLEI_FETCH & SLEI_DECODE & SLEI_EXE & SLEI_WB;
 	--#######
@@ -218,7 +218,7 @@ package CONSTANTS is
 	--#######
 	constant SLLI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SLLI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1011";
-	constant SLLI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010000111";
+	constant SLLI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010000000";
 	constant SLLI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SLLI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLLI_FETCH & SLLI_DECODE & SLLI_EXE & SLLI_WB;
 	--#######
@@ -226,7 +226,7 @@ package CONSTANTS is
 	--#######
 	constant SNEI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SNEI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1011";
-	constant SNEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010100000";
+	constant SNEI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010100001";
 	constant SNEI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="00001";
 	constant SNEI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SNEI_FETCH & SNEI_DECODE & SNEI_EXE & SNEI_WB;
 	--#######
@@ -250,7 +250,7 @@ package CONSTANTS is
 	--#######
 	constant SW_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
 	constant SW_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="1111";
-	constant SW_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0110010000";
+	constant SW_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="0010010000";
 	constant SW_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="01110";
 	constant SW_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SW_FETCH & SW_DECODE & SW_EXE & SW_WB;
 	--#######

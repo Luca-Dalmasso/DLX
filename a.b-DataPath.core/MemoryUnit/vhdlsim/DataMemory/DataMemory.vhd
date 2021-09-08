@@ -29,17 +29,28 @@ architecture Dram_Bhe of DataMemory is
 
 begin  
 
-	process(Rst,CLK,EN,WM,RM,Din,Addr)
+	--write process (synchronous)
+
+	process(Rst,CLK,EN,WM,Din,Addr)
   begin
 		if(Rst = '1') then
 			DRAM_mem <= (OTHERS => (OTHERS => '0'));
 		elsif rising_edge(CLK) then
-			if(EN='1') then
-				if(RM = '1') then
-					Dout <= DRAM_mem(to_integer(unsigned(Addr)));
-				elsif(WM = '1' ) then
+			if(EN='1') then				
+				if(WM = '1' ) then
 			  	DRAM_mem(to_integer(unsigned(Addr))) <= Din;
 				end if;			
+			end if;
+		end if;
+	end process;
+
+	--read process (asynchronous)
+	
+	process(EN,RM,Addr)
+	begin
+		if (EN='1') then
+			if (RM= '1') then
+				Dout <= DRAM_mem(to_integer(unsigned(Addr)));
 			end if;
 		end if;
 	end process;

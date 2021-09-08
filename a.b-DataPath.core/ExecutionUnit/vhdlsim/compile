@@ -17,7 +17,7 @@ vcom ./ALU/P4AddSub/pg_net.vhd
 vcom ./ALU/P4AddSub/xorGrid.vhd
 vcom ./ALU/P4AddSub/carry_gen.vhd
 vcom ./ALU/P4AddSub/P4_Adder.vhd
-vcom ./ALU/Shifter/vhdlsim/01-generic_shifter.vhd
+vcom ./ALU/Shifter/vhdlsim/ShifterT2.vhd
 vcom ../../GLOBALS/nd3.vhd                                          
 vcom ../../GLOBALS/nd4.vhd 
 vcom ./ALU/Logicals/Logical.vhd 

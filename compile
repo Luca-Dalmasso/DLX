@@ -27,7 +27,7 @@ vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/P4AddSub/pg_net.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/P4AddSub/xorGrid.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/P4AddSub/carry_gen.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/P4AddSub/P4_Adder.vhd
-vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/Shifter/vhdlsim/01-generic_shifter.vhd
+vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/Shifter/vhdlsim/ShifterT2.vhd
 vcom ./a.b-DataPath.core/GLOBALS/nd3.vhd
 vcom ./a.b-DataPath.core/GLOBALS/nd4.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/Logicals/Logical.vhd

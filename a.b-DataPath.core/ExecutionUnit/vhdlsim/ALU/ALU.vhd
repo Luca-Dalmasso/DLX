@@ -42,18 +42,17 @@ architecture Structural of ALU is
 					Y:		Out	std_logic_vector(N-1 downto 0));							
 	end component;
 
-	component SHIFTER_GENERIC is
-		generic(
-			N: integer:= NumBit
-		);
-		port(	
-			A: in std_logic_vector(N-1 downto 0);
-			B: in std_logic_vector(4 downto 0);									
-			LOGIC_ARITH: in std_logic;	-- 1 = logic, 0 = arith
-			LEFT_RIGHT: in std_logic;	-- 1 = left, 0 = right
-			SHIFT_ROTATE: in std_logic;	-- 1 = shift, 0 = rotate
-			OUTPUT: out std_logic_vector(N-1 downto 0)
-		);
+	component ShifterT2 is
+	generic(
+		N: integer:= NumBit
+	);
+	port(	
+		A: in std_logic_vector(N-1 downto 0);		
+		B: in std_logic_vector(4 downto 0);							
+		sel: in std_logic_vector(1 downto 0);
+		output: out std_logic_vector(N-1 downto 0)
+	);
+
 	end component;
 
 	signal shifter_result: std_logic_vector(N-1 downto 0); 
@@ -85,6 +84,7 @@ architecture Structural of ALU is
 	end component;
 
 	signal cmp_result: std_logic_vector(N-1 downto 0); 
+	signal sign_delta: std_logic;
 
 	signal final_out: std_logic_vector(N-1 downto 0);
 
@@ -98,12 +98,10 @@ begin
 		SUM=>add_result
 	);
 	
-	SHIFTER: SHIFTER_GENERIC generic map (N) port map (
-		A=>OPERANDB,
-		B=>OPERANDA(4 downto 0),
-		LOGIC_ARITH=>OPCODE(2),
-		LEFT_RIGHT=>OPCODE(1),
-		SHIFT_ROTATE=>OPCODE(0),
+	SHIFTER: ShifterT2 generic map (N) port map (
+		A=>OPERANDA,
+		B=>OPERANDB(4 downto 0),
+		sel=>OPCODE(1 downto 0),
 		OUTPUT=>shifter_result
 	);
 
@@ -113,11 +111,14 @@ begin
 		S=>OPCODE(3 downto 0),
 		Y=>logical_result
 	);
-
+	
+	--for signed comparison
+	sign_delta<=(cout)xor(OPERANDA(N-1) xor OPERANDB(N-1)); 	
+	
 	COMPARATOR: topLevelCMP generic map (N) port map (
 		SUB=>add_result,
-		Cout=>cout,
-		Sel=>OPCODE(2 downto 0),
+		Cout=>sign_delta,
+		Sel=>OPCODE(3 downto 1),
 		res=>cmp_result
 	);
 	
@@ -139,7 +140,7 @@ configuration CFG_ALU_STR of ALU is
 			for ADD_SUB: P4Adder
 				use configuration WORK.CFG_P4ADD_STR;
    		end for;
-			for SHIFTER: SHIFTER_GENERIC
+			for SHIFTER: ShifterT2
 				use configuration WORK.CFG_SHIFTER;
    		end for;
 			for LOGICAL_OP: LogicalT2

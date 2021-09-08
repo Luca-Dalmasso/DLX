@@ -99,13 +99,11 @@ begin
 
 	--SIGN EXTENSION ON IMMEDIATES
 		process(imm16, imm26)
-			VARIABLE tmpINT: integer;
-			VARIABLE tmpINT2: integer;
 	  begin
-			tmpINT := to_integer(signed(imm16));
-			imm1632 <= std_logic_vector(to_signed(tmpINT,imm1632'length));
-			tmpINT2 := to_integer(signed(imm26));
-			imm2632 <= std_logic_vector(to_signed(tmpINT2,imm2632'length));
+			imm1632(31 downto 16) <= (OTHERS=>imm16(15));
+			imm1632(15 downto 0) <= imm16;
+			imm2632(31 downto 26) <= (OTHERS=>imm26(25));
+			imm2632(25 downto 0) <= imm26;
 		end process;
 	
 		RegisterFile: register_file 

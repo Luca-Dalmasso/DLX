@@ -98,7 +98,16 @@ begin
 		NPCs <= (OTHERS=>'0');
 		SEL_IMM <= '0';		
 		RF1 <= '0';
-		RF2 <= '0';		
+		RF2 <= '0';
+
+		wait for 20 ns;
+		SEL_IMM <='0';
+		IRs <= "11111110000000000000000000000000";
+
+		wait for 20 ns;
+		SEL_IMM <='1';
+
+				
 		wait;
 	end process;
 

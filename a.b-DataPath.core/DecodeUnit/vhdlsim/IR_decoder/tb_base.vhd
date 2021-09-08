@@ -49,21 +49,24 @@ begin
 		IR_IN_s<=(others=>'1');
 		wait for 10 ns;
 		--RTYPE test
-		IR_IN_s(N -1 downto 26)<="000000";
+		IR_IN_s(N -1 downto 26)<="000000"; 
 		IR_IN_s(25 downto 21)<="00001";
 		IR_IN_s(20 downto 16)<="10000";
 		IR_IN_s(15 downto 11)<="00100";
 		IR_IN_s(10 downto 0)<="00110000000";
 		wait for 10 ns;
 		--ITYPE
-		IR_IN_s(N-1 downto 26)<="100000";
+		IR_IN_s(N-1 downto 26)<="100000"; 	
 		IR_IN_s(25 downto 21)<="10000";
 		IR_IN_s(20 downto 16)<="00001";
 		IR_IN_s(15 downto 0)<="0101010101010101";
 		wait for 10 ns;
 		--J-TYPE
-		IR_IN_s(N-1 downto 26)<="000011";
+		IR_IN_s(N-1 downto 26)<="000011";  --JAL
 		IR_IN_s(25 downto 0)<="11111100000011111100001111";
+		wait for 10 ns;
+		IR_IN_s(N-1 downto 26)<="010011";  --JALR
+
 		wait;
 	end process;
 	
