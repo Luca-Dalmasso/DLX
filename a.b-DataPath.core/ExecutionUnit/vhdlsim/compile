@@ -28,6 +28,7 @@ vcom ../../GLOBALS/MUX6_1Generic.vhd
 vcom ./ALU/Comparator/vhdlsim/comparator.vhd
 vcom ./ALU/Comparator/vhdlsim/topLevelCMP.vhd
 vcom ../../GLOBALS/MUX4_1Generic.vhd
+vcom ./Mux4_1.vhd
 vcom ./ALU/ALU.vhd
 
 #ZERODET

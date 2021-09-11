@@ -5,4 +5,4 @@ vcom ../../GLOBALS/nd2.vhd
 vcom ../../GLOBALS/mux21.vhd
 vcom ../../GLOBALS/mux21_generic.vhd
 vcom ./MEMU.vhd
-vcom ./tb_MEMU.vhd
+#vcom ./tb_MEMU.vhd

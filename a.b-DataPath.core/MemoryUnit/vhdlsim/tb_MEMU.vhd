@@ -2,6 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all; 
 use WORK.constants.all; 
 
+--old version of wb unit
+
 entity tb is
 end tb;
 

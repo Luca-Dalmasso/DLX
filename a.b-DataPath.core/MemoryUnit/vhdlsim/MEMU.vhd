@@ -10,8 +10,10 @@ entity MEMU is
 			 WM: IN std_logic;
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
+			 S4: IN std_logic;
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
 			 regBout: IN std_logic_vector(N - 1 downto 0);
+			 NPC2in: IN std_logic_vector(N - 1 downto 0);
 			 RD3in: IN std_logic_vector(4 downto 0);
 			 RD3out: OUT std_logic_vector(4 downto 0);
 			 WB_DATA: OUT std_logic_vector(N - 1 downto 0)
@@ -51,7 +53,7 @@ architecture Struct of MEMU is
 
 	constant NBIT : integer := NumBit;
 	constant RAM_DEPTH : integer := DMem_Depth;
-	signal DataMemOut, LMDin: std_logic_vector(N - 1 downto 0);
+	signal DataMemOut, wb_prime: std_logic_vector(N - 1 downto 0);
 
 begin
 		
@@ -72,7 +74,7 @@ begin
 				CLK =>CLK
 			);
 
-		MUX21: MUX21_GENERIC 
+		MUX21_ALMEM: MUX21_GENERIC 
 			generic map(
 				NBIT=>NBIT
 			) 
@@ -80,11 +82,23 @@ begin
 				A =>DataMemOut, 
 				B =>ALU_OUT, 
 				SEL =>S3, 
+				Y =>wb_prime
+			);
+
+		MUX21_NPCWB: MUX21_GENERIC 
+			generic map(
+				NBIT=>NBIT
+			) 
+			port map(
+				A =>NPC2in, 
+				B =>wb_prime, 
+				SEL =>S4, 
 				Y =>WB_DATA
 			);
 			
 		--BYPASS OF RD2
 		RD3out<=RD3in;
+		
 		
 end Struct;
 

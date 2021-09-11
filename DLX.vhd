@@ -25,6 +25,8 @@ architecture Struct of dlx is
 			NPC_En: IN std_logic;
 			Clk: IN std_logic;
 			RST: IN std_logic;
+			COND_REGOUT: in std_logic;
+			ALU_OUT: IN std_logic_vector(N-1 downto 0);
 			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
 			NPC_OUT: OUT std_logic_vector(N-1 downto 0)
@@ -88,21 +90,24 @@ architecture Struct of dlx is
 		S2_IMM_B: in std_logic; --S2=1-->B
 		ALU_OPCODE: in std_logic_vector(5 downto 0);
 		CLK,RST: in std_logic;
-		EN_FFD_COND: in std_logic;
+		JUMP_EN: in std_logic_vector(1 downto 0);
 		EN_REGN_ALU_OUT: in std_logic;
-		COND_OUT: out std_logic;
+		JUMP: out std_logic;
+		ALUOUT: out std_logic_vector(N-1 downto 0);
 		ALU_OUT_REGN: out std_logic_vector(N-1 downto 0);
 		B_OUT_REGN: out std_logic_vector(N-1 downto 0);
+		NPC2: out std_logic_vector(N-1 downto 0);
 		RD2_OUT_REGN: out std_logic_vector(4 downto 0)
 	);
 	end component;
 
 	--control signals
 	signal s1, s2, eq_cond, en2: std_logic;
+	signal jump_en: std_logic_vector(1 downto 0);
 	signal alu_opcode: std_logic_vector(5 downto 0);
 	--output signals
-	signal eq_regout: std_logic;
-	signal aluout_regn, bout_regn: std_logic_vector(NumBit-1 downto 0);
+	signal jump: std_logic;
+	signal aluout_regn,alu_out,npc2_out, bout_regn: std_logic_vector(NumBit-1 downto 0);
 	signal rd2out: std_logic_vector(4 downto 0);
 
 	--##########
@@ -117,8 +122,10 @@ architecture Struct of dlx is
 			 WM: IN std_logic;
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
+			 S4: IN std_logic;
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
 			 regBout: IN std_logic_vector(N - 1 downto 0);
+			 NPC2in: IN std_logic_vector(N - 1 downto 0);
 			 RD3in: IN std_logic_vector(4 downto 0);
 			 RD3out: OUT std_logic_vector(4 downto 0);
 			 WB_DATA: OUT std_logic_vector(N - 1 downto 0)
@@ -126,7 +133,7 @@ architecture Struct of dlx is
 	end component;
 
 	--control signals
-	signal rm, wm, s3, en3: std_logic;
+	signal rm, wm, s3, en3, s4: std_logic;
 	
 	--################
 	--##CONTROL UNIT##
@@ -181,14 +188,15 @@ begin
 	s1<=cw_ex(EXE_SIZE-1);
 	s2<=cw_ex(EXE_SIZE-2);
 	en2<=cw_ex(EXE_SIZE-3);
-	eq_cond<=cw_ex(EXE_SIZE-4);
-	alu_opcode<=cw_ex(EXE_SIZE-5 downto 0);
+	jump_en<=cw_ex(EXE_SIZE-4 downto EXE_SIZE-5);
+	alu_opcode<=cw_ex(EXE_SIZE-6 downto 0);
 
 	rm<=cw_mem(MEMWB_SIZE-1);
 	wm<=cw_mem(MEMWB_SIZE-2);
 	s3<=cw_mem(MEMWB_SIZE-3);
 	en3<=cw_mem(MEMWB_SIZE-4);
 	wf1<=cw_mem(MEMWB_SIZE-5);
+	s4<=cw_mem(MEMWB_SIZE-6);
 
 	unit_fetch: FU
 	GENERIC map(
@@ -200,6 +208,8 @@ begin
 			NPC_En=>NPC_EN,
 			Clk=>CLK,
 			RST=>RST,
+			COND_REGOUT=>jump,
+			ALU_OUT=>alu_out,
 			IR_OUT=>IR_OUT,
 			IR_IN=>IR_IN_CTRL,
 			NPC_OUT=>NPC_OUT
@@ -243,14 +253,16 @@ begin
 		ALU_OPCODE=>alu_opcode,
 		CLK=>CLK,
 		RST=>RST,
-		EN_FFD_COND=>eq_cond,
+		JUMP_EN=>jump_en,
 		EN_REGN_ALU_OUT=>en2,
-		COND_OUT=>eq_regout,
+		JUMP=>jump,
+		ALUOUT=>alu_out,
 		ALU_OUT_REGN=>aluout_regn,
 		B_OUT_REGN=>bout_regn,
+		NPC2=>npc2_out,
 		RD2_OUT_REGN=>rd2out
 	);
-	
+
 	unit_memory: MEMU
 	GENERIC map(N=>NumBit
 	)
@@ -260,13 +272,16 @@ begin
 			 WM=>wm,
 			 EN3=>en3,
 			 S3=>s3,
+			 S4=>s4,
 			 ALU_OUT=>aluout_regn,
 			 regBout=>bout_regn,
+			 NPC2in=>npc2_out,
 			 RD3in=>rd2out,
 			 RD3out=>wr_address,
 			 WB_DATA=>wr_data
 	);
 		
+
 end Struct;
 
 configuration CFG_DLX_STR of dlx is

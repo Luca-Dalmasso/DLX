@@ -40,6 +40,7 @@ vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/Comparator/vhdlsim/comparator
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ZeroCMP/vhdlsim/zerodetect.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/Comparator/vhdlsim/topLevelCMP.vhd
 vcom ./a.b-DataPath.core/GLOBALS/MUX4_1Generic.vhd
+vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/Mux4_1.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/ALU/ALU.vhd
 vcom ./a.b-DataPath.core/ExecutionUnit/vhdlsim/TopLevelEXU.vhd
 

@@ -1,6 +1,8 @@
 library IEEE;
 use IEEE.std_logic_1164.all; 
+use IEEE.numeric_std.all;
 use WORK.constants.all; 
+
 
 entity EXUNIT is
 	GENERIC (
@@ -16,11 +18,13 @@ entity EXUNIT is
 		S2_IMM_B: in std_logic; --S2=1-->B
 		ALU_OPCODE: in std_logic_vector(5 downto 0);
 		CLK,RST: in std_logic;
-		EN_FFD_COND: in std_logic;
+		JUMP_EN: in std_logic_vector(1 downto 0);
 		EN_REGN_ALU_OUT: in std_logic;
-		COND_OUT: out std_logic;
+		JUMP: out std_logic;
+		ALUOUT: out std_logic_vector(N-1 downto 0);
 		ALU_OUT_REGN: out std_logic_vector(N-1 downto 0);
 		B_OUT_REGN: out std_logic_vector(N-1 downto 0);
+		NPC2: out std_logic_vector(N-1 downto 0);
 		RD2_OUT_REGN: out std_logic_vector(4 downto 0)
 	);
 end EXUNIT;
@@ -68,6 +72,19 @@ architecture Struct of EXUNIT is
 
 	signal ZERO_CMP: std_logic;
 
+	component MUX4_1 is 
+	port(
+			 ZERO: std_logic;
+			 ONE: std_logic;
+			 INV_CMP: std_logic;
+			 CMP:  std_logic;
+			 Sel: IN std_logic_vector(1 downto 0);
+			 Y: OUT std_logic);
+	end component;
+
+	signal inverted_cmp: std_logic;
+	
+
 	component ffd is
 	Port (	
 		D:	In	std_logic;
@@ -78,7 +95,6 @@ architecture Struct of EXUNIT is
 	);
 	end component;
 	
-	signal LATCH_COND_OUT: std_logic;
 	
 	component regN is
 	GENERIC(
@@ -96,12 +112,18 @@ architecture Struct of EXUNIT is
 	signal ALUOUT_REGN, BOUT_REGN: std_logic_vector(N-1 downto 0);
 	signal RD2OUT_REGN: std_logic_vector(4 downto 0);
 	constant NBBLOCK: integer:= NumBitBlock;
-	
+	signal NPC1_1: std_logic_vector(N-1 downto 0);
+
 begin
 
+	--we bring NPC1 - 1 inside MPX:
+	process(NPC1)
+	begin
+		NPC1_1<=std_logic_vector(unsigned(NPC1) - 1);
+	end process;
 
 	COMP_MPX21_1: MUX21_GENERIC generic map (N) port map(
-		A=>NPC1,
+		A=>NPC1_1,
 		B=>A,
 		SEL=>S1_A_NPC,
 		Y=>A_prime
@@ -119,15 +141,28 @@ begin
 		Y=>ZERO_CMP
 	);
 
-	COMP_LATCH_COND: ffd port map (
-		D=>ZERO_CMP,
-		CK=>CLK,
-		RESET=>RST,
-		En=>EN_FFD_COND,
-		Q=>LATCH_COND_OUT
+	inverted_cmp<=not(ZERO_CMP);
+	--ZERO_CMP now goes in a 4_1MPX
+
+	COMP_41_1MPX: MUX4_1  
+		port map(
+			 ZERO=>'0',
+			 ONE=>'1',
+			 INV_CMP=>inverted_cmp,
+			 CMP=>ZERO_CMP,
+			 Sel=>JUMP_EN,
+			 Y=>JUMP
 	);
 
-	COND_OUT<=LATCH_COND_OUT;
+	--need a propagation of NPC1 in the pipeline
+	COMP_NPC2: regN generic map (N) port map (
+		regIn=>NPC1,
+		Clk=>CLK,
+		Reset=>RST,
+		Enable=>EN_REGN_ALU_OUT,
+		regOut=>NPC2
+	);
+
 
 	COMP_ALU: ALU generic map (N,NBBLOCK) port map (
 		OPCODE=>ALU_OPCODE,
@@ -135,6 +170,8 @@ begin
 		OPERANDB=>B_prime,
 		RESULT=>ALU_OUT
 	);
+	
+	ALUOUT<=ALU_OUT;
 
 	COMP_REGN_ALUOUT: regN generic map (N) port map (
 		regIn=>ALU_OUT,

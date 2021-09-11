@@ -12,6 +12,8 @@ entity FU is
 			NPC_En: IN std_logic;
 			Clk: IN std_logic;
 			RST: IN std_logic;
+			COND_REGOUT: in std_logic;
+			ALU_OUT: IN std_logic_vector(N-1 downto 0);
 			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
 			NPC_OUT: OUT std_logic_vector(N-1 downto 0)
@@ -56,6 +58,18 @@ architecture Struct of FU is
 		);
 	end component;
 
+	component MUX21_GENERIC is
+		Generic	(	
+			NBIT: integer:= NumBitBlock
+		);
+		Port 	(	
+			A:		In	std_logic_vector(NBIT-1 downto 0);
+			B:		In	std_logic_vector(NBIT-1 downto 0);
+			SEL:	In	std_logic;
+			Y:		Out	std_logic_vector(NBIT-1 downto 0)
+		);
+	end component;
+
 	component IRAM is
 	  generic (
 	    RAM_DEPTH : integer := IMem_Depth;
@@ -69,7 +83,7 @@ architecture Struct of FU is
     );
 	end component;
 
-	signal ir_ins, pc_regout, npc_regin: std_logic_vector(NumBit-1 DOWNTO 0);
+	signal ir_ins, pc_regout, npc_regin, adder_out: std_logic_vector(NumBit-1 DOWNTO 0);
 
 begin
 
@@ -115,7 +129,18 @@ begin
 		)
   	Port map(
 			PC=>pc_regout,
-      NPC=>npc_regin
+      NPC=>adder_out
+		);
+
+		unit_mpx: MUX21_GENERIC
+		Generic	map(	
+			NBIT=>NumBit
+		)
+		Port map(	
+			A=>ALU_OUT,
+			B=>adder_out,
+			SEL=>COND_REGOUT,
+			Y=>npc_regin
 		);
 
 		unit_npcregister: regN
