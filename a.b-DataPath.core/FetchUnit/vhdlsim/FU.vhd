@@ -161,5 +161,23 @@ end Struct;
 
 configuration CFG_FU of FU is
    for Struct
+			for unit_programCounter: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+		 	end for;			
+			for unit_instructionMemory: IRAM
+				use configuration WORK.CFG_IRAM_BEH;
+			end for;			
+			for unit_instructionRegister: IRreg 
+				use configuration WORK.CFG_IR_BEH;
+			end for;
+			for unit_adder: Adder
+				use configuration WORK.CFG_ADDER_BEH;				
+			end for;
+		  for unit_mpx: MUX21_GENERIC
+			 	use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+		  end for;
+		  for unit_npcregister: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+		 	end for;
    end for;
 end CFG_FU;

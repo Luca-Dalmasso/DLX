@@ -207,5 +207,32 @@ end Struct;
 
 configuration CFG_STR_EXU of EXUNIT is
    for Struct
+			for COMP_MPX21_1: MUX21_GENERIC
+				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			end for;
+			for COMP_MPX21_2: MUX21_GENERIC
+				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			end for;
+			for COMP_ZERO_CMP: ZERODET 
+				use configuration WORK.CFG_ZERODET;
+			end for;
+			for COMP_41_1MPX: MUX4_1 
+				use configuration WORK.CFG_mux4_1_BEH;
+			end for;
+			for COMP_NPC2: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for COMP_ALU: ALU
+				use configuration WORK.CFG_ALU_STR;
+			end for;
+			for COMP_REGN_ALUOUT: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for COMP_REGN_BOUT: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for COMP_REG5_RD2OUT: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
    end for;
 end CFG_STR_EXU;

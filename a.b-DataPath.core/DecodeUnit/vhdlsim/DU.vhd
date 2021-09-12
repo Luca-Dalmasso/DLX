@@ -214,6 +214,31 @@ end Struct;
 
 configuration CFG_DEC_UNIT of DU is
    for Struct	
+			for RegisterFile: register_file
+				use configuration WORK.CFG_RF_BEH;
+			end for;
+			for NPC1reg: regN 
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for Areg: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for Breg: regN  
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for IMMreg: regN
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for RD1reg: regN  
+				use configuration WORK.CFG_REGN_Structural_syn;
+			end for;
+			for MUXimm: MUX21_GENERIC
+				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			end for;
+			for DEC: IR_decoder  
+				use configuration WORK.CFG_IR_DEC;
+			end for;
    end for;
 end CFG_DEC_UNIT ;
+
 

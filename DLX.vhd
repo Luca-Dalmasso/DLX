@@ -286,5 +286,20 @@ end Struct;
 
 configuration CFG_DLX_STR of dlx is
    for Struct
+		for unit_control:  dlx_cu
+			use configuration WORK.CFG_HW_CU;
+		end for;
+		for unit_fetch: FU
+			use configuration WORK.CFG_FU;
+		end for;
+		for unit_decode: DU
+			use configuration WORK.CFG_DEC_UNIT;
+		end for;
+		for unit_execution: EXUNIT 
+			use configuration WORK.CFG_STR_EXU;
+		end for;
+		for unit_memory: MEMU
+			use configuration WORK.CFG_MEM_UNIT;
+		end for;
    end for;
 end CFG_DLX_STR;

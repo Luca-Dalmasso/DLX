@@ -104,5 +104,14 @@ end Struct;
 
 configuration CFG_MEM_UNIT of MEMU is
    for Struct
+			for DRAM: DataMemory
+				use configuration WORK.CFG_DRAM_BEH;
+			end for;
+			for MUX21_ALMEM: MUX21_GENERIC
+				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			end for;
+			for MUX21_NPCWB: MUX21_GENERIC 
+				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			end for;
    end for;
 end CFG_MEM_UNIT;
