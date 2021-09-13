@@ -54,7 +54,7 @@ architecture Struct of dlx is
 			 WF1: IN std_logic;
 			 CLK: IN std_logic;
 			 RST: IN std_logic;
-			 SEL_IMM: IN std_logic;
+			 SEL_IMM: IN std_logic_vector(1 downto 0);
 			 NPC1_OUT: out std_logic_vector (N -1 downto 0);
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
@@ -64,7 +64,8 @@ architecture Struct of dlx is
 	end component;
 
 	--decode control signals
-	signal rf1,rf2,wf1,en1,sel_imm: std_logic;
+	signal rf1,rf2,wf1,en1: std_logic;
+	signal sel_imm: std_logic_vector(1 downto 0);
 	--input signals
 	signal wr_address: std_logic_vector(4 downto 0);
 	signal wr_data: std_logic_vector(NumBit-1 downto 0);
@@ -123,6 +124,7 @@ architecture Struct of dlx is
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
 			 S4: IN std_logic;
+			 MEM_CFG: IN std_logic_vector(2 downto 0);
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
 			 regBout: IN std_logic_vector(N - 1 downto 0);
 			 NPC2in: IN std_logic_vector(N - 1 downto 0);
@@ -134,6 +136,7 @@ architecture Struct of dlx is
 
 	--control signals
 	signal rm, wm, s3, en3, s4: std_logic;
+	signal mem_cfg: std_logic_vector(2 downto 0);
 	
 	--################
 	--##CONTROL UNIT##
@@ -156,11 +159,6 @@ architecture Struct of dlx is
 	signal cw_dec: std_logic_vector(DECODE_SIZE-1 downto 0);
 	signal cw_ex: std_logic_vector(EXE_SIZE-1 downto 0); 
 	signal cw_mem: std_logic_vector(MEMWB_SIZE-1 downto 0);
-	--DECREASING ORDER OF THE CONTROL SIGNALS:
-	--FETCH: (FETCH_SIZE-1 downto 0) = PC_EN, NPC_EN, IR_EN
-	--DECODE: (DECODE_SIZE-1 downto 0) = RF1, RF2, EN1, SEL_IMM
-	--EXECUTE: (EXECUTE_SIZE-1 downto 0) = S1, S2, EN2, EQ_COND, ALU_OPCODE
-	--MEMORY: (MEMORY_SIZE-1 downto 0) = RM, WM, S3, EN3, WF1
 	
 begin
 
@@ -183,7 +181,7 @@ begin
 	rf1<=cw_dec(DECODE_SIZE-1);
 	rf2<=cw_dec(DECODE_SIZE-2);
 	en1<=cw_dec(DECODE_SIZE-3);
-	sel_imm<=cw_dec(DECODE_SIZE-4);
+	sel_imm<=cw_dec(DECODE_SIZE-4 downto DECODE_SIZE-5);
 
 	s1<=cw_ex(EXE_SIZE-1);
 	s2<=cw_ex(EXE_SIZE-2);
@@ -197,6 +195,7 @@ begin
 	en3<=cw_mem(MEMWB_SIZE-4);
 	wf1<=cw_mem(MEMWB_SIZE-5);
 	s4<=cw_mem(MEMWB_SIZE-6);
+	mem_cfg<=cw_mem(MEMWB_SIZE-7 downto MEMWB_SIZE-9);
 
 	unit_fetch: FU
 	GENERIC map(
@@ -273,6 +272,7 @@ begin
 			 EN3=>en3,
 			 S3=>s3,
 			 S4=>s4,
+			 MEM_CFG=>mem_cfg,
 			 ALU_OUT=>aluout_regn,
 			 regBout=>bout_regn,
 			 NPC2in=>npc2_out,

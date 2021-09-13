@@ -14,6 +14,7 @@ vcom ./a.b-DataPath.core/FetchUnit/vhdlsim/FU.vhd
 #DU
 vcom ./a.b-DataPath.core/DecodeUnit/vhdlsim/RegisterFile/registerfile.vhd
 vcom ./a.b-DataPath.core/DecodeUnit/vhdlsim/IR_decoder/IR_decoder.vhd
+vcom ./a.b-DataPath.core/GLOBALS/MUX4_1Generic.vhd
 vcom ./a.b-DataPath.core/DecodeUnit/vhdlsim/DU.vhd 
 
 #EXU

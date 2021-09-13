@@ -18,7 +18,7 @@ component DU is
 			 WF1: IN std_logic;
 			 CLK: IN std_logic;
 			 RST: IN std_logic;
-			 SEL_IMM: IN std_logic;
+			 SEL_IMM: IN std_logic_vector(1 downto 0);
 			 NPC1_OUT: out std_logic_vector (N -1 downto 0);
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
@@ -29,7 +29,8 @@ end component;
 
 constant NBIT: integer := NumBit;
 signal IRs,NPCs,data,NPC1out,regAout,regBout,IMMout: std_logic_vector (NBIT-1 downto 0);
-signal EN1,RF1,RF2,WF1,CLK,Rst,SEL_IMM: std_logic;
+signal EN1,RF1,RF2,WF1,CLK,Rst: std_logic;
+signal sel_imm: std_logic_vector(1 downto 0);
 signal WR_Addr,RDout : std_logic_vector (4 downto 0);
 
 begin
@@ -60,7 +61,7 @@ begin
 		NPCs <= (OTHERS=>'1');
 		IRs <= x"20010002";
 		wait for 10 ns;
-		SEL_IMM <= '1';
+		SEL_IMM <= "01";
 		EN1 <= '1';
 		RF1 <= '1';
 		RF2 <= '0';
@@ -69,7 +70,7 @@ begin
 		--addi r3,r1,#-4
 		NPCs <= (OTHERS=>'0');
 		IRs <= x"2023FFFC";
-		SEL_IMM <= '1';		
+		SEL_IMM <= "01";		
 		RF1 <= '1';
 		RF2 <= '0';		
 		wait for 20 ns;	
@@ -96,16 +97,16 @@ begin
 		WF1 <= '0';
 		wait for 20 ns;
 		NPCs <= (OTHERS=>'0');
-		SEL_IMM <= '0';		
+		SEL_IMM <= "00";		
 		RF1 <= '0';
 		RF2 <= '0';
 
 		wait for 20 ns;
-		SEL_IMM <='0';
+		SEL_IMM <="00";
 		IRs <= "11111110000000000000000000000000";
 
 		wait for 20 ns;
-		SEL_IMM <='1';
+		SEL_IMM <="01";
 
 				
 		wait;

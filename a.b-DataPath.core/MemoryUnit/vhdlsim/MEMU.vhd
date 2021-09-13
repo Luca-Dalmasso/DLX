@@ -11,6 +11,7 @@ entity MEMU is
 			 EN3: IN std_logic;
 			 S3: IN std_logic;
 			 S4: IN std_logic;
+			 MEM_CFG: IN std_logic_vector(2 downto 0);
 			 ALU_OUT: IN std_logic_vector(N - 1 downto 0);
 			 regBout: IN std_logic_vector(N - 1 downto 0);
 			 NPC2in: IN std_logic_vector(N - 1 downto 0);
@@ -35,19 +36,20 @@ architecture Struct of MEMU is
 	end component;
 
 	component DataMemory is
-  	generic (
-    	RAM_DEPTH : integer := DMem_Depth;
-    	N : integer := NumBit
+  generic (
+    RAM_DEPTH : integer := DMem_Depth;
+    WORD_SIZE : integer := NumBit
 		);
-  	port (
-    	Rst  : in  std_logic;
-    	Addr : in  std_logic_vector(4 downto 0);
-			Din :  in std_logic_vector(N-1 downto 0);
-    	Dout : out std_logic_vector(N - 1 downto 0);
-			RM: IN std_logic;
-			WM: IN std_logic;
-			EN: IN std_logic;
-			CLK:in std_logic
+  port (
+    Rst  : in  std_logic;
+    Addr : in  std_logic_vector(WORD_SIZE-1 downto 0);
+		Din :  in std_logic_vector(WORD_SIZE-1 downto 0);
+    Dout : out std_logic_vector(WORD_SIZE - 1 downto 0);
+		Sel: in std_logic_vector(2 downto 0);
+		RM: IN std_logic;
+		WM: IN std_logic;
+		EN: IN std_logic;
+		CLK:in std_logic
 		);
 	end component;
 
@@ -61,13 +63,14 @@ begin
 		DRAM: DataMemory 
 			generic map(
 				RAM_DEPTH=>RAM_DEPTH,
-				N=>NBIT
+				WORD_SIZE=>NBIT
 			) 
 			port map(
 				Rst =>RST,
 				Addr =>ALU_OUT,
 				Din =>regBout,
 				Dout =>DataMemOut,
+				Sel=>MEM_CFG,
 				RM =>RM,
 				WM =>WM,
 				EN =>EN3,

@@ -15,7 +15,7 @@ entity DU is
 			 WF1: IN std_logic;
 			 CLK: IN std_logic;
 			 RST: IN std_logic;
-			 SEL_IMM: IN std_logic;
+			 SEL_IMM: IN std_logic_vector(1 downto 0);
 			 NPC1_OUT: out std_logic_vector (N -1 downto 0);
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
@@ -40,16 +40,19 @@ architecture Struct of DU is
 	);
 	end component;
 
-	component MUX21_GENERIC is
-	Generic	(
-		NBIT: integer:= NumBitBlock
-	);
-	Port 	(
-		A:		In	std_logic_vector(NBIT-1 downto 0);
-		B:		In	std_logic_vector(NBIT-1 downto 0);
-		SEL:	In	std_logic;
-		Y:		Out	std_logic_vector(NBIT-1 downto 0)
-	);
+	--don't look at names, they are names as the ones in ALU but here are not same ones..
+	component MUX41_GENERIC is
+		Generic	(	
+			N: integer:= NumBit
+		);
+		Port 	(	
+					SHIFTER_OUT:		In	std_logic_vector(N-1 downto 0);
+					ADD_OUT:		In	std_logic_vector(N-1 downto 0);
+					CMP_OUT:		In	std_logic_vector(N-1 downto 0);
+					LOGICALS_OUT:		In	std_logic_vector(N-1 downto 0);
+					SEL:	In	std_logic_vector(1 downto 0);
+					Y:		Out	std_logic_vector(N-1 downto 0)
+		);
 	end component;
 
 	component regN is
@@ -93,7 +96,7 @@ architecture Struct of DU is
 	signal RDs:  std_logic_vector(4 downto 0);
 	signal imm16: std_logic_vector(15 DOWNTO 0);
 	signal imm26: std_logic_vector(25 DOWNTO 0);
-	signal imm1632, imm2632: std_logic_vector(NBIT-1 DOWNTO 0);
+	signal imm1632, imm2632, uimm1632, uimm2632: std_logic_vector(NBIT-1 DOWNTO 0);
 
 begin
 
@@ -104,6 +107,8 @@ begin
 			imm1632(15 downto 0) <= imm16;
 			imm2632(31 downto 26) <= (OTHERS=>imm26(25));
 			imm2632(25 downto 0) <= imm26;
+			uimm1632<=(31 downto 16=>'0')&imm16;
+			uimm2632<=(31 downto 26=>'0')&imm26;
 		end process;
 	
 		RegisterFile: register_file 
@@ -186,16 +191,18 @@ begin
 				regOut =>RD1_OUT
 			);
 
-		MUXimm: MUX21_GENERIC
-			generic	map(
-				NBIT=>NBIT
-			) 
-			port map(	
-				A => imm1632,
-				B => imm2632,
-				SEL =>SEL_IMM ,
-				Y =>immediate32
-			);
+		MUXimm: MUX41_GENERIC
+		Generic	map(	
+			N=>NumBit
+		)
+		Port 	map (	
+			SHIFTER_OUT=>imm1632,
+			ADD_OUT=>imm2632,
+			CMP_OUT=>uimm1632,
+			LOGICALS_OUT=>uimm2632,
+			SEL=>SEL_IMM,
+			Y=>immediate32
+		);
 
 		DEC: IR_decoder 
 			generic map (
@@ -232,8 +239,8 @@ configuration CFG_DEC_UNIT of DU is
 			for RD1reg: regN  
 				use configuration WORK.CFG_REGN_Structural_syn;
 			end for;
-			for MUXimm: MUX21_GENERIC
-				use configuration WORK.CFG_MUX21_GEN_STRUCTURAL;
+			for MUXimm: MUX41_GENERIC
+				use configuration WORK.CFG_MUX41_GEN_BEHAVIORAL;
 			end for;
 			for DEC: IR_decoder  
 				use configuration WORK.CFG_IR_DEC;
