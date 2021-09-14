@@ -65,7 +65,31 @@ architecture dlx_cu_rtl of dlx_cu is
 				SW_CTRL, 
 				XORI_CTRL, 
 				J_CTRL, 
-				JAL_CTRL                  
+				JAL_CTRL,
+				JR_CTRL,
+				JALR_CTRL,
+				SRAI_CTRL,
+				SEQI_CTRL,
+				SLTI_CTRL, 
+				SGTI_CTRL, 
+				SRA_CTRL,
+				SEQ_CTRL,
+				SLT_CTRL,
+				SGT_CTRL,
+				LB_CTRL,
+				LH_CTRL,
+				LHU_CTRL,
+				LBU_CTRL,
+				SB_CTRL,
+				SH_CTRL,
+				ADDUI_CTRL,
+				SUBUI_CTRL,
+				SLTUI_CTRL,
+				SGTUI_CTRL,
+				SLEUI_CTRL,
+				SGEUI_CTRL,
+				ADDU_CTRL,
+				SUBU_CTRL              
 		); 
 
                                              
@@ -119,6 +143,18 @@ begin
             cw<=cw_mem(8);
           elsif (IR_func=XOR_FUNC) then 
             cw<=cw_mem(9);
+					elsif (IR_func=SRA_FUNC) then 
+            cw<=cw_mem(33);
+					elsif (IR_func=SEQ_FUNC) then 
+            cw<=cw_mem(34);
+					elsif (IR_func=SLT_FUNC) then 
+            cw<=cw_mem(35);
+					elsif (IR_func=SGT_FUNC) then 
+            cw<=cw_mem(36);
+					elsif (IR_func=ADDU_FUNC) then 
+            cw<=cw_mem(49);
+					elsif (IR_func=SUBU_FUNC) then 
+            cw<=cw_mem(50);
 					else
 						cw<=cw_mem(15);
           end if;
@@ -155,7 +191,43 @@ begin
 				elsif(IR_opcode = SW_OPCODE )then	
       		cw<=cw_mem(23); 
 				elsif(IR_opcode = XORI_OPCODE )then	
-      		cw<=cw_mem(24);            
+      		cw<=cw_mem(24); 
+				elsif(IR_opcode = JR_OPCODE )then	
+      		cw<=cw_mem(27);   
+				elsif(IR_opcode = JALR_OPCODE )then	
+      		cw<=cw_mem(28); 
+				elsif(IR_opcode = SRAI_OPCODE )then	
+      		cw<=cw_mem(29);    
+				elsif(IR_opcode = SEQI_OPCODE )then	
+      		cw<=cw_mem(30);  
+				elsif(IR_opcode = SLTI_OPCODE )then	
+      		cw<=cw_mem(31); 
+				elsif(IR_opcode = SGTI_OPCODE )then	
+      		cw<=cw_mem(32);   
+				elsif(IR_opcode = LB_OPCODE )then	
+      		cw<=cw_mem(37);
+				elsif(IR_opcode = LH_OPCODE )then	
+      		cw<=cw_mem(38);
+				elsif(IR_opcode = LHU_OPCODE )then	
+      		cw<=cw_mem(39);
+				elsif(IR_opcode = LBU_OPCODE )then	
+      		cw<=cw_mem(40);
+				elsif(IR_opcode = SB_OPCODE )then	
+      		cw<=cw_mem(41);
+				elsif(IR_opcode = SH_OPCODE )then	
+      		cw<=cw_mem(42);
+				elsif(IR_opcode = ADDUI_OPCODE )then	
+      		cw<=cw_mem(43);
+				elsif(IR_opcode = SUBUI_OPCODE )then	
+      		cw<=cw_mem(44);
+				elsif(IR_opcode = SLTUI_OPCODE )then	
+      		cw<=cw_mem(45);
+				elsif(IR_opcode = SGTUI_OPCODE )then	
+      		cw<=cw_mem(46);
+				elsif(IR_opcode = SLEUI_OPCODE )then	
+      		cw<=cw_mem(47);
+				elsif(IR_opcode = SGEUI_OPCODE )then	
+      		cw<=cw_mem(48);
     		else
       		cw<=cw_mem(15);    
     		end if;

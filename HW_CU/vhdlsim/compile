@@ -2,4 +2,4 @@ vcom ./../../a.b-DataPath.core/GLOBALS/constants.vhd
 vcom ./../../a.b-DataPath.core/GLOBALS/ffd.vhd
 vcom ./../../a.b-DataPath.core/GLOBALS/RegisterN.vhd
 vcom ./HW_CU.vhd
-vcom ./tb_a.a-CU_HW.vhd
+#vcom ./tb_a.a-CU_HW.vhd

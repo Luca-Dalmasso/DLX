@@ -15,11 +15,11 @@ package CONSTANTS is
   constant NumBit : integer :=32;	
   constant NumBitBlock: integer := 4;
   constant TP_MUX : time := 0.0 ns;
-	constant IMem_Depth: integer := 5000000;
+	constant IMem_Depth: integer := 128;
 	constant DMem_Depth: integer := 128;
 	constant	ASM_FULL_PATH: string := "/home/ms21.4/Desktop/DLX/a.b-DataPath.core/GLOBALS/asm/test.asm.mem";
 	--ControlUnit constants
-	constant LUT_SIZE: integer:= 27; --=number of instructions
+	constant LUT_SIZE: integer:= 51; --=number of instructions
 	constant FUNC_SIZE: integer:= 11;
 	constant OP_CODE_SIZE: integer:= 6;
 	constant IR_SIZE: integer:= 32; --32 bit instruction size
@@ -35,6 +35,12 @@ package CONSTANTS is
 	constant SRL_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000000110";
 	constant SUB_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000100010";
 	constant XOR_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000100110";
+	constant SRA_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000000111";
+	constant SEQ_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000101000";
+	constant SLT_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000101010";
+	constant SGT_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000101011";
+	constant ADDU_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000100001";
+	constant SUBU_FUNC: std_logic_vector(FUNC_SIZE-1 downto 0):="00000100011";
 	--J-TYPE OPCODE
 	constant J_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)   :="000010";
 	constant JAL_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0) :="000011";
@@ -54,6 +60,24 @@ package CONSTANTS is
 	constant SUBI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="001010";
 	constant SW_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="101011";
 	constant XORI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="001110";
+	constant JR_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="010010";
+	constant JALR_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="010011";
+	constant SRAI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="010111";
+	constant SEQI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="011000";
+	constant SLTI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="011010";
+	constant SGTI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="011011";
+	constant LB_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="100000";
+	constant LH_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="100001";
+	constant LHU_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="100101";
+	constant LBU_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="100100";
+	constant SB_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="101000";
+	constant SH_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0)  :="101001";
+	constant ADDUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="001001";
+	constant SUBUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="001011";
+	constant SLTUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="111010";
+	constant SGTUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="111011";
+	constant SLEUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="111100";
+	constant SGEUI_OPCODE: std_logic_vector(OP_CODE_SIZE-1 downto 0):="111101";
 
 	--CONSTANTS FOR CONTROL WORD BOUNDARIES
 	constant FETCH_SIZE: integer:=3;
@@ -277,6 +301,198 @@ package CONSTANTS is
 	constant JAL_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="10101010000";
 	constant JAL_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000011000";
 	constant JAL_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=JAL_FETCH & JAL_DECODE & JAL_EXE & JAL_WB;
+	--#######
+	--##JR##
+	--#######
+	constant JR_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant JR_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10101";
+	constant JR_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00101010000";
+	constant JR_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000000000";
+	constant JR_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=JR_FETCH & JR_DECODE & JR_EXE & JR_WB;
+	--#######
+	--##JALR##
+	--#######
+	constant JALR_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant JALR_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10101";
+	constant JALR_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00101010000";
+	constant JALR_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000011000";
+	constant JALR_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=JALR_FETCH & JALR_DECODE & JALR_EXE & JALR_WB;
+	--#######
+	--##SRAI##
+	--#######
+	constant SRAI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SRAI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant SRAI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100000011";
+	constant SRAI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SRAI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SRAI_FETCH & SRAI_DECODE & SRAI_EXE & SRAI_WB;
+	--#######
+	--##SEQI##
+	--#######
+	constant SEQI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SEQI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant SEQI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100100011";
+	constant SEQI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SEQI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SEQI_FETCH & SEQI_DECODE & SEQI_EXE & SEQI_WB;
+	--#######
+	--##SLTI##
+	--#######
+	constant SLTI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SLTI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant SLTI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100101001";
+	constant SLTI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SLTI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLTI_FETCH & SLTI_DECODE & SLTI_EXE & SLTI_WB;
+	--#######
+	--##SGTI##
+	--#######
+	constant SGTI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SGTI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant SGTI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100100111";
+	constant SGTI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SGTI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGTI_FETCH & SGTI_DECODE & SGTI_EXE & SGTI_WB;
+	--#######
+	--##SRA##
+	--#######
+	constant SRA_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SRA_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SRA_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100000011";
+	constant SRA_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SRA_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SRA_FETCH & SRA_DECODE & SRA_EXE & SRA_WB;
+	--#######
+	--##SEQ##
+	--#######
+	constant SEQ_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SEQ_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SEQ_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100100011";
+	constant SEQ_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SEQ_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SEQ_FETCH & SEQ_DECODE & SEQ_EXE & SEQ_WB;
+	--#######
+	--##SLT##
+	--#######
+	constant SLT_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SLT_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SLT_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100101001";
+	constant SLT_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SLT_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLT_FETCH & SLT_DECODE & SLT_EXE & SLT_WB;
+	--#######
+	--##SGT##
+	--#######
+	constant SGT_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SGT_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SGT_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100100111";
+	constant SGT_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SGT_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGT_FETCH & SGT_DECODE & SGT_EXE & SGT_WB;
+	--#######
+	--##LB##
+	--#######
+	constant LB_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant LB_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant LB_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant LB_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="101110001";
+	constant LB_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=LB_FETCH & LB_DECODE & LB_EXE & LB_WB;
+	--#######
+	--##LH##
+	--#######
+	constant LH_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant LH_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant LH_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant LH_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="101110010";
+	constant LH_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=LH_FETCH & LH_DECODE & LH_EXE & LH_WB;
+	--#######
+	--##LHU##
+	--#######
+	constant LHU_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant LHU_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant LHU_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant LHU_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="101110100";
+	constant LHU_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=LHU_FETCH & LHU_DECODE & LHU_EXE & LHU_WB;
+	--#######
+	--##LBU##
+	--#######
+	constant LBU_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant LBU_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10100";
+	constant LBU_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant LBU_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="101110011";
+	constant LBU_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=LBU_FETCH & LBU_DECODE & LBU_EXE & LBU_WB;
+	--#######
+	--##SB##
+	--#######
+	constant SB_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SB_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SB_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant SB_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="011100001";
+	constant SB_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SB_FETCH & SB_DECODE & SB_EXE & SB_WB;
+	--#######
+	--##SH##
+	--#######
+	constant SH_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SH_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SH_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant SH_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="011100010";
+	constant SH_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SH_FETCH & SH_DECODE & SH_EXE & SH_WB;
+	--#######
+	--##ADDUI##
+	--#######
+	constant ADDUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant ADDUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant ADDUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010000";
+	constant ADDUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant ADDUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=ADDUI_FETCH & ADDUI_DECODE & ADDUI_EXE & ADDUI_WB;
+	--#######
+	--##SUBUI##
+	--#######
+	constant SUBUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SUBUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant SUBUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100010001";
+	constant SUBUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SUBUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SUBUI_FETCH & SUBUI_DECODE & SUBUI_EXE & SUBUI_WB;
+	--#######
+	--##SLTUI##
+	--#######
+	constant SLTUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SLTUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant SLTUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100101001";
+	constant SLTUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SLTUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLTUI_FETCH & SLTUI_DECODE & SLTUI_EXE & SLTUI_WB;
+	--#######
+	--##SGTUI##
+	--#######
+	constant SGTUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SGTUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant SGTUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100100111";
+	constant SGTUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SGTUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGTUI_FETCH & SGTUI_DECODE & SGTUI_EXE & SGTUI_WB;
+	--#######
+	--##SLEUI##
+	--#######
+	constant SLEUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SLEUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant SLEUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100101011";
+	constant SLEUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SLEUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SLEUI_FETCH & SLEUI_DECODE & SLEUI_EXE & SLEUI_WB;
+	--#######
+	--##SGEUI##
+	--#######
+	constant SGEUI_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SGEUI_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="10110";
+	constant SGEUI_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="00100100101";
+	constant SGEUI_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SGEUI_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SGEUI_FETCH & SGEUI_DECODE & SGEUI_EXE & SGEUI_WB;
+	--#######
+	--##ADDU##
+	--#######
+	constant ADDU_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant ADDU_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant ADDU_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100010000";
+	constant ADDU_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant ADDU_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=ADDU_FETCH & ADDU_DECODE & ADDU_EXE & ADDU_WB;
+	--#######
+	--##SUBU##
+	--#######
+	constant SUBU_FETCH: std_logic_vector(FETCH_SIZE-1 downto 0):="111";
+	constant SUBU_DECODE: std_logic_vector(DECODE_SIZE-1 downto 0):="11100";
+	constant SUBU_EXE: std_logic_vector(EXE_SIZE-1 downto 0):="01100010001";
+	constant SUBU_WB: std_logic_vector(MEMWB_SIZE-1 downto 0):="000010000";
+	constant SUBU_CTRL: std_logic_vector(CW_SIZE-1 downto 0):=SUBU_FETCH & SUBU_DECODE & SUBU_EXE & SUBU_WB;
 
 	--FUNCTIONS
 	function log2(N: integer) return integer;
