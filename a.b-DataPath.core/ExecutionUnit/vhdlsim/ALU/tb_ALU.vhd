@@ -53,7 +53,6 @@ begin
 		wait for 5 ns;
 	end process;
 
-	--ADD tests
 	process
 	begin
 		--ADD test01
@@ -67,9 +66,9 @@ begin
 		din_s<="0000000100000000";
 		wait for 2 ns;
 		ld <='0';
-		OPERANDA_s <= "00000000000000001000010001011000";
-		OPERANDB_s <= "0000000000000000"&prn_s;
-		OPCODE_s <= "010000";
+		OPERANDA_s <= x"0000002a";
+		OPERANDB_s <= x"ffffaaaa";
+		OPCODE_s <= "111110";
 		wait for 10 ns;
 		--ADD test02
 		OPERANDA_s <= "00000000000000001000010001011000";

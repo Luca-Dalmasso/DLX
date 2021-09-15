@@ -85,6 +85,7 @@ architecture Structural of ALU is
 
 	signal cmp_result: std_logic_vector(N-1 downto 0); 
 	signal sign_delta: std_logic;
+	signal tmp_log: std_logic_vector(3 downto 0);
 
 	signal final_out: std_logic_vector(N-1 downto 0);
 
@@ -105,10 +106,15 @@ begin
 		OUTPUT=>shifter_result
 	);
 
+	tmp_log(3)<=OPCODE(0);
+	tmp_log(2)<=OPCODE(1);
+	tmp_log(1)<=OPCODE(2);
+	tmp_log(0)<=OPCODE(3);
+
 	LOGICAL_OP: LogicalT2 generic map(N) port map (
 		A=>OPERANDA,
 		B=>OPERANDB,
-		S=>OPCODE(3 downto 0),
+		S=>tmp_log,
 		Y=>logical_result
 	);
 	

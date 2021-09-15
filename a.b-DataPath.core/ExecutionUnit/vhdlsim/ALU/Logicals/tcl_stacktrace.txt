@@ -1,0 +1,19 @@
+Wed Sep 15 16:40:04 CEST 2021
+Trace back: bad window path name ""
+    while executing
+"winfo rootx $widget"
+    (procedure "drag" line 16)
+    invoked from within
+"$cmd {*}$args"
+    (procedure "dnd" line 2)
+    invoked from within
+"dnd drag $w"
+    (object "::.main_pane.structure.interior.cs.body.struct" method "::vsimwidgets::Hierarchy::_buttonMotion1" body line 13)
+    invoked from within
+"::.main_pane.structure.interior.cs.body.struct _buttonMotion1 .main_pane.structure.interior.cs.body.struct.lwchildsite.clipper.canvas.sfchildsite.list..."
+    (in namespace inscope "::vsimwidgets::Hierarchy" script line 1)
+    invoked from within
+"namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _buttonMotion1 .main_pane.structure.interior.cs.body.struct..."
+    (command bound to event)
+  <2:/software/mentor/questa10.7c/questasim/linux_x86_64/tk8.6/bgerror.tcl:106: ::tkerror {bad window path name ""}
+  <1:eval:1: ::tk::dialog::error::bgerror {bad window path name ""}

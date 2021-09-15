@@ -20,86 +20,13 @@ signal A,B,Y: std_logic_vector(NBIT-1 DOWNTO 0);
 signal S: std_logic_vector(3 DOWNTO 0);
 
 begin
-	UUT: LogicalT2 generic map (4) port map(A=>A,B=>B,S=>S,Y=>Y);
+	UUT: LogicalT2 generic map (32) port map(A=>A,B=>B,S=>S,Y=>Y);
 	PROCESS
 		begin
-		--AND
-		S<="0001";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="0001";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="0001";
-		A<="1100";
-		B<="0011";
-		wait for 5 ns;
-		--NAND
-		S<="1110";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="1110";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="1110";
-		A<="1100";
-		B<="0011";
-		wait for 5 ns;
 		--OR
 		S<="0111";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="0111";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="0111";
-		A<="1100";
-		B<="0011";
-		wait for 5 ns;
-		--NOR
-		S<="1000";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="1000";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="1000";
-		A<="1100";
-		B<="0011";
-		wait for 5 ns;
-		--XOR
-		S<="0110";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="0110";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="0110";
-		A<="1100";
-		B<="0011";
-		wait for 5 ns;
-		--XNOR
-		S<="1001";
-		A<="0000";
-		B<="0000";
-		wait for 5 ns;
-		S<="1001";
-		A<="1111";
-		B<="1111";
-		wait for 5 ns;
-		S<="1001";
-		A<="1100";
-		B<="0011";
+		A<=x"0000002a";
+		B<=x"ffffaaaa";
 		wait;
 
   END PROCESS;
