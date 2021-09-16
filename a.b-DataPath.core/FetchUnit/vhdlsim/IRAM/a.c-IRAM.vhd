@@ -1,8 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
+--use ieee.std_logic_arith.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
+use ieee.numeric_std.all;
 use WORK.constants.all;
 
 
@@ -25,7 +26,7 @@ end IRAM;
 
 architecture IRam_Bhe of IRAM is
 
-  type RAMtype is array (0 to RAM_DEPTH - 1) of integer;
+  type RAMtype is array (0 to RAM_DEPTH - 1) of std_logic_vector(7 downto 0); --byte dimension
 
   signal IRAM_mem : RAMtype;
 
@@ -33,8 +34,13 @@ begin
 
 	--OUT PROCESS
 
-		Dout <= conv_std_logic_vector(IRAM_mem(conv_integer(unsigned(Addr))),I_SIZE);
-	
+		--Dout <= conv_std_logic_vector(IRAM_mem(conv_integer(unsigned(Addr))),I_SIZE);
+
+			Dout(I_SIZE-1 downto I_SIZE-8) 		<= IRAM_mem(to_integer(unsigned(Addr)));  		--Most significant byte
+			Dout(I_SIZE-9 downto I_SIZE-16) 	<= IRAM_mem(to_integer(unsigned(Addr))+1);
+			Dout(I_SIZE-17 downto I_SIZE-24) 	<= IRAM_mem(to_integer(unsigned(Addr))+2);
+			Dout(I_SIZE-25 downto 0) 					<= IRAM_mem(to_integer(unsigned(Addr))+3);		--Least significant byte
+
   
 
 	--REFRESH PROCESS
@@ -50,8 +56,12 @@ begin
       while (not endfile(mem_fp)) loop
         readline(mem_fp,file_line);
         hread(file_line,tmp_data_u);
-        IRAM_mem(index) <= conv_integer(unsigned(tmp_data_u));       
-        index := index + 1;
+ 
+				IRAM_mem(index)   <= tmp_data_u(I_SIZE-1 downto I_SIZE-8);  			--Most significant byte
+				IRAM_mem(index+1) <= tmp_data_u(I_SIZE-9 downto I_SIZE-16);  
+				IRAM_mem(index+2) <= tmp_data_u(I_SIZE-17 downto I_SIZE-24); 			--Least significant byte 
+				IRAM_mem(index+3) <= tmp_data_u(I_SIZE-25 downto 0);  
+        index := index + 4;		-- because NPC = PC + 4
       end loop;
 			file_close(mem_fp);
     end if;

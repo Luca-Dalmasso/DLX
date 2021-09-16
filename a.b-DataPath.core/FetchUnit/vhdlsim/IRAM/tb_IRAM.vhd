@@ -55,6 +55,18 @@ begin
 		wait for 20 ns;
 		Addr <= std_logic_vector(unsigned(Addr)+1);	
 		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);		
+		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);	
+		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);	
+		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);		
+		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);	
+		wait for 20 ns;
+		Addr <= std_logic_vector(unsigned(Addr)+1);	
+		wait for 20 ns;
 		wait;
 	end process;
 end test;

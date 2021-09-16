@@ -15,7 +15,7 @@ package CONSTANTS is
   constant NumBit : integer :=32;	
   constant NumBitBlock: integer := 4;
   constant TP_MUX : time := 0.0 ns;
-	constant IMem_Depth: integer := 128;
+	constant IMem_Depth: integer := 512;
 	constant DMem_Depth: integer := 128;
 	constant	ASM_FULL_PATH: string := "/home/ms21.4/Desktop/DLX/a.b-DataPath.core/GLOBALS/asm/test.asm.mem";
 	--ControlUnit constants

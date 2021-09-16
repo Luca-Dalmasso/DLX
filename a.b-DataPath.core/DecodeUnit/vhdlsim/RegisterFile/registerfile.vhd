@@ -33,7 +33,7 @@ architecture Beh of register_file is
 	
 begin 
 
-	--processo per scrittura, reset sincrono
+	--write process, synchronous reset 
 	process(CLK)
 	begin
 		if rising_edge(CLK) then
@@ -46,7 +46,7 @@ begin
 		end if;
 	end process;
 
-	--processo per lettura asincrono
+	--read process, asynchronous 
 	process(ENABLE, RD1, RD2, ADD_RD1, ADD_RD2)
 	begin
 			if ENABLE = '1' then

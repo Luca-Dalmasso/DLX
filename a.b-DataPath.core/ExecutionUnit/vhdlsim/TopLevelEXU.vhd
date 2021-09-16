@@ -117,10 +117,13 @@ architecture Struct of EXUNIT is
 begin
 
 	--we bring NPC1 - 1 inside MPX:
-	process(NPC1)
-	begin
-		NPC1_1<=std_logic_vector(unsigned(NPC1) - 1);
-	end process;
+	--process(NPC1)
+	--begin
+		--NPC1_1<=std_logic_vector(unsigned(NPC1) - 4);
+	--end process;
+
+	NPC1_1<=NPC1 ;
+
 
 	COMP_MPX21_1: MUX21_GENERIC generic map (N) port map(
 		A=>NPC1_1,

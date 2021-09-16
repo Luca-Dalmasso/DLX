@@ -40,7 +40,6 @@ architecture Struct of DU is
 	);
 	end component;
 
-	--don't look at names, they are names as the ones in ALU but here are not same ones..
 	component MUX41_GENERIC is
 		Generic	(	
 			N: integer:= NumBit
@@ -107,11 +106,11 @@ begin
 			imm1632(15 downto 0) <= imm16;
 			imm2632(31 downto 26) <= (OTHERS=>imm26(25));
 			imm2632(25 downto 0) <= imm26;
-			uimm1632<=(31 downto 16=>'0')&imm16;
+			uimm1632<=(31 downto 16=>'0')&imm16;	--unsigned immediates
 			uimm2632<=(31 downto 26=>'0')&imm26;
 		end process;
 	
-		RegisterFile: register_file 
+		RegisterFile: register_file 	--Register FIle
 			generic map (
 				WORD_SIZE => NBIT,
 				ADDR_SIZE => 5
@@ -131,7 +130,7 @@ begin
 				OUT2 =>registerB
 			);
 
-		NPC1reg: regN
+		NPC1reg: regN			--NPC1 register on NumBit 
 			generic map(
 				N=>NBIT
 			) 
@@ -143,7 +142,7 @@ begin
 				regOut => NPC1_OUT
 			);
 
-		Areg: regN 
+		Areg: regN 					--Register A, stores operand A for ALU
 			generic map(
 				N=>NBIT
 			) 
@@ -155,7 +154,7 @@ begin
 				regOut =>regA_OUT
 			);
 
-		Breg: regN 
+		Breg: regN 				--Register B, stores operand B for ALU
 			generic map(
 				N=>NBIT
 			) 
@@ -167,7 +166,7 @@ begin
 				regOut =>regB_OUT
 			);
 		
-		IMMreg: regN 
+		IMMreg: regN 			--Register in2, stores immediate for ALU
 			generic map(
 				N=>NBIT
 			) 
@@ -179,7 +178,7 @@ begin
 				regOut => IMM_OUT
 			);
 
-		RD1reg: regN 
+		RD1reg: regN 			--Register RD1, stores destination address for RegisterFile's writing
 			generic map(
 				N=>5
 			) 
@@ -191,9 +190,9 @@ begin
 				regOut =>RD1_OUT
 			);
 
-		MUXimm: MUX41_GENERIC
-		Generic	map(	
-			N=>NumBit
+		MUXimm: MUX41_GENERIC   --Selection between immediate on 16 bits (I-type instructions), immediate on 26 bits (J-type instructions) 
+		Generic	map(															 -- unsigned immediate on 16 bits and unsigned immediate on 26 bits
+			N=>NumBit		
 		)
 		Port 	map (	
 			SHIFTER_OUT=>imm1632,
@@ -204,7 +203,7 @@ begin
 			Y=>immediate32
 		);
 
-		DEC: IR_decoder 
+		DEC: IR_decoder 				--IR_decoder that distributes proper signals, starting from IR's value 
 			generic map (
 				N=>NBIT
 			) 

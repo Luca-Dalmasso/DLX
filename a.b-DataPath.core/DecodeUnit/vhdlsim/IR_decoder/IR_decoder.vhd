@@ -2,6 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all; 
 use WORK.constants.all; 
 
+--this unit receives the value of IR and distributes the proper signals: RS1, RS2, immediates, and RD  
+
 entity IR_decoder is
 	GENERIC (N: integer := NumBit);
 	PORT(IR_IN: IN std_logic_vector(N -1 downto 0);

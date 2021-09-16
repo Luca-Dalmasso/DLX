@@ -19,7 +19,7 @@ begin
 	begin
 		if(rising_edge(Clk)) then
 			if(Reset = '1') then
-			  regOut <= "01010100000000000000000000000000";	 --NOP		
+			  regOut <= "01010100000000000000000000000000";	 --NOP		instruction is performed when Reset is active 
 			elsif (Enable = '1') then
 				regOut <= regIn;				
 			end if;

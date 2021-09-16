@@ -87,7 +87,7 @@ architecture Struct of FU is
 
 begin
 
-		unit_programCounter: regN
+		unit_programCounter: regN			--Program Counter is a register on NumBit
 		GENERIC map(
 		 N=>NumBit
 		)
@@ -99,7 +99,7 @@ begin
 	   regOut=>pc_regout
 		);
 	
-		unit_instructionMemory: IRAM
+		unit_instructionMemory: IRAM	--Instruction Memory
   	generic map(
     	RAM_DEPTH=>IMem_Depth,
     	I_SIZE=>NumBit,
@@ -111,7 +111,7 @@ begin
     	Dout=>ir_ins
     );
 
-		unit_instructionRegister: IRreg 
+		unit_instructionRegister: IRreg --Instruction Register is a register on NumBit
 		GENERIC map(
 			N=>NumBit
 		)
@@ -123,7 +123,7 @@ begin
 	    regOut=>IR_OUT
 		);
 
-		unit_adder: Adder
+		unit_adder: Adder								--Adder that perfoms NPC <= PC + 4
   	generic map(
 			N=>NumBit
 		)
@@ -132,7 +132,7 @@ begin
       NPC=>adder_out
 		);
 
-		unit_mpx: MUX21_GENERIC
+		unit_mpx: MUX21_GENERIC					-- Selection between ALU_OUT (in case of jump) and PC +4 
 		Generic	map(	
 			NBIT=>NumBit
 		)
@@ -140,10 +140,10 @@ begin
 			A=>ALU_OUT,
 			B=>adder_out,
 			SEL=>COND_REGOUT,
-			Y=>npc_regin
+			Y=>npc_regin		--the output value goes to NPC and PC
 		);
 
-		unit_npcregister: regN
+		unit_npcregister: regN					-- NPC is a register on NumBit
 		GENERIC map(
 			N=>NumBit
 		)
@@ -152,7 +152,7 @@ begin
 	   Clk=>Clk,
 	   Reset=>Rst,
 	   Enable=>NPC_En,
-	   regOut=>NPC_OUT
+	   regOut=>NPC_OUT   --the output goes to NPC1 register
 		);
 		
 		IR_IN<=ir_ins;
