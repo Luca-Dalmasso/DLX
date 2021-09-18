@@ -13,6 +13,7 @@ entity FU is
 			Clk: IN std_logic;
 			RST: IN std_logic;
 			COND_REGOUT: in std_logic;
+			FLUSH: in std_logic;
 			ALU_OUT: IN std_logic_vector(N-1 downto 0);
 			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
@@ -84,6 +85,7 @@ architecture Struct of FU is
 	end component;
 
 	signal ir_ins, pc_regout, npc_regin, adder_out: std_logic_vector(NumBit-1 DOWNTO 0);
+	signal reset_IR: std_logic;
 
 begin
 
@@ -111,6 +113,8 @@ begin
     	Dout=>ir_ins
     );
 
+		reset_IR<=rst or FLUSH;
+
 		unit_instructionRegister: IRreg --Instruction Register is a register on NumBit
 		GENERIC map(
 			N=>NumBit
@@ -118,7 +122,7 @@ begin
  		Port map(
 		  regIn=>ir_ins,
 	    Clk=>Clk,
-	    Reset=>Rst,
+	    Reset=>reset_IR,
 	    Enable=>IR_En,
 	    regOut=>IR_OUT
 		);

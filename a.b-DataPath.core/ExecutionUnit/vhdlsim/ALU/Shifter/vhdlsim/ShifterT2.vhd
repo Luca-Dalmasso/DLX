@@ -79,14 +79,65 @@ begin
 
 	--level3 fine grained shift
 	process(B, masksel, sel)
-	variable index: integer;
 	begin	
-		index:=to_integer(unsigned(B(2 downto 0)));
-		if sel(0) = '0' then
-				output<=masksel(N-1+8-index downto 8-index);
-		else
-				output<=masksel(N-1+index downto index);
-		end if;
+		case B(2 downto 0) is
+			when "000" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-0 downto 8-0);
+				else
+					output<=masksel(N-1+0 downto 0);
+				end if; 
+
+			when "001" =>
+					if sel(0) = '0' then
+					output<=masksel(N-1+8-1 downto 8-1);
+				else
+					output<=masksel(N-1+1 downto 1);
+				end if;
+
+			when "010" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-2 downto 8-2);
+				else
+					output<=masksel(N-1+2 downto 2);
+				end if;
+	
+			when "011" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-3 downto 8-3);
+				else
+					output<=masksel(N-1+3 downto 3);
+				end if;
+	
+			when "100" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-4 downto 8-4);
+				else
+					output<=masksel(N-1+4 downto 4);
+				end if;
+
+			when "101" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-5 downto 8-5);
+				else
+					output<=masksel(N-1+5 downto 5);
+				end if;
+
+			when "110" =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-6 downto 8-6);
+				else
+					output<=masksel(N-1+6 downto 6);
+				end if;
+
+			when others =>
+				if sel(0) = '0' then
+					output<=masksel(N-1+8-7 downto 8-7);
+				else
+					output<=masksel(N-1+7 downto 7);
+				end if;
+
+		end case;
 	end process;
 	
 end architecture BEHAVIORAL;

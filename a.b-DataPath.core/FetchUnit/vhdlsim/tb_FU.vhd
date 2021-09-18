@@ -2,6 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all; 
 use WORK.constants.all; 
 
+--old testbench
+
 entity tb_FU is
 end tb_FU;
 
@@ -18,6 +20,7 @@ architecture test of tb_FU is
 			Clk: IN std_logic;
 			RST: IN std_logic;
 			COND_REGOUT: in std_logic;
+			FLUSH: in std_logic;
 			ALU_OUT: IN std_logic_vector(N-1 downto 0);
 			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);

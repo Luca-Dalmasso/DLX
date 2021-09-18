@@ -26,6 +26,7 @@ architecture Struct of dlx is
 			Clk: IN std_logic;
 			RST: IN std_logic;
 			COND_REGOUT: in std_logic;
+			FLUSH: in std_logic;
 			ALU_OUT: IN std_logic_vector(N-1 downto 0);
 			IR_IN: OUT std_logic_vector(N-1 downto 0);
 			IR_OUT: OUT std_logic_vector(N-1 downto 0);
@@ -59,6 +60,7 @@ architecture Struct of dlx is
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
 			 IMM_OUT: out std_logic_vector (N -1 downto 0);
+			 RD1_IN: out std_logic_vector (4 downto 0);
 			 RD1_OUT: out std_logic_vector (4 downto 0)
 			 );
 	end component;
@@ -71,7 +73,7 @@ architecture Struct of dlx is
 	signal wr_data: std_logic_vector(NumBit-1 downto 0);
 	--output signals
 	signal npc1_out, rega_out, regb_out, imm_out: std_logic_vector(NumBit-1 downto 0);
-	signal rd1_out: std_logic_vector(4 downto 0);
+	signal rd1_out, rd1_in: std_logic_vector(4 downto 0);
 
 	--###########
 	--##EXECUTE##
@@ -147,10 +149,14 @@ architecture Struct of dlx is
     Clk: in  std_logic;
     Rst: in  std_logic;
     IR_IN: in  std_logic_vector(IR_SIZE - 1 downto 0);
+		IR_OUT_OPCODE: in std_logic_vector(OP_CODE_SIZE - 1 downto 0);
+		RD1_IN: in std_logic_vector(4 downto 0);
+		RD1_OUT: in std_logic_vector(4 downto 0);
     CW_FETCH: out std_logic_vector(FETCH_SIZE-1 downto 0);  
 		CW_DECODE: out std_logic_vector(DECODE_SIZE-1 downto 0); 
 		CW_EXE: out std_logic_vector(EXE_SIZE-1 downto 0); 
-		CW_MEMWB: out std_logic_vector(MEMWB_SIZE-1 downto 0)                           
+		CW_MEMWB: out std_logic_vector(MEMWB_SIZE-1 downto 0);
+		FETCH_STALL: out std_logic                           
     );
 	end component;
 
@@ -159,6 +165,8 @@ architecture Struct of dlx is
 	signal cw_dec: std_logic_vector(DECODE_SIZE-1 downto 0);
 	signal cw_ex: std_logic_vector(EXE_SIZE-1 downto 0); 
 	signal cw_mem: std_logic_vector(MEMWB_SIZE-1 downto 0);
+	signal stall: std_logic;
+	signal ir_out_opcode: std_logic_vector(OP_CODE_SIZE - 1 downto 0);
 	
 begin
 
@@ -168,15 +176,19 @@ begin
     Clk=>CLK,
     Rst=>RST,
     IR_IN=>IR_IN_CTRL,
+		IR_OUT_OPCODE=>ir_out_opcode,
+		RD1_IN=>rd1_in,
+		RD1_OUT=>rd1_out,
     CW_FETCH=>cw_fetch,
 		CW_DECODE=>cw_dec,
 		CW_EXE=>cw_ex,
-		CW_MEMWB=>cw_mem                           
+		CW_MEMWB=>cw_mem ,
+		FETCH_STALL=>stall                          
     );
 
-	PC_EN<=cw_fetch(FETCH_SIZE-1);
-	NPC_EN<=cw_fetch(FETCH_SIZE-2);
-	IR_EN<=cw_fetch(FETCH_SIZE-3);
+	PC_EN<=cw_fetch(FETCH_SIZE-1) xor stall;
+	NPC_EN<=cw_fetch(FETCH_SIZE-2) xor stall;
+	IR_EN<=cw_fetch(FETCH_SIZE-3) xor stall;
 
 	rf1<=cw_dec(DECODE_SIZE-1);
 	rf2<=cw_dec(DECODE_SIZE-2);
@@ -208,11 +220,14 @@ begin
 			Clk=>CLK,
 			RST=>RST,
 			COND_REGOUT=>jump,
+			FLUSH=>stall,
 			ALU_OUT=>alu_out,
 			IR_OUT=>IR_OUT,
 			IR_IN=>IR_IN_CTRL,
 			NPC_OUT=>NPC_OUT
 	);
+
+	ir_out_opcode<=IR_OUT(IR_SIZE-1 downto IR_SIZE-OP_CODE_SIZE);
 	
 	unit_decode: DU 
 	GENERIC map (
@@ -234,6 +249,7 @@ begin
 		regA_OUT=>rega_out,
 	  regB_OUT=>regb_out,
 		IMM_OUT=>imm_out,
+		RD1_IN=>rd1_in,
 		RD1_OUT=>rd1_out
 		);
 

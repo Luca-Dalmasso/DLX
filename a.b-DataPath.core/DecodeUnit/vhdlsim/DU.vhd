@@ -20,6 +20,7 @@ entity DU is
 			 regA_OUT: out std_logic_vector (N -1 downto 0);
 			 regB_OUT: out std_logic_vector (N -1 downto 0);
 			 IMM_OUT: out std_logic_vector (N -1 downto 0);
+			 RD1_IN: out std_logic_vector (4 downto 0);
 			 RD1_OUT: out std_logic_vector (4 downto 0)
 			 );
 end DU;
@@ -189,6 +190,8 @@ begin
 				Enable =>EN1,
 				regOut =>RD1_OUT
 			);
+		
+		RD1_IN<=RDs;
 
 		MUXimm: MUX41_GENERIC   --Selection between immediate on 16 bits (I-type instructions), immediate on 26 bits (J-type instructions) 
 		Generic	map(															 -- unsigned immediate on 16 bits and unsigned immediate on 26 bits

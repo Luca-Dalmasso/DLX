@@ -9,10 +9,14 @@ entity dlx_cu is
     Clk: in  std_logic;
     Rst: in  std_logic;
     IR_IN: in  std_logic_vector(IR_SIZE - 1 downto 0);
+		IR_OUT_OPCODE: in std_logic_vector(OP_CODE_SIZE - 1 downto 0);
+		RD1_IN: in std_logic_vector(4 downto 0);
+		RD1_OUT: in std_logic_vector(4 downto 0);
     CW_FETCH: out std_logic_vector(FETCH_SIZE-1 downto 0);  
 		CW_DECODE: out std_logic_vector(DECODE_SIZE-1 downto 0); 
 		CW_EXE: out std_logic_vector(EXE_SIZE-1 downto 0); 
-		CW_MEMWB: out std_logic_vector(MEMWB_SIZE-1 downto 0)                           
+		CW_MEMWB: out std_logic_vector(MEMWB_SIZE-1 downto 0);
+		FETCH_STALL: out std_logic                           
     );
 end dlx_cu;
 
@@ -37,6 +41,10 @@ architecture dlx_cu_rtl of dlx_cu is
 	constant D: integer:=C-EXE_SIZE;
 	
   type mem_array is array (integer range 0 to LUT_SIZE - 1) of std_logic_vector(CW_SIZE - 1 downto 0);
+	type states is (HAZARD_WAIT, HAZARD_RAW_1clk, HAZARD_RAW_2clk);
+	signal current_state, next_state: states;
+  signal f,s, RF1, RF2: std_logic;
+	signal RS1_IN,RS2_IN : std_logic_vector(4 downto 0);
   --control signals from CPU to PIPELINE
   signal cw_mem : mem_array :=(
         ADD_CTRL,
@@ -95,8 +103,7 @@ architecture dlx_cu_rtl of dlx_cu is
                                              
   signal IR_opcode : std_logic_vector(OP_CODE_SIZE -1 downto 0);
   signal IR_func : std_logic_vector(FUNC_SIZE -1 downto 0);
-  signal cw,cw1delay,cw2delay,cw3delay   : std_logic_vector(CW_SIZE - 1 downto 0);
-
+  signal cw,cw1delay,cw2delay,cw3delay,cw_selected   : std_logic_vector(CW_SIZE - 1 downto 0);
 
 begin
   
@@ -234,13 +241,71 @@ begin
   		end if;
   end process;
 
+	--###########################
+	--##FSM FOR STALL DETECTION##
+	--###########################
+	process(CLK, RST)
+	begin
+		if RST='1' then
+			current_state<=HAZARD_WAIT;
+		elsif rising_edge(CLK) then
+			current_state<=next_state;
+		end if;
+	end process;
+
+	--extraction of rs1 and rs2.
+	RS1_IN<=IR_IN(25 downto 21);  
+	RS2_IN<=IR_IN(20 downto 16);
+	--extraction of rf1 and rf2 from the LUT control word
+	RF1<=cw(CW_SIZE-4);
+	RF2<=cw(CW_SIZE-5);
+
+	process(current_state, RF1, RF2, RD1_IN, RS1_IN, RS2_IN, IR_OPCODE, IR_OUT_OPCODE)
+	begin
+		s<='0';
+		case current_state is
+			when HAZARD_WAIT=>
+				next_state<=HAZARD_WAIT;
+				if RD1_IN /= "00000" then
+					if ((RF1='1' and RS1_IN=RD1_IN) or (RF2='1' and RS2_IN=RD1_IN)) then
+						next_state<=HAZARD_RAW_2clk;
+						s<='1';
+					end if;
+				elsif RD1_OUT /= "00000" then
+					if ((RF1='1' and RS1_IN=RD1_OUT) or (RF2='1' and RS2_IN=RD1_OUT)) then
+						next_state<=HAZARD_RAW_1clk;
+						s<='1';
+					end if;
+				end if;
+				
+				
+		when HAZARD_RAW_2clk=>
+				s<='1';
+				next_state<=HAZARD_WAIT;
+
+		when HAZARD_RAW_1clk=>
+				next_state<=HAZARD_WAIT;
+
+		end case;
+	end process;
+
+	FETCH_STALL<=s;
+
+	--#################
+	--##NOP INJECTION##
+	--#################
+	cw_selected<=cw when s = '0' else
+							 NOP_CTRL;
+
+
+
 	-- FISRT PIPELINE STAGE (NOT DELAYED)
   -- IF Control Signals
-  CW_FETCH<=cw(A downto B+1);
+  CW_FETCH<=cw_selected(A downto B+1);
 	
 	-- SECOND PIPELINE STAGE (1 CLK DELAY)
 	uut_second_stage: regN generic map ( N=> B+1) port map(
-			regIn=>cw(B downto 0),
+			regIn=>cw_selected(B downto 0),
 		  Clk=>clk,
 	   	Reset=>Rst,
 	   	Enable=>'1',
