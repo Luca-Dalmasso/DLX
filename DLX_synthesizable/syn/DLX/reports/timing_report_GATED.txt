@@ -1,0 +1,16 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : dlx
+Version: F-2011.09-SP3
+Date   : Sat Sep 18 21:32:02 2021
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+No paths.
+
+1

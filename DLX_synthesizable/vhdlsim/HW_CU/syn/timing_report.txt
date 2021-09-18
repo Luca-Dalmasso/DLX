@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : dlx_cu
+Version: F-2011.09-SP3
+Date   : Sat Sep 18 16:22:33 2021
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: IR_IN[29] (input port)
+  Endpoint: FETCH_STALL
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  dlx_cu             5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  IR_IN[29] (in)                           0.00       0.00 f
+  U391/ZN (NOR2_X1)                        0.06       0.06 r
+  U390/ZN (INV_X1)                         0.04       0.10 f
+  U389/ZN (NOR4_X1)                        0.11       0.21 r
+  U384/ZN (NAND3_X1)                       0.07       0.28 f
+  U380/ZN (NOR3_X1)                        0.11       0.38 r
+  U370/ZN (NAND3_X1)                       0.06       0.45 f
+  U369/ZN (NAND4_X1)                       0.05       0.50 r
+  U368/ZN (AOI21_X1)                       0.03       0.53 f
+  U367/ZN (NAND4_X1)                       0.05       0.58 r
+  U305/ZN (NOR2_X1)                        0.03       0.62 f
+  U302/ZN (NOR4_X1)                        0.07       0.69 r
+  U301/ZN (AND4_X1)                        0.08       0.77 r
+  U296/ZN (OAI21_X1)                       0.04       0.80 f
+  U295/ZN (AND3_X1)                        0.05       0.85 f
+  U294/ZN (NOR2_X1)                        0.04       0.89 r
+  FETCH_STALL (out)                        0.00       0.89 r
+  data arrival time                                   0.89
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

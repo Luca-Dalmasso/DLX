@@ -1,0 +1,14 @@
+#auto generated file
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/constants.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/DataMemory.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/iv.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/nd2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/mux21.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/mux21_generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/mydesign/MEMU.vhd}
+elaborate MEMU -library WORK
+compile -exact_map
+report_power > power_report.txt
+report_area > area_report.txt
+report_timing > timing_report.txt
+write -hierarchy -format verilog -output /home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/MemoryUnit/syn/syn_netlist.v

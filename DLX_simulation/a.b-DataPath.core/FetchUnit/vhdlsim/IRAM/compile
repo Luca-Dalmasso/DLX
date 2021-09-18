@@ -1,0 +1,3 @@
+vcom ./../../../GLOBALS/constants.vhd 
+vcom ./a.c-IRAM.vhd
+vcom ./tb_IRAM.vhd

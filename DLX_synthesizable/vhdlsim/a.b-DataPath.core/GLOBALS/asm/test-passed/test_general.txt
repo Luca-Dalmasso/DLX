@@ -1,0 +1,8 @@
+addi r1,r0,#2
+subi r2,r1,#1
+sge r10,r1,r2
+sne r11,r1,r1
+slli r12,r2,#8
+xor r13,r2,r1
+sw 0(r1),r2
+lw r3,0(r1) 

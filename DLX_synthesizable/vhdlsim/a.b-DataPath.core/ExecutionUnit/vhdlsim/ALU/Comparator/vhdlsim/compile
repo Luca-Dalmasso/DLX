@@ -1,0 +1,9 @@
+vcom ../../GLOBALS/constants.vhd
+vcom ../../GLOBALS/NOR2.vhd
+vcom ../../GLOBALS/AND2.vhd
+vcom ../../GLOBALS/NORN.vhd
+vcom ../../GLOBALS/MUX6_1Generic.vhd
+vcom tb_NORN.vhd
+vcom comparator.vhd
+vcom topLevelCMP.vhd
+vcom tb_comparator.vhd

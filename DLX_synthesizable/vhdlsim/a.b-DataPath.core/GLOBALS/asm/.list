@@ -1,0 +1,4 @@
+ line   address	contents
+    1  00000000  20010002	addi r1,r0,#2
+    2  00000004  28020001	subi r2,r0,#1
+    3  00000008  0022502b	sgt r10,r1,r2

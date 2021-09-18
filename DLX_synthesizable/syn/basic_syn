@@ -1,0 +1,52 @@
+#auto generated file
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/constants.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/iv.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/nd2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/mux21.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/mux21_generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/ffd.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/RegisterN.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/IRreg.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/Adder.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/IMemory.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/FU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/registerfile.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/IR_decoder.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/MUX4_1Generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/DU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/FA.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/RCA.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/SUM_BLOCK.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/SUM_GENERATOR.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/g_block.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/pg_block.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/pg_net.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/xorGrid.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/carry_gen.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/P4_Adder.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/ShifterT2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/nd3.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/nd4.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/Logical.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/NOR2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/AND2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/XNOR2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/NORN.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/MUX6_1Generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/comparator.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/zerodetect.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/topLevelCMP.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/MUX4_1Generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/Mux4_1.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/ALU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/TopLevelEXU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/DataMemory.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/MEMU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/HW_CU.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/mydesign/DLX.vhd}
+elaborate dlx -library WORK
+compile -exact_map
+report_power > power_report.txt
+report_area > area_report.txt
+report_timing > timing_report.txt
+write -hierarchy -format verilog -output /home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/syn_netlist.v

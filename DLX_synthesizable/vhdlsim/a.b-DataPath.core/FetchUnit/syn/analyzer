@@ -1,0 +1,18 @@
+#auto generated file
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/constants.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/ffd.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/RegisterN.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/iv.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/nd2.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/mux21.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/mux21_generic.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/Adder.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/IMemory.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/IRreg.vhd}
+analyze -library WORK -format vhdl {/home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/mydesign/FU.vhd}
+elaborate FU -library WORK
+compile -exact_map
+report_power > power_report.txt
+report_area > area_report.txt
+report_timing > timing_report.txt
+write -hierarchy -format verilog -output /home/ms21.4/Desktop/DLX/DLX_synthesizable/a.b-DataPath.core/FetchUnit/syn/syn_netlist.v

@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FU
+Version: F-2011.09-SP3
+Date   : Sat Sep 18 16:17:03 2021
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: unit_programCounter/ffi_9/Q_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: IR_IN[17] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FU                 5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  unit_programCounter/ffi_9/Q_reg/CK (DFF_X1)             0.00       0.00 r
+  unit_programCounter/ffi_9/Q_reg/Q (DFF_X1)              0.09       0.09 f
+  unit_programCounter/ffi_9/Q (ffd_42)                    0.00       0.09 f
+  unit_programCounter/regOut[9] (regN_N32_0)              0.00       0.09 f
+  unit_instructionMemory/Addr[9] (IMemory_RAM_DEPTH40_I_SIZE8_NBIT32)
+                                                          0.00       0.09 f
+  unit_instructionMemory/U144/ZN (OR4_X1)                 0.13       0.22 f
+  unit_instructionMemory/U143/ZN (NOR4_X1)                0.06       0.28 r
+  unit_instructionMemory/U142/ZN (NAND4_X1)               0.07       0.35 f
+  unit_instructionMemory/U133/ZN (NOR3_X1)                0.18       0.53 r
+  unit_instructionMemory/U123/ZN (NAND2_X1)               0.07       0.60 f
+  unit_instructionMemory/U115/ZN (NAND3_X1)               0.06       0.66 r
+  unit_instructionMemory/U25/ZN (AOI211_X1)               0.04       0.70 f
+  unit_instructionMemory/U22/ZN (AND4_X1)                 0.06       0.76 f
+  unit_instructionMemory/U21/ZN (OAI21_X1)                0.04       0.80 r
+  unit_instructionMemory/Dout[17] (IMemory_RAM_DEPTH40_I_SIZE8_NBIT32)
+                                                          0.00       0.80 r
+  IR_IN[17] (out)                                         0.00       0.80 r
+  data arrival time                                                  0.80
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

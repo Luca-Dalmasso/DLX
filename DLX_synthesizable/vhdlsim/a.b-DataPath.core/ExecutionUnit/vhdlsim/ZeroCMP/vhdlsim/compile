@@ -1,0 +1,5 @@
+vcom ../../../../GLOBALS/constants.vhd
+vcom ../../../../GLOBALS/AND2.vhd
+vcom ../../../../GLOBALS/XNOR2.vhd
+vcom zerodetect.vhd
+vcom tb_zerodetect.vhd

@@ -1,0 +1,3 @@
+
+vcom IMemory.vhd
+vcom tb_IMemory.vhd

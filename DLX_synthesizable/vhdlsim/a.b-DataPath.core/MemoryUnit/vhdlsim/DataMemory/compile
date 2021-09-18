@@ -1,0 +1,3 @@
+vcom ./../../../GLOBALS/constants.vhd
+vcom ./DataMemory.vhd
+vcom ./tb_DMEM.vhd

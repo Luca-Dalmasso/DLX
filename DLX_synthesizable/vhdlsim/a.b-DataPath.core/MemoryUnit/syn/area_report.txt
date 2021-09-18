@@ -1,0 +1,28 @@
+ 
+****************************************
+Report : area
+Design : MEMU
+Version: F-2011.09-SP3
+Date   : Sat Sep 18 17:52:51 2021
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/mariagrazia.graziano/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db)
+
+Number of ports:                          148
+Number of nets:                           207
+Number of cells:                            3
+Number of combinational cells:              0
+Number of sequential cells:                 0
+Number of macros:                           0
+Number of buf/inv:                          0
+Number of references:                       3
+
+Combinational area:       3265.947990
+Noncombinational area:    5532.800179
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:          8798.748169
+Total area:                 undefined
+1
