@@ -1,17 +1,15 @@
-Loading db file '/home/mariagrazia.graziano/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db'
 Information: Updating design information... (UID-85)
-Warning: Design 'dlx' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'DU_N32' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: There is no defined clock in the design. (PWR-80)
 Warning: Design has unannotated primary inputs. (PWR-414)
 Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
 ****************************************
 Report : power
         -analysis_effort low
-Design : dlx
+Design : DU_N32
 Version: F-2011.09-SP3
-Date   : Sun Sep 19 15:36:28 2021
+Date   : Sun Sep 19 15:37:30 2021
 ****************************************
 
 
@@ -25,7 +23,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-dlx                    5K_hvratio_1_1    NangateOpenCellLibrary
+DU_N32                 5K_hvratio_1_1    NangateOpenCellLibrary
 
 
 Global Operating Voltage = 1.1  
@@ -37,14 +35,13 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 928.6332 uW   (70%)
-  Net Switching Power  = 390.2340 uW   (30%)
+  Cell Internal Power  =   7.9909 mW   (91%)
+  Net Switching Power  = 834.1731 uW    (9%)
                          ---------
-Total Dynamic Power    =   1.3189 mW  (100%)
+Total Dynamic Power    =   8.8250 mW  (100%)
 
-Cell Leakage Power     = 427.7254 uW
+Cell Leakage Power     = 212.4831 uW
 
-Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -53,9 +50,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential       864.0447            4.8505        1.9268e+05        1.0616e+03  (  60.78%)
-combinational     64.6059          385.3833        2.3504e+05          685.0352  (  39.22%)
+register       7.7400e+03           26.2395        8.8507e+04        7.8547e+03  (  86.91%)
+sequential        17.8471            0.3682        2.4847e+03           20.7000  (   0.23%)
+combinational    233.0513          807.5667        1.2149e+05        1.1621e+03  (  12.86%)
 --------------------------------------------------------------------------------------------------
-Total            928.6506 uW       390.2338 uW     4.2772e+05 nW     1.7466e+03 uW
+Total          7.9909e+03 uW       834.1743 uW     2.1248e+05 nW     9.0375e+03 uW
 1

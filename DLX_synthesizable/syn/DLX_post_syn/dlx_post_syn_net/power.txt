@@ -1,7 +1,7 @@
+Loading db file '/home/mariagrazia.graziano/do/libnangate/NangateOpenCellLibrary_typical_ecsm.db'
 Information: Updating design information... (UID-85)
 Warning: Design 'dlx' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: There is no defined clock in the design. (PWR-80)
 Warning: Design has unannotated primary inputs. (PWR-414)
 Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
@@ -10,7 +10,7 @@ Report : power
         -analysis_effort low
 Design : dlx
 Version: F-2011.09-SP3
-Date   : Sat Sep 18 21:31:34 2021
+Date   : Sun Sep 19 15:42:01 2021
 ****************************************
 
 
@@ -36,14 +36,13 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  = 517.0812 uW   (56%)
-  Net Switching Power  = 410.7589 uW   (44%)
+  Cell Internal Power  =  17.3944 mW   (92%)
+  Net Switching Power  =   1.5317 mW    (8%)
                          ---------
-Total Dynamic Power    = 927.8401 uW  (100%)
+Total Dynamic Power    =  18.9261 mW  (100%)
 
-Cell Leakage Power     = 238.4114 uW
+Cell Leakage Power     = 458.9451 uW
 
-Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -52,9 +51,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential       455.8778            7.3433        1.0150e+05          564.7097  (  48.42%)
-combinational     61.2078          403.4301        1.3691e+05          601.5359  (  51.58%)
+register       1.6830e+04           99.8406        1.8821e+05        1.7118e+04  (  88.31%)
+sequential        15.5172        2.8501e-02        3.7160e+03           19.2618  (   0.10%)
+combinational    548.5192        1.4318e+03        2.6702e+05        2.2473e+03  (  11.59%)
 --------------------------------------------------------------------------------------------------
-Total            517.0856 uW       410.7733 uW     2.3841e+05 nW     1.1662e+03 uW
+Total          1.7394e+04 uW     1.5317e+03 uW     4.5894e+05 nW     1.9385e+04 uW
 1

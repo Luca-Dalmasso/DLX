@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : dlx_cu
+Version: F-2011.09-SP3
+Date   : Sun Sep 19 15:36:39 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: uut_third_stage/ffi_18/Q_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: CW_EXE[9] (output port clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Clk                5K_hvratio_1_1        NangateOpenCellLibrary
+  dlx_cu             5K_hvratio_1_1        NangateOpenCellLibrary
+  CW_EXE[9]          5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  uut_third_stage/ffi_18/Q_reg/CK (DFF_X1)                0.00 #     0.00 r
+  uut_third_stage/ffi_18/Q_reg/Q (DFF_X1)                 0.10       0.10 r
+  U257/Z (BUF_X8)                                         0.11       0.21 r
+  CW_EXE[9] (out)                                         0.04       0.25 r
+  data arrival time                                                  0.25
+
+  clock CLK (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  output external delay                                  -1.71      -0.71
+  data required time                                                -0.71
+  --------------------------------------------------------------------------
+  data required time                                                -0.71
+  data arrival time                                                 -0.25
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.96
+
+
+1
