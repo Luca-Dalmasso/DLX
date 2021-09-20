@@ -1,77 +1,31 @@
 uplevel #0 source /home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/basic_syn
 
+current_design "dlx"
+
 proc mkdir_rep {path} {
 	if {![file exists $path]} {
 		file mkdir $path
 	}
 }
 
+#environment
 set dir "DLX_post_syn"
 mkdir_rep $dir
-
+set repdir "DLX_post_syn/report"
+mkdir_rep $repdir
+#clock definition
 create_clock -name "CLK" -period 1 {"CLK"}
+#pipeline delay
+set_max_delay 4 -from [all_inputs]
+#definition of the clock gating style
+set_clock_gating_style \
+	-sequential_cell latch \
+	-positive_edge_logic {and} \
+	-control_point before
+compile_ultra -gate_clock
 
-#CONTROL UNIT
-set dir "DLX_post_syn/control-unit"
-mkdir_rep $dir
-
-characterize unit_control
-current_design dlx_cu
-set_max_delay 1 -from [all_inputs] -to [all_outputs]
-compile -map_effort high -ungroup_all
-report_power > $dir/power.txt
-report_timing > $dir/timing.txt
-report_area > $dir/area.txt
-
-
-#FETCH UNIT
-set dir "DLX_post_syn/fetch-unit"
-mkdir_rep $dir
-
-current_design "dlx"
-characterize unit_fetch
-current_design FU_N32
-set_max_delay 1 -from [all_inputs] -to [all_outputs]
-compile -map_effort high -ungroup_all
-report_power > $dir/power.txt
-report_timing > $dir/timing.txt
-report_area > $dir/area.txt
-
-#DECODE UNIT
-set dir "DLX_post_syn/decode-unit"
-mkdir_rep $dir
-
-current_design "dlx"
-characterize unit_decode
-current_design DU_N32
-set_max_delay 1 -from [all_inputs] -to [all_outputs]
-compile -map_effort high -ungroup_all
-report_power > $dir/power.txt
-report_timing > $dir/timing.txt
-report_area > $dir/area.txt
-
-#EXECUTION UNIT ULTRA EFFORT
-set dir "DLX_post_syn/execution-unit"
-mkdir_rep $dir
-
-current_design "dlx"
-characterize unit_execution
-current_design EXUNIT_N32
-set_max_delay 1 -from [all_inputs] -to [all_outputs]
-compile_ultra
-set_dont_touch   EXUNIT_N32
-report_power > $dir/power.txt
-report_timing > $dir/timing.txt
-report_area > $dir/area.txt
-
-#POST SYN NETLIST
-set dir "DLX_post_syn/dlx_post_syn_net"
-mkdir_rep $dir
-
-current_design "dlx"
-set_max_delay 4 -from [all_inputs] -to [all_outputs]
-compile -map_effort high -ungroup_all
-report_power > $dir/power.txt
-report_timing > $dir/timing.txt
-report_area > $dir/area.txt
-write -hierarchy -format verilog -output dlx.v
+#reports
+report_power > $repdir/power.txt
+report_timing > $repdir/timing.txt
+report_area > $repdir/area.txt
+write -hierarchy -format verilog -output $dir/dlx.v
