@@ -8,20 +8,7 @@ entity ZERODET is
 		Y:	Out	std_logic);
 end ZERODET;
 
-
 architecture Struct of ZERODET is
-
-	function log2 (N: integer) return integer is
-		variable cnt, tmp: integer;		
-		begin
-			tmp := N;
-			cnt := 0;
-			while (tmp > 1) loop
-				tmp := tmp/2;
-				cnt := cnt+1;
-			end loop;
-		return cnt;
-	end function;
 
 type matrix is array (log2(N) downto 0) of std_logic_vector(N-1 downto 0);
 signal M: matrix;
