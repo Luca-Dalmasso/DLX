@@ -299,7 +299,7 @@ module ffd_328 ( D, CK, RESET, En, Q );
 endmodule
 
 
-module regN_N25 ( regIn, Clk, Reset, Enable, regOut );
+module regN_N25_1 ( regIn, Clk, Reset, Enable, regOut );
   input [24:0] regIn;
   output [24:0] regOut;
   input Clk, Reset, Enable;
@@ -602,7 +602,7 @@ module ffd_308 ( D, CK, RESET, En, Q );
 endmodule
 
 
-module regN_N20 ( regIn, Clk, Reset, Enable, regOut );
+module regN_N20_1 ( regIn, Clk, Reset, Enable, regOut );
   input [19:0] regIn;
   output [19:0] regOut;
   input Clk, Reset, Enable;
@@ -761,7 +761,7 @@ module ffd_299 ( D, CK, RESET, En, Q );
 endmodule
 
 
-module regN_N9 ( regIn, Clk, Reset, Enable, regOut );
+module regN_N9_1 ( regIn, Clk, Reset, Enable, regOut );
   input [8:0] regIn;
   output [8:0] regOut;
   input Clk, Reset, Enable;
@@ -837,13 +837,13 @@ module dlx_cu ( Clk, Rst, IR_IN, IR_OUT_OPCODE, RD1_IN, RD1_OUT, CW_FETCH,
         n153) );
   DFFR_X1 \current_state_reg[1]  ( .D(next_state[1]), .CK(Clk), .RN(n156), .Q(
         n152), .QN(n1) );
-  regN_N25 uut_second_stage ( .regIn({cw_selected_24, cw_selected_23, 1'b1, 
+  regN_N25_1 uut_second_stage ( .regIn({cw_selected_24, cw_selected_23, 1'b1, 
         cw_selected[21:19], n155, cw_selected[17:6], cw_selected[6], 
         cw_selected[4:0]}), .Clk(Clk), .Reset(Rst), .Enable(1'b1), .regOut({
         CW_DECODE, cw1delay}) );
-  regN_N20 uut_third_stage ( .regIn(cw1delay), .Clk(Clk), .Reset(Rst), 
+  regN_N20_1 uut_third_stage ( .regIn(cw1delay), .Clk(Clk), .Reset(Rst), 
         .Enable(1'b1), .regOut({CW_EXE, cw2delay}) );
-  regN_N9 uut_fourth_stage ( .regIn(cw2delay), .Clk(Clk), .Reset(Rst), 
+  regN_N9_1 uut_fourth_stage ( .regIn(cw2delay), .Clk(Clk), .Reset(Rst), 
         .Enable(1'b1), .regOut(CW_MEMWB) );
   NOR4_X2 U3 ( .A1(RD1_IN[3]), .A2(RD1_IN[4]), .A3(RD1_IN[2]), .A4(n151), .ZN(
         n102) );
@@ -1490,7 +1490,7 @@ module regN_N32_0 ( regIn, Clk, Reset, Enable, regOut );
 endmodule
 
 
-module IMemory_RAM_DEPTH40_I_SIZE8_NBIT32 ( Addr, Dout );
+module IMemory_RAM_DEPTH40_I_SIZE8_NBIT32_1 ( Addr, Dout );
   input [31:0] Addr;
   output [31:0] Dout;
   wire   Dout_19, Dout_18, Dout_17, Dout_16, Dout_15, Dout_14, Dout_13,
@@ -1697,7 +1697,7 @@ module IMemory_RAM_DEPTH40_I_SIZE8_NBIT32 ( Addr, Dout );
 endmodule
 
 
-module IRreg_N32 ( regIn, Clk, Reset, Enable, regOut );
+module IRreg_N32_1 ( regIn, Clk, Reset, Enable, regOut );
   input [31:0] regIn;
   output [31:0] regOut;
   input Clk, Reset, Enable;
@@ -1813,7 +1813,7 @@ module IRreg_N32 ( regIn, Clk, Reset, Enable, regOut );
 endmodule
 
 
-module Adder_N32_DW01_add_0 ( A, B, CI, SUM, CO );
+module Adder_N32_1_DW01_add_0 ( A, B, CI, SUM, CO );
   input [31:0] A;
   input [31:0] B;
   output [31:0] SUM;
@@ -1887,15 +1887,15 @@ module Adder_N32_DW01_add_0 ( A, B, CI, SUM, CO );
 endmodule
 
 
-module Adder_N32 ( PC, NPC );
+module Adder_N32_1 ( PC, NPC );
   input [31:0] PC;
   output [31:0] NPC;
 
 
-  Adder_N32_DW01_add_0 add_19 ( .A(PC), .B({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+  Adder_N32_1_DW01_add_0 add_19 ( .A(PC), .B({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
-        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 
-        1'b0, 1'b0}), .CI(1'b0), .SUM(NPC) );
+        1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b1, 1'b0, 1'b0}), .CI(1'b0), .SUM(NPC) );
 endmodule
 
 
@@ -3934,7 +3934,7 @@ module regN_N32_8 ( regIn, Clk, Reset, Enable, regOut );
 endmodule
 
 
-module FU_N32 ( IR_En, PC_En, NPC_En, Clk, RST, COND_REGOUT, FLUSH, ALU_OUT, 
+module FU_N32_1 ( IR_En, PC_En, NPC_En, Clk, RST, COND_REGOUT, FLUSH, ALU_OUT, 
         IR_IN, IR_OUT, NPC_OUT );
   input [31:0] ALU_OUT;
   output [31:0] IR_IN;
@@ -3948,11 +3948,11 @@ module FU_N32 ( IR_En, PC_En, NPC_En, Clk, RST, COND_REGOUT, FLUSH, ALU_OUT,
 
   regN_N32_0 unit_programCounter ( .regIn(npc_regin), .Clk(Clk), .Reset(RST), 
         .Enable(PC_En), .regOut(pc_regout) );
-  IMemory_RAM_DEPTH40_I_SIZE8_NBIT32 unit_instructionMemory ( .Addr(pc_regout), 
-        .Dout(IR_IN) );
-  IRreg_N32 unit_instructionRegister ( .regIn(IR_IN), .Clk(Clk), .Reset(
+  IMemory_RAM_DEPTH40_I_SIZE8_NBIT32_1 unit_instructionMemory ( .Addr(
+        pc_regout), .Dout(IR_IN) );
+  IRreg_N32_1 unit_instructionRegister ( .regIn(IR_IN), .Clk(Clk), .Reset(
         reset_IR), .Enable(IR_En), .regOut(IR_OUT) );
-  Adder_N32 unit_adder ( .PC(pc_regout), .NPC(adder_out) );
+  Adder_N32_1 unit_adder ( .PC(pc_regout), .NPC(adder_out) );
   MUX21_GENERIC_NBIT32_0 unit_mpx ( .A(ALU_OUT), .B(adder_out), .SEL(
         COND_REGOUT), .Y(npc_regin) );
   regN_N32_8 unit_npcregister ( .regIn(npc_regin), .Clk(Clk), .Reset(RST), 
@@ -3961,8 +3961,8 @@ module FU_N32 ( IR_En, PC_En, NPC_En, Clk, RST, COND_REGOUT, FLUSH, ALU_OUT,
 endmodule
 
 
-module register_file_WORD_SIZE32_ADDR_SIZE5 ( CLK, RESET, ENABLE, RD1, RD2, WR, 
-        ADD_WR, ADD_RD1, ADD_RD2, DATAIN, OUT1, OUT2 );
+module register_file_WORD_SIZE32_ADDR_SIZE5_1 ( CLK, RESET, ENABLE, RD1, RD2, 
+        WR, ADD_WR, ADD_RD1, ADD_RD2, DATAIN, OUT1, OUT2 );
   input [4:0] ADD_WR;
   input [4:0] ADD_RD1;
   input [4:0] ADD_RD2;
@@ -12575,7 +12575,7 @@ module MUX41_GENERIC_N32_0 ( SHIFTER_OUT, ADD_OUT, CMP_OUT, LOGICALS_OUT, SEL,
 endmodule
 
 
-module IR_decoder_N32 ( IR_IN, RS1, RS2, RD, imm16, imm26 );
+module IR_decoder_N32_1 ( IR_IN, RS1, RS2, RD, imm16, imm26 );
   input [31:0] IR_IN;
   output [4:0] RS1;
   output [4:0] RS2;
@@ -12684,7 +12684,7 @@ module IR_decoder_N32 ( IR_IN, RS1, RS2, RD, imm16, imm26 );
 endmodule
 
 
-module DU_N32 ( IR_IN, NPC, WR_ADDR_RF, DATAIN, EN1, RF1, RF2, WF1, CLK, RST, 
+module DU_N32_1 ( IR_IN, NPC, WR_ADDR_RF, DATAIN, EN1, RF1, RF2, WF1, CLK, RST, 
         SEL_IMM, NPC1_OUT, regA_OUT, regB_OUT, IMM_OUT, RD1_IN, RD1_OUT );
   input [31:0] IR_IN;
   input [31:0] NPC;
@@ -12707,7 +12707,7 @@ module DU_N32 ( IR_IN, NPC, WR_ADDR_RF, DATAIN, EN1, RF1, RF2, WF1, CLK, RST,
   wire   [31:0] registerB;
   wire   [31:0] immediate32;
 
-  register_file_WORD_SIZE32_ADDR_SIZE5 RegisterFile ( .CLK(CLK), .RESET(RST), 
+  register_file_WORD_SIZE32_ADDR_SIZE5_1 RegisterFile ( .CLK(CLK), .RESET(RST), 
         .ENABLE(EN1), .RD1(RF1), .RD2(RF2), .WR(WF1), .ADD_WR(WR_ADDR_RF), 
         .ADD_RD1(RS1s), .ADD_RD2(RS2s), .DATAIN(DATAIN), .OUT1(registerA), 
         .OUT2(registerB) );
@@ -12728,7 +12728,7 @@ module DU_N32 ( IR_IN, NPC, WR_ADDR_RF, DATAIN, EN1, RF1, RF2, WF1, CLK, RST,
         imm2632}), .CMP_OUT({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
         1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, imm1632_31, imm1632}), 
         .LOGICALS_OUT({1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, imm2632_31, imm2632}), .SEL(SEL_IMM), .Y(immediate32) );
-  IR_decoder_N32 DEC ( .IR_IN(IR_IN), .RS1(RS1s), .RS2(RS2s), .RD(RD1_IN), 
+  IR_decoder_N32_1 DEC ( .IR_IN(IR_IN), .RS1(RS1s), .RS2(RS2s), .RD(RD1_IN), 
         .imm16({imm1632_31, imm1632}), .imm26({imm2632_31, imm2632}) );
 endmodule
 
@@ -16456,7 +16456,7 @@ module AND2_16 ( A, B, Y );
 endmodule
 
 
-module ZERODET_N32 ( A, Y );
+module ZERODET_N32_1 ( A, Y );
   input [31:0] A;
   output Y;
   wire   \M[4][1] , \M[4][0] , \M[3][3] , \M[3][2] , \M[3][1] , \M[3][0] ,
@@ -17007,7 +17007,7 @@ module regN_N32_3 ( regIn, Clk, Reset, Enable, regOut );
 endmodule
 
 
-module xorGrid_N32 ( B, Cin, Bx );
+module xorGrid_N32_1 ( B, Cin, Bx );
   input [31:0] B;
   output [31:0] Bx;
   input Cin;
@@ -17745,7 +17745,7 @@ module G_BLOCK_1 ( PIK, GIK, GK1J, GIJ );
 endmodule
 
 
-module CARRY_GENERATOR_NBIT32_NBLOCK4 ( A, B, Cin, Co );
+module CARRY_GENERATOR_NBIT32_NBLOCK4_1 ( A, B, Cin, Co );
   input [31:0] A;
   input [31:0] B;
   output [8:0] Co;
@@ -20807,7 +20807,7 @@ module SUM_BLOCK_K4_1 ( a, b, C_gen, sum );
 endmodule
 
 
-module SUM_GENERATOR_N32_K4 ( carries, A, B, SUM );
+module SUM_GENERATOR_N32_K4_1 ( carries, A, B, SUM );
   input [7:0] carries;
   input [31:0] A;
   input [31:0] B;
@@ -20833,7 +20833,7 @@ module SUM_GENERATOR_N32_K4 ( carries, A, B, SUM );
 endmodule
 
 
-module P4Adder_N32_K4 ( A, B, CIN, Cout, SUM );
+module P4Adder_N32_K4_1 ( A, B, CIN, Cout, SUM );
   input [31:0] A;
   input [31:0] B;
   output [31:0] SUM;
@@ -20843,14 +20843,15 @@ module P4Adder_N32_K4 ( A, B, CIN, Cout, SUM );
   wire   [31:0] Bx_s;
   wire   [7:0] carries_s;
 
-  xorGrid_N32 CPL ( .B(B), .Cin(CIN), .Bx(Bx_s) );
-  CARRY_GENERATOR_NBIT32_NBLOCK4 CG ( .A(A), .B(Bx_s), .Cin(CIN), .Co({Cout, 
+  xorGrid_N32_1 CPL ( .B(B), .Cin(CIN), .Bx(Bx_s) );
+  CARRY_GENERATOR_NBIT32_NBLOCK4_1 CG ( .A(A), .B(Bx_s), .Cin(CIN), .Co({Cout, 
         carries_s}) );
-  SUM_GENERATOR_N32_K4 SG ( .carries(carries_s), .A(A), .B(Bx_s), .SUM(SUM) );
+  SUM_GENERATOR_N32_K4_1 SG ( .carries(carries_s), .A(A), .B(Bx_s), .SUM(SUM)
+         );
 endmodule
 
 
-module ShifterT2_N32 ( A, B, sel, \output  );
+module ShifterT2_N32_1 ( A, B, sel, \output  );
   input [31:0] A;
   input [4:0] B;
   input [1:0] sel;
@@ -21455,7 +21456,7 @@ module ND3_N32_1 ( A, B, S, Y );
 endmodule
 
 
-module ND4_N32 ( L0, L1, L2, L3, Y );
+module ND4_N32_1 ( L0, L1, L2, L3, Y );
   input [31:0] L0;
   input [31:0] L1;
   input [31:0] L2;
@@ -21500,7 +21501,7 @@ module ND4_N32 ( L0, L1, L2, L3, Y );
 endmodule
 
 
-module LogicalT2_N32 ( A, B, S, Y );
+module LogicalT2_N32_1 ( A, B, S, Y );
   input [31:0] A;
   input [31:0] B;
   input [3:0] S;
@@ -21569,7 +21570,7 @@ module LogicalT2_N32 ( A, B, S, Y );
         \L[3][17] , \L[3][16] , \L[3][15] , \L[3][14] , \L[3][13] , \L[3][12] , 
         \L[3][11] , \L[3][10] , \L[3][9] , \L[3][8] , \L[3][7] , \L[3][6] , 
         \L[3][5] , \L[3][4] , \L[3][3] , \L[3][2] , \L[3][1] , \L[3][0] }) );
-  ND4_N32 level2 ( .L0({\L[0][31] , \L[0][30] , \L[0][29] , \L[0][28] , 
+  ND4_N32_1 level2 ( .L0({\L[0][31] , \L[0][30] , \L[0][29] , \L[0][28] , 
         \L[0][27] , \L[0][26] , \L[0][25] , \L[0][24] , \L[0][23] , \L[0][22] , 
         \L[0][21] , \L[0][20] , \L[0][19] , \L[0][18] , \L[0][17] , \L[0][16] , 
         \L[0][15] , \L[0][14] , \L[0][13] , \L[0][12] , \L[0][11] , \L[0][10] , 
@@ -21938,7 +21939,7 @@ module AND2_1 ( A, B, Y );
 endmodule
 
 
-module NORN_N32 ( A, Z );
+module NORN_N32_1 ( A, Z );
   input [31:0] A;
   output Z;
   wire   \M[3][1] , \M[3][0] , \M[2][3] , \M[2][2] , \M[2][1] , \M[2][0] ,
@@ -22011,7 +22012,7 @@ module MUX6_1 ( NEQ_LINE, EQ_LINE, GEQ_LINE, G_LINE, L_LINE, LEQ_LINE, SEL,
 endmodule
 
 
-module topLevelCMP_N32 ( SUB, Cout, Sel, res );
+module topLevelCMP_N32_1 ( SUB, Cout, Sel, res );
   input [31:0] SUB;
   input [2:0] Sel;
   output [31:0] res;
@@ -22050,7 +22051,7 @@ module topLevelCMP_N32 ( SUB, Cout, Sel, res );
   assign res[30] = 1'b0;
   assign res[31] = 1'b0;
 
-  NORN_N32 compNORN ( .A(SUB), .Z(Z_s) );
+  NORN_N32_1 compNORN ( .A(SUB), .Z(Z_s) );
   comparator compComparator ( .C(Cout), .Z(Z_s), .result(cmp_res_6bit) );
   MUX6_1 mpx ( .NEQ_LINE(cmp_res_6bit[0]), .EQ_LINE(cmp_res_6bit[1]), 
         .GEQ_LINE(cmp_res_6bit[2]), .G_LINE(cmp_res_6bit[3]), .L_LINE(
@@ -22240,7 +22241,7 @@ module MUX41_GENERIC_N32_1 ( SHIFTER_OUT, ADD_OUT, CMP_OUT, LOGICALS_OUT, SEL,
 endmodule
 
 
-module ALU_N32_NBLOCK4 ( OPCODE, OPERANDA, OPERANDB, RESULT );
+module ALU_N32_NBLOCK4_1 ( OPCODE, OPERANDA, OPERANDB, RESULT );
   input [5:0] OPCODE;
   input [31:0] OPERANDA;
   input [31:0] OPERANDB;
@@ -22267,13 +22268,13 @@ module ALU_N32_NBLOCK4 ( OPCODE, OPERANDA, OPERANDB, RESULT );
         SYNOPSYS_UNCONNECTED__28, SYNOPSYS_UNCONNECTED__29, 
         SYNOPSYS_UNCONNECTED__30;
 
-  P4Adder_N32_K4 ADD_SUB ( .A(OPERANDA), .B(OPERANDB), .CIN(OPCODE[0]), .Cout(
-        cout), .SUM(add_result) );
-  ShifterT2_N32 SHIFTER ( .A(OPERANDA), .B(OPERANDB[4:0]), .sel(OPCODE[1:0]), 
+  P4Adder_N32_K4_1 ADD_SUB ( .A(OPERANDA), .B(OPERANDB), .CIN(OPCODE[0]), 
+        .Cout(cout), .SUM(add_result) );
+  ShifterT2_N32_1 SHIFTER ( .A(OPERANDA), .B(OPERANDB[4:0]), .sel(OPCODE[1:0]), 
         .\output (shifter_result) );
-  LogicalT2_N32 LOGICAL_OP ( .A(OPERANDA), .B(OPERANDB), .S({OPCODE[0], 
+  LogicalT2_N32_1 LOGICAL_OP ( .A(OPERANDA), .B(OPERANDB), .S({OPCODE[0], 
         OPCODE[1], OPCODE[2], OPCODE[3]}), .Y(logical_result) );
-  topLevelCMP_N32 COMPARATOR ( .SUB(add_result), .Cout(sign_delta), .Sel(
+  topLevelCMP_N32_1 COMPARATOR ( .SUB(add_result), .Cout(sign_delta), .Sel(
         OPCODE[3:1]), .res({SYNOPSYS_UNCONNECTED__0, SYNOPSYS_UNCONNECTED__1, 
         SYNOPSYS_UNCONNECTED__2, SYNOPSYS_UNCONNECTED__3, 
         SYNOPSYS_UNCONNECTED__4, SYNOPSYS_UNCONNECTED__5, 
@@ -23295,9 +23296,9 @@ module regN_N5_1 ( regIn, Clk, Reset, Enable, regOut );
 endmodule
 
 
-module EXUNIT_N32 ( NPC1, RD1, A, B, IMM, S1_A_NPC, S2_IMM_B, ALU_OPCODE, CLK, 
-        RST, JUMP_EN, EN_REGN_ALU_OUT, JUMP, ALUOUT, ALU_OUT_REGN, B_OUT_REGN, 
-        NPC2, RD2_OUT_REGN );
+module EXUNIT_N32_1 ( NPC1, RD1, A, B, IMM, S1_A_NPC, S2_IMM_B, ALU_OPCODE, 
+        CLK, RST, JUMP_EN, EN_REGN_ALU_OUT, JUMP, ALUOUT, ALU_OUT_REGN, 
+        B_OUT_REGN, NPC2, RD2_OUT_REGN );
   input [31:0] NPC1;
   input [4:0] RD1;
   input [31:0] A;
@@ -23320,12 +23321,12 @@ module EXUNIT_N32 ( NPC1, RD1, A, B, IMM, S1_A_NPC, S2_IMM_B, ALU_OPCODE, CLK,
         A_prime) );
   MUX21_GENERIC_NBIT32_3 COMP_MPX21_2 ( .A(B), .B(IMM), .SEL(S2_IMM_B), .Y(
         B_prime) );
-  ZERODET_N32 COMP_ZERO_CMP ( .A(A), .Y(ZERO_CMP) );
+  ZERODET_N32_1 COMP_ZERO_CMP ( .A(A), .Y(ZERO_CMP) );
   MUX4_1 COMP_41_1MPX ( .ZERO(1'b0), .ONE(1'b1), .INV_CMP(n1), .CMP(ZERO_CMP), 
         .Sel(JUMP_EN), .Y(JUMP) );
   regN_N32_3 COMP_NPC2 ( .regIn(NPC1), .Clk(CLK), .Reset(RST), .Enable(
         EN_REGN_ALU_OUT), .regOut(NPC2) );
-  ALU_N32_NBLOCK4 COMP_ALU ( .OPCODE(ALU_OPCODE), .OPERANDA(A_prime), 
+  ALU_N32_NBLOCK4_1 COMP_ALU ( .OPCODE(ALU_OPCODE), .OPERANDA(A_prime), 
         .OPERANDB(B_prime), .RESULT(ALUOUT) );
   regN_N32_2 COMP_REGN_ALUOUT ( .regIn(ALUOUT), .Clk(CLK), .Reset(RST), 
         .Enable(EN_REGN_ALU_OUT), .regOut(ALU_OUT_REGN) );
@@ -23337,8 +23338,8 @@ module EXUNIT_N32 ( NPC1, RD1, A, B, IMM, S1_A_NPC, S2_IMM_B, ALU_OPCODE, CLK,
 endmodule
 
 
-module DataMemory_RAM_DEPTH32_WORD_SIZE32 ( Rst, Addr, Din, Dout, Sel, RM, WM, 
-        EN, CLK );
+module DataMemory_RAM_DEPTH32_WORD_SIZE32_1 ( Rst, Addr, Din, Dout, Sel, RM, 
+        WM, EN, CLK );
   input [31:0] Addr;
   input [31:0] Din;
   output [31:0] Dout;
@@ -32037,7 +32038,7 @@ module MUX21_GENERIC_NBIT32_1 ( A, B, SEL, Y );
 endmodule
 
 
-module MEMU_N32 ( CLK, RST, RM, WM, EN3, S3, S4, MEM_CFG, ALU_OUT, regBout, 
+module MEMU_N32_1 ( CLK, RST, RM, WM, EN3, S3, S4, MEM_CFG, ALU_OUT, regBout, 
         NPC2in, RD3in, RD3out, WB_DATA );
   input [2:0] MEM_CFG;
   input [31:0] ALU_OUT;
@@ -32056,7 +32057,7 @@ module MEMU_N32 ( CLK, RST, RM, WM, EN3, S3, S4, MEM_CFG, ALU_OUT, regBout,
   assign RD3out[1] = RD3in[1];
   assign RD3out[0] = RD3in[0];
 
-  DataMemory_RAM_DEPTH32_WORD_SIZE32 DRAM ( .Rst(RST), .Addr(ALU_OUT), .Din(
+  DataMemory_RAM_DEPTH32_WORD_SIZE32_1 DRAM ( .Rst(RST), .Addr(ALU_OUT), .Din(
         regBout), .Dout(DataMemOut), .Sel(MEM_CFG), .RM(RM), .WM(WM), .EN(EN3), 
         .CLK(CLK) );
   MUX21_GENERIC_NBIT32_2 MUX21_ALMEM ( .A(DataMemOut), .B(ALU_OUT), .SEL(S3), 
@@ -32093,22 +32094,19 @@ module dlx ( RST, CLK );
         .IR_OUT_OPCODE(IR_OUT[31:26]), .RD1_IN(rd1_in), .RD1_OUT(rd1_out), 
         .CW_DECODE(cw_dec), .CW_EXE(cw_ex), .CW_MEMWB(cw_mem), .FETCH_STALL(
         stall) );
-  FU_N32 unit_fetch ( .IR_En(PC_EN), .PC_En(PC_EN), .NPC_En(PC_EN), .Clk(CLK), 
-        .RST(RST), .COND_REGOUT(jump), .FLUSH(stall), .ALU_OUT(alu_out), 
-        .IR_IN(IR_IN_CTRL), .IR_OUT(IR_OUT), .NPC_OUT(NPC_OUT) );
-  DU_N32 unit_decode ( .IR_IN(IR_OUT), .NPC(NPC_OUT), .WR_ADDR_RF(wr_address), 
-        .DATAIN(wr_data), .EN1(cw_dec[2]), .RF1(cw_dec[4]), .RF2(cw_dec[3]), 
-        .WF1(cw_mem[4]), .CLK(CLK), .RST(RST), .SEL_IMM(cw_dec[1:0]), 
-        .NPC1_OUT(npc1_out), .regA_OUT(rega_out), .regB_OUT(regb_out), 
-        .IMM_OUT(imm_out), .RD1_IN(rd1_in), .RD1_OUT(rd1_out) );
-  EXUNIT_N32 unit_execution ( .NPC1(npc1_out), .RD1(rd1_out), .A(rega_out), 
+  FU_N32_1 unit_fetch ( .IR_En(PC_EN), .PC_En(PC_EN), .NPC_En(PC_EN), .Clk(CLK), .RST(RST), .COND_REGOUT(jump), .FLUSH(stall), .ALU_OUT(alu_out), .IR_IN(
+        IR_IN_CTRL), .IR_OUT(IR_OUT), .NPC_OUT(NPC_OUT) );
+  DU_N32_1 unit_decode ( .IR_IN(IR_OUT), .NPC(NPC_OUT), .WR_ADDR_RF(wr_address), .DATAIN(wr_data), .EN1(cw_dec[2]), .RF1(cw_dec[4]), .RF2(cw_dec[3]), .WF1(
+        cw_mem[4]), .CLK(CLK), .RST(RST), .SEL_IMM(cw_dec[1:0]), .NPC1_OUT(
+        npc1_out), .regA_OUT(rega_out), .regB_OUT(regb_out), .IMM_OUT(imm_out), 
+        .RD1_IN(rd1_in), .RD1_OUT(rd1_out) );
+  EXUNIT_N32_1 unit_execution ( .NPC1(npc1_out), .RD1(rd1_out), .A(rega_out), 
         .B(regb_out), .IMM(imm_out), .S1_A_NPC(cw_ex[10]), .S2_IMM_B(cw_ex[9]), 
         .ALU_OPCODE(cw_ex[5:0]), .CLK(CLK), .RST(RST), .JUMP_EN(cw_ex[7:6]), 
         .EN_REGN_ALU_OUT(cw_ex[8]), .JUMP(jump), .ALUOUT(alu_out), 
         .ALU_OUT_REGN(aluout_regn), .B_OUT_REGN(bout_regn), .NPC2(npc2_out), 
         .RD2_OUT_REGN(rd2out) );
-  MEMU_N32 unit_memory ( .CLK(CLK), .RST(RST), .RM(cw_mem[8]), .WM(cw_mem[7]), 
-        .EN3(cw_mem[5]), .S3(cw_mem[6]), .S4(cw_mem[3]), .MEM_CFG(cw_mem[2:0]), 
+  MEMU_N32_1 unit_memory ( .CLK(CLK), .RST(RST), .RM(cw_mem[8]), .WM(cw_mem[7]), .EN3(cw_mem[5]), .S3(cw_mem[6]), .S4(cw_mem[3]), .MEM_CFG(cw_mem[2:0]), 
         .ALU_OUT(aluout_regn), .regBout(bout_regn), .NPC2in(npc2_out), .RD3in(
         rd2out), .RD3out(wr_address), .WB_DATA(wr_data) );
   INV_X4 U4 ( .A(stall), .ZN(PC_EN) );
