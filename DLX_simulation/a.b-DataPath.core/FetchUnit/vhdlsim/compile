@@ -11,5 +11,5 @@ vcom ./IRAM/a.c-IRAM.vhd
 #vcom ./IRAM/tb_IRAM.vhd
 vcom ./IR_Register/IRreg.vhd
 vcom FU.vhd
-vcom tb_FU.vhd
+#vcom tb_FU.vhd
 

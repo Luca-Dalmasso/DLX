@@ -1,6 +1,8 @@
-uplevel #0 source /home/ms21.4/Desktop/DLX/DLX_synthesizable/syn/basic_syn
+source ./DLX_synthesizable/syn/basic_syn
 
 current_design "dlx"
+#wireload for physical design
+set_wire_load_model -name 5K_hvratio_1_4
 
 proc mkdir_rep {path} {
 	if {![file exists $path]} {
@@ -29,3 +31,5 @@ report_power > $repdir/power.txt
 report_timing > $repdir/timing.txt
 report_area > $repdir/area.txt
 write -hierarchy -format verilog -output $dir/dlx.v
+write_sdc $dir/dlx.sdc
+

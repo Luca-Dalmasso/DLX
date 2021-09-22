@@ -1,0 +1,1 @@
+/home/ms21.4/Desktop/DLX/DLX_physical_design/dlx.sdc

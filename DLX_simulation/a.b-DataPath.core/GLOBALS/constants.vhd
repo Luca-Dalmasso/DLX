@@ -18,7 +18,7 @@ package CONSTANTS is
 	constant IMem_Depth: integer := 512;
 	constant DMem_Depth: integer := 128;
 	constant Word_Depth: integer := 8;
-	constant	ASM_FULL_PATH: string := "/home/ms21.4/Desktop/DLX/a.b-DataPath.core/GLOBALS/asm/test.asm.mem";
+	constant	ASM_FULL_PATH: string := "./a.b-DataPath.core/GLOBALS/asm/test.asm.mem";
 	--ControlUnit constants
 	constant LUT_SIZE: integer:= 51; --=number of instructions
 	constant FUNC_SIZE: integer:= 11;

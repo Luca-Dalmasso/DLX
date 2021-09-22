@@ -9,7 +9,7 @@ Report : power
         -analysis_effort low
 Design : dlx
 Version: F-2011.09-SP3
-Date   : Mon Sep 20 16:21:49 2021
+Date   : Tue Sep 21 16:40:01 2021
 ****************************************
 
 
@@ -23,7 +23,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-dlx                    5K_hvratio_1_1    NangateOpenCellLibrary
+dlx                    5K_hvratio_1_4    NangateOpenCellLibrary
 
 
 Global Operating Voltage = 1.1  
@@ -35,12 +35,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =   6.2105 mW   (73%)
-  Net Switching Power  =   2.2726 mW   (27%)
+  Cell Internal Power  =   6.1902 mW   (72%)
+  Net Switching Power  =   2.3563 mW   (28%)
                          ---------
-Total Dynamic Power    =   8.4831 mW  (100%)
+Total Dynamic Power    =   8.5465 mW  (100%)
 
-Cell Leakage Power     = 196.7194 uW
+Cell Leakage Power     = 197.1554 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -49,10 +49,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network    221.5938        1.4713e+03        2.3088e+03        1.6952e+03  (  19.53%)
-register       5.5627e+03          108.3405        9.9813e+04        5.7708e+03  (  66.49%)
-sequential        20.8316        2.0040e-02        1.2390e+03           22.0906  (   0.25%)
-combinational    405.4706          692.8922        9.3359e+04        1.1917e+03  (  13.73%)
+clock_network    221.4299        1.5352e+03        2.3088e+03        1.7589e+03  (  20.12%)
+register       5.5381e+03          112.9951        9.9886e+04        5.7510e+03  (  65.77%)
+sequential        21.1128        2.0907e-02        1.2391e+03           22.3728  (   0.26%)
+combinational    409.5381          708.0679        9.3721e+04        1.2113e+03  (  13.85%)
 --------------------------------------------------------------------------------------------------
-Total          6.2106e+03 uW     2.2726e+03 uW     1.9672e+05 nW     8.6798e+03 uW
+Total          6.1902e+03 uW     2.3563e+03 uW     1.9716e+05 nW     8.7436e+03 uW
 1

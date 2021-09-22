@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : dlx
 Version: F-2011.09-SP3
-Date   : Mon Sep 20 16:21:49 2021
+Date   : Tue Sep 21 16:40:01 2021
 ****************************************
 
 Operating Conditions: typical   Library: NangateOpenCellLibrary
@@ -21,7 +21,7 @@ Wire Load Model Mode: top
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  dlx                5K_hvratio_1_1        NangateOpenCellLibrary
+  dlx                5K_hvratio_1_4        NangateOpenCellLibrary
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
@@ -30,52 +30,56 @@ Wire Load Model Mode: top
   unit_control/uut_third_stage/ffi_19/Q_reg/CK (DFF_X1)
                                                           0.00       0.00 r
   unit_control/uut_third_stage/ffi_19/Q_reg/QN (DFF_X1)
-                                                          0.09       0.09 r
-  U2183/Z (CLKBUF_X3)                                     0.07       0.16 r
-  U3173/Z (MUX2_X1)                                       0.09       0.25 f
-  U2911/ZN (AND2_X1)                                      0.04       0.29 f
-  U3146/ZN (NOR3_X1)                                      0.06       0.35 r
-  U3145/ZN (OAI21_X1)                                     0.04       0.39 f
-  U2015/ZN (AOI21_X1)                                     0.07       0.46 r
-  U1816/ZN (OAI21_X1)                                     0.04       0.49 f
-  U1753/ZN (NAND2_X1)                                     0.04       0.54 r
-  U1752/ZN (NAND2_X1)                                     0.04       0.57 f
-  U1751/ZN (NAND2_X1)                                     0.03       0.60 r
-  U1750/ZN (AOI21_X1)                                     0.03       0.63 f
-  U3062/ZN (NOR2_X1)                                      0.04       0.67 r
-  U2833/ZN (AND2_X1)                                      0.04       0.71 r
-  U2115/ZN (AND4_X2)                                      0.06       0.77 r
-  U2114/ZN (NAND4_X1)                                     0.04       0.81 f
-  U3054/ZN (OAI21_X1)                                     0.04       0.85 r
-  U2235/ZN (NAND3_X1)                                     0.04       0.89 f
-  U3053/ZN (NAND2_X1)                                     0.04       0.92 r
-  U3016/ZN (NAND2_X1)                                     0.03       0.95 f
-  unit_fetch/unit_programCounter/ffi_0/Q_reg/D (DFF_X1)
-                                                          0.01       0.96 f
-  data arrival time                                                  0.96
+                                                          0.07       0.07 f
+  U2109/Z (BUF_X2)                                        0.05       0.12 f
+  U3269/Z (MUX2_X1)                                       0.08       0.20 r
+  U2895/Z (BUF_X1)                                        0.04       0.24 r
+  U3240/ZN (NAND2_X1)                                     0.04       0.27 f
+  U3027/ZN (NAND2_X1)                                     0.04       0.32 r
+  U3025/ZN (NAND2_X1)                                     0.04       0.35 f
+  U3024/ZN (NAND2_X1)                                     0.04       0.39 r
+  U1791/ZN (OAI211_X1)                                    0.04       0.43 f
+  U1793/ZN (NAND2_X1)                                     0.03       0.46 r
+  U2998/ZN (AOI21_X1)                                     0.03       0.49 f
+  U2997/ZN (OAI21_X1)                                     0.06       0.55 r
+  U2996/ZN (NAND2_X1)                                     0.04       0.59 f
+  U2069/ZN (NAND2_X1)                                     0.04       0.63 r
+  U1749/ZN (AND2_X2)                                      0.05       0.68 r
+  U3109/ZN (XNOR2_X1)                                     0.06       0.75 r
+  U3105/ZN (NAND4_X1)                                     0.05       0.80 f
+  U3181/ZN (NOR2_X1)                                      0.04       0.84 r
+  U3180/ZN (NAND4_X1)                                     0.05       0.89 f
+  U1946/ZN (NOR2_X1)                                      0.05       0.94 r
+  U3152/ZN (NAND3_X1)                                     0.04       0.98 f
+  U3151/ZN (NAND4_X1)                                     0.04       1.01 r
+  U3150/ZN (NAND2_X1)                                     0.03       1.05 f
+  U3072/ZN (NAND2_X1)                                     0.03       1.08 r
+  unit_fetch/unit_programCounter/ffi_0/Q_reg/D (DFF_X2)
+                                                          0.01       1.09 r
+  data arrival time                                                  1.09
 
   clock CLK (rise edge)                                   1.00       1.00
   clock network delay (ideal)                             0.00       1.00
-  unit_fetch/unit_programCounter/ffi_0/Q_reg/CK (DFF_X1)
+  unit_fetch/unit_programCounter/ffi_0/Q_reg/CK (DFF_X2)
                                                           0.00       1.00 r
-  library setup time                                     -0.04       0.96
-  data required time                                                 0.96
+  library setup time                                     -0.03       0.97
+  data required time                                                 0.97
   --------------------------------------------------------------------------
-  data required time                                                 0.96
-  data arrival time                                                 -0.96
+  data required time                                                 0.97
+  data arrival time                                                 -1.09
   --------------------------------------------------------------------------
-  slack (VIOLATED: increase signficant digits)                       0.00
+  slack (VIOLATED)                                                  -0.12
 
 
   Startpoint: CLK (clock source 'CLK')
-  Endpoint: unit_decode/IMMreg/ffi_2/Q_reg/CK
+  Endpoint: unit_decode/IMMreg/ffi_7/Q_reg/CK
             (internal path endpoint)
   Path Group: default
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  dlx                5K_hvratio_1_1        NangateOpenCellLibrary
+  dlx                5K_hvratio_1_4        NangateOpenCellLibrary
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
@@ -86,17 +90,17 @@ Wire Load Model Mode: top
                                                           0.46       0.46 r
   clk_gate_unit_decode/NPC1reg/ffi_31/Q_reg/ENCLK (SNPS_CLOCK_GATE_HIGH_dlx_0)
                                                           0.00       0.46 r
-  unit_decode/IMMreg/ffi_2/Q_reg/CK (SDFFS_X1)            0.03       0.49 r
-  data arrival time                                                  0.49
+  unit_decode/IMMreg/ffi_7/Q_reg/CK (SDFFS_X1)            0.03       0.50 r
+  data arrival time                                                  0.50
 
   max_delay                                               4.00       4.00
   output external delay                                   0.00       4.00
   data required time                                                 4.00
   --------------------------------------------------------------------------
   data required time                                                 4.00
-  data arrival time                                                 -0.49
+  data arrival time                                                 -0.50
   --------------------------------------------------------------------------
-  slack (MET)                                                        3.51
+  slack (MET)                                                        3.50
 
 
 1

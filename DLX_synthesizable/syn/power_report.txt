@@ -11,7 +11,7 @@ Report : power
         -analysis_effort low
 Design : dlx
 Version: F-2011.09-SP3
-Date   : Mon Sep 20 16:16:33 2021
+Date   : Tue Sep 21 16:34:51 2021
 ****************************************
 
 
