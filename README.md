@@ -24,4 +24,4 @@ to be used with Synopsis<br>
 <br>
 # Report
 Additional information ca be found here:
-[Report](report.pdf)
+[Report](Report.pdf)
