@@ -1,4 +1,6 @@
-source ./DLX_synthesizable/syn/basic_syn
+#to be used in ./DLX_synthesizable/syn folder.
+
+source ./basic_syn
 
 current_design "dlx"
 #wireload for physical design
