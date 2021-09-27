@@ -266,16 +266,12 @@ begin
 		case current_state is
 			when HAZARD_WAIT=>
 				next_state<=HAZARD_WAIT;
-				if RD1_IN /= "00000" then
-					if ((RF1='1' and RS1_IN=RD1_IN) or (RF2='1' and RS2_IN=RD1_IN)) then
-						next_state<=HAZARD_RAW_2clk;
-						s<='1';
-					end if;
-				elsif RD1_OUT /= "00000" then
-					if ((RF1='1' and RS1_IN=RD1_OUT) or (RF2='1' and RS2_IN=RD1_OUT)) then
+				if ((RD1_IN /= "00000") and ((RF1='1' and RS1_IN=RD1_IN) or (RF2='1' and RS2_IN=RD1_IN))) then
+					next_state<=HAZARD_RAW_2clk;
+					s<='1';
+				elsif ((RD1_OUT /= "00000") and ((RF1='1' and RS1_IN=RD1_OUT) or (RF2='1' and RS2_IN=RD1_OUT))) then
 						next_state<=HAZARD_RAW_1clk;
 						s<='1';
-					end if;
 				end if;
 				
 				
