@@ -25,3 +25,6 @@ to be used with Synopsis<br>
 # Report
 Additional information ca be found here:
 [Report](Report.pdf)
+
+# Presentation
+[Slides](DLX_DISCUSSION.pdf)
